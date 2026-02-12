@@ -1,0 +1,14 @@
+#ifndef COLA_FORTRAN_@MODULE_NAME@_HH
+#define COLA_FORTRAN_@MODULE_NAME@_HH
+
+#include <memory>
+
+#include <COLA.hh>
+
+@INCLUDE_FORTRAN_WRAPPER_CLASSES@
+
+namespace cola::fortran {
+    using @MODULE_NAME@ = GenericModule<@COMMA_SEPARATED_CLASS_NAMES@>;
+} // namespace cola::fortran
+
+#endif // COLA_FORTRAN_@MODULE_NAME@_HH

@@ -1,0 +1,41 @@
+! ---------------------------------------------------------------------------
+! C interface: allocate handle (local pointer), init, run, deallocate via c_f_pointer.
+! ---------------------------------------------------------------------------
+module @WRAPPER_MODULE@
+  use, intrinsic :: iso_c_binding
+  use cola
+  use @IMPL_MODULE@
+  implicit none
+  private
+contains
+  function cola_fortran_@TYPE_NAME@_create(params) bind(C, name="cola_fortran_@TYPE_NAME@_create") result(handle)
+    type(c_ptr), intent(in), value :: params
+    type(c_ptr) :: handle
+    type(ParametersMap) :: pmap
+    type(@TYPE_NAME@), pointer :: cls
+    if (.not. c_associated(params)) error stop 'cola_fortran_@TYPE_NAME@_create: params must be associated'
+    pmap%swigdata%cptr = params
+    pmap%swigdata%cmemflags = 0
+    allocate(cls)
+    call cls%init(pmap)
+    handle = c_loc(cls)
+  end function cola_fortran_@TYPE_NAME@_create
+
+  subroutine cola_fortran_@TYPE_NAME@_run(handle, data) bind(C, name="cola_fortran_@TYPE_NAME@_run")
+    type(c_ptr), intent(in), value :: handle
+    type(c_ptr), intent(in), value :: data
+    type(EventData) :: ed
+    type(@TYPE_NAME@), pointer :: cls
+    ed%swigdata%cptr = data
+    ed%swigdata%cmemflags = 0
+    call c_f_pointer(handle, cls)
+    call cls%run(ed)
+  end subroutine cola_fortran_@TYPE_NAME@_run
+
+  subroutine cola_fortran_@TYPE_NAME@_destroy(handle) bind(C, name="cola_fortran_@TYPE_NAME@_destroy")
+    type(c_ptr), intent(in), value :: handle
+    type(@TYPE_NAME@), pointer :: cls
+    call c_f_pointer(handle, cls)
+    deallocate(cls)
+  end subroutine cola_fortran_@TYPE_NAME@_destroy
+end module @WRAPPER_MODULE@

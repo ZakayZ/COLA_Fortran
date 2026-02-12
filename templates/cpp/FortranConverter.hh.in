@@ -1,0 +1,35 @@
+#ifndef COLA_FORTRAN_@CLASS_NAME@_CONVERTER_HH
+#define COLA_FORTRAN_@CLASS_NAME@_CONVERTER_HH
+
+#include <memory>
+
+#include <COLA.hh>
+#include <COLA_Fortran/FortranUtil.hh>
+
+namespace cola::fortran {
+    // NOLINTBEGIN(readability-identifier-naming)
+    extern "C" {
+        /** Create converter instance. Returns opaque handle. \p params is nullptr or ParametersMap* (vector of pair<string,string>). */
+        void* cola_fortran_@CLASS_NAME@_create(const void* params);
+
+        /** Run one conversion step: modify \p data (EventData*) in place. */
+        void cola_fortran_@CLASS_NAME@_run(void* handle, void* data);
+
+        /** Destroy converter instance and release resources for \p handle. */
+        void cola_fortran_@CLASS_NAME@_destroy(void* handle);
+    }
+    // NOLINTEND(readability-identifier-naming)
+
+    class @CLASS_NAME@ : public VConverterFactory {
+        @CLASS_NAME@() = default;
+
+        std::unique_ptr<VFilter> Create(const std::unordered_map<std::string, std::string>& metaData) override;
+
+        const std::string& GetFilterName() const override {
+            return "@CLASS_NAME@";
+        }
+    };
+
+} // namespace cola::fortran
+
+#endif // COLA_FORTRAN_@CLASS_NAME@_CONVERTER_HH

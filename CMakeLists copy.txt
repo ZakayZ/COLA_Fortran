@@ -1,0 +1,49 @@
+cmake_minimum_required(VERSION 3.14)
+project(COLA_FORTRAN VERSION 0.3.2 LANGUAGES CXX Fortran)
+
+find_package(SWIG REQUIRED)
+find_package(COLA REQUIRED)
+include(UseSWIG)
+
+enable_language(Fortran)
+
+# Set SWIG properties
+set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR})
+
+# Create SWIG target
+set_property(SOURCE cola.i PROPERTY CPLUSPLUS ON)
+# Set output directory
+
+swig_add_library(cola_fortran
+    TYPE SHARED
+    LANGUAGE fortran
+    SOURCES cola.i
+)
+
+set_target_properties(cola_fortran PROPERTIES
+    SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
+    Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+target_link_libraries(cola_fortran PRIVATE COLA)
+target_compile_features(cola_fortran PRIVATE cxx_std_17)
+
+install(TARGETS cola_fortran
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules/
+    DESTINATION lib
+    FILES_MATCHING PATTERN "*.mod"
+)
+
+# Generate wrappers from all impl sources and build one static library (like swig_add_library).
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/FortranImplRegister.cmake)
+cola_fortran_add_wrapper_library(cola_fortran_wrappers
+  SOURCES
+    cola_fortran_converter_impl.f90
+    cola_fortran_generator_impl.f90
+    cola_fortran_writer_impl.f90
+)
