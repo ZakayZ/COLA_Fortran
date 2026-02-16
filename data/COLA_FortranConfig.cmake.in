@@ -1,7 +1,11 @@
 @PACKAGE_INIT@
 
-find_package(COLA REQUIRED) # COLA requirement
-#find_package(ROOT) (additional requirements)
+include(CMakeFindDependencyMacro)
+find_dependency(COLA REQUIRED)
 
-include(@CMAKE_INSTALL_PREFIX@/lib/cmake/COLA_Fortran/COLA_FortranExport.cmake)
-#set_and_check(...), etc.
+include("@CMAKE_INSTALL_PREFIX@/lib/cmake/COLA_Fortran/COLA_FortranExport.cmake")
+set_and_check(COLA_Fortran_CMAKE_DIR "@PACKAGE_CMAKE_INSTALL_DIR@")
+set_and_check(COLA_Fortran_TEMPLATES_DIR "@PACKAGE_TEMPLATE_INSTALL_DIR@")
+
+list(APPEND CMAKE_MODULE_PATH "${COLA_Fortran_CMAKE_DIR}")
+include(FortranCOLARegister)

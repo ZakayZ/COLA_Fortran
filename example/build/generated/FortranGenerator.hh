@@ -1,5 +1,5 @@
-#ifndef COLA_FORTRAN_@CLASS_NAME@_GENERATOR_HH
-#define COLA_FORTRAN_@CLASS_NAME@_GENERATOR_HH
+#ifndef COLA_FORTRAN_FortranGenerator_GENERATOR_HH
+#define COLA_FORTRAN_FortranGenerator_GENERATOR_HH
 
 #include <memory>
 
@@ -10,28 +10,28 @@ namespace cola::fortran {
     // NOLINTBEGIN(readability-identifier-naming)
     extern "C" {
         /** Create generator instance. Returns opaque handle. \p params is ParametersMap* (vector of pair<string,string>). */
-        void* cola_fortran_@CLASS_NAME@_create(const void* params);
+        void* cola_fortran_FortranGenerator_create(const void* params);
 
         /** Produce one event. Returns new EventData*; ownership is transferred to the caller. */
-        void* cola_fortran_@CLASS_NAME@_run(void* handle);
+        void* cola_fortran_FortranGenerator_run(void* handle);
 
         /** Destroy generator instance and release resources for \p handle. */
-        void cola_fortran_@CLASS_NAME@_destroy(void* handle);
+        void cola_fortran_FortranGenerator_destroy(void* handle);
     }
     // NOLINTEND(readability-identifier-naming)
 
-    class @CLASS_NAME@Factory : public cola::VGeneratorFactory {
+    class FortranGeneratorFactory : public cola::VGeneratorFactory {
       public:
-        @CLASS_NAME@Factory() = default;
+        FortranGeneratorFactory() = default;
 
         std::unique_ptr<cola::VFilter> Create(const std::unordered_map<std::string, std::string>& metaData) override;
 
         const std::string& GetFilterName() const override {
-            static const std::string NAME = "@CLASS_NAME@";
+            static const std::string NAME = "FortranGenerator";
             return NAME;
         }
     };
 
 } // namespace cola::fortran
 
-#endif // COLA_FORTRAN_@CLASS_NAME@_GENERATOR_HH
+#endif // COLA_FORTRAN_FortranGenerator_GENERATOR_HH

@@ -1,3 +1,7 @@
+if(NOT COLA_Fortran_TEMPLATES_DIR)
+  set(COLA_Fortran_TEMPLATES_DIR "templates")
+endif()
+
 function(configure_template)
   cmake_parse_arguments(ARG "" "TEMPLATE;OUTPUT" "VARS" ${ARGN})
   if(NOT ARG_TEMPLATE OR NOT ARG_OUTPUT)
@@ -21,7 +25,7 @@ function(configure_template)
 endfunction()
 
 function(_register_fortran_source_filters)
-  cmake_parse_arguments(ARG "" "IMPL_MODULE;FILTER_TYPE;TEMPLATE_BASE;OUTPUT_DIR" "TYPE_NAMES" ${ARGN})
+  cmake_parse_arguments(ARG "" "IMPL_MODULE;FILTER_TYPE;OUTPUT_DIR" "TYPE_NAMES" ${ARGN})
   string(TOLOWER "${ARG_FILTER_TYPE}" FILTER_TYPE_LOWER)
 
   set(HEADER_FILES "")
@@ -33,19 +37,19 @@ function(_register_fortran_source_filters)
 
   foreach(TYPE_NAME IN LISTS ARG_TYPE_NAMES)
     configure_template(
-      TEMPLATE "${ARG_TEMPLATE_BASE}/cpp/${CPP_WRAPPER_NAME}.hh.in"
-      OUTPUT  "${ARG_OUTPUT_DIR}/COLA/${TYPE_NAME}.hh"
+      TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/cpp/${CPP_WRAPPER_NAME}.hh.in"
+      OUTPUT  "${ARG_OUTPUT_DIR}/${TYPE_NAME}.hh"
       VARS   CLASS_NAME "${TYPE_NAME}"
     )
     configure_template(
-      TEMPLATE "${ARG_TEMPLATE_BASE}/cpp/${CPP_WRAPPER_NAME}.cc.in"
+      TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/cpp/${CPP_WRAPPER_NAME}.cc.in"
       OUTPUT  "${ARG_OUTPUT_DIR}/${TYPE_NAME}.cc"
       VARS   CLASS_NAME "${TYPE_NAME}"
     )
     configure_template(
-      TEMPLATE "${ARG_TEMPLATE_BASE}/fortran/cola_fortran_${FILTER_TYPE_LOWER}_wrapper.f90.in"
+      TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/fortran/${FILTER_TYPE_LOWER}_wrapper.f90.in"
       OUTPUT  "${ARG_OUTPUT_DIR}/${TYPE_NAME}_wrapper.f90"
-      VARS   WRAPPER_MODULE "cola_fortran_${FILTER_TYPE_LOWER}_wrapper" IMPL_MODULE "${ARG_IMPL_MODULE}"
+      VARS   WRAPPER_MODULE "${FILTER_TYPE_LOWER}_wrapper" IMPL_MODULE "${ARG_IMPL_MODULE}"
              TYPE_NAME "${TYPE_NAME}"
     )
 
@@ -69,7 +73,7 @@ function(register_fortran_source)
   if(NOT ARG_OUTPUT_DIR)
     set(ARG_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
   endif()
-  file(MAKE_DIRECTORY "${ARG_OUTPUT_DIR}" "${ARG_OUTPUT_DIR}/COLA")
+  file(MAKE_DIRECTORY "${ARG_OUTPUT_DIR}")
 
   get_filename_component(FORTRAN_FILE_ABS "${ARG_FORTRAN_FILE}" ABSOLUTE BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
   if(NOT EXISTS "${FORTRAN_FILE_ABS}")
@@ -82,26 +86,25 @@ function(register_fortran_source)
   if(NOT IMPL_MODULE)
     message(FATAL_ERROR "register_fortran_source: could not parse module name from ${ARG_FORTRAN_FILE}")
   endif()
-  
+
   set(CONVERTER_TYPES "")
   string(REGEX MATCHALL "extends[ \t]*\\([ \t]*AbstractFortranConverter[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)" _ "${FCONTENT}")
   if(CMAKE_MATCH_1)
     set(CONVERTER_TYPES ${CMAKE_MATCH_1})
   endif()
-  
+
   set(GENERATOR_TYPES "")
   string(REGEX MATCHALL "extends[ \t]*\\([ \t]*AbstractFortranGenerator[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)" _ "${FCONTENT}")
   if(CMAKE_MATCH_1)
     set(GENERATOR_TYPES ${CMAKE_MATCH_1})
   endif()
-  
+
   set(WRITER_TYPES "")
   string(REGEX MATCHALL "extends[ \t]*\\([ \t]*AbstractFortranWriter[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)" _ "${FCONTENT}")
   if(CMAKE_MATCH_1)
     set(WRITER_TYPES ${CMAKE_MATCH_1})
   endif()
 
-  set(_TEMPLATE_BASE "${CMAKE_CURRENT_SOURCE_DIR}/templates")
   set(_GENERATED_FORTRAN_SOURCE_FILES "")
   set(_GENERATED_HEADER_SOURCE_FILES "")
   set(_GENERATED_CPP_SOURCE_FILES "")
@@ -110,7 +113,6 @@ function(register_fortran_source)
     TYPE_NAMES    "${CONVERTER_TYPES}"
     IMPL_MODULE  "${IMPL_MODULE}"
     FILTER_TYPE         Converter
-    TEMPLATE_BASE "${_TEMPLATE_BASE}"
     OUTPUT_DIR   "${ARG_OUTPUT_DIR}"
   )
   list(APPEND _GENERATED_FORTRAN_SOURCE_FILES ${GENERATED_FORTRAN_FILES})
@@ -121,7 +123,6 @@ function(register_fortran_source)
     TYPE_NAMES    "${GENERATOR_TYPES}"
     IMPL_MODULE  "${IMPL_MODULE}"
     FILTER_TYPE         Generator
-    TEMPLATE_BASE "${_TEMPLATE_BASE}"
     OUTPUT_DIR   "${ARG_OUTPUT_DIR}"
   )
   list(APPEND _GENERATED_FORTRAN_SOURCE_FILES ${GENERATED_FORTRAN_FILES})
@@ -132,12 +133,17 @@ function(register_fortran_source)
     TYPE_NAMES    "${WRITER_TYPES}"
     IMPL_MODULE  "${IMPL_MODULE}"
     FILTER_TYPE         Writer
-    TEMPLATE_BASE "${_TEMPLATE_BASE}"
     OUTPUT_DIR   "${ARG_OUTPUT_DIR}"
   )
   list(APPEND _GENERATED_FORTRAN_SOURCE_FILES ${GENERATED_FORTRAN_FILES})
   list(APPEND _GENERATED_HEADER_SOURCE_FILES ${GENERATED_HEADER_FILES})
   list(APPEND _GENERATED_CPP_SOURCE_FILES ${GENERATED_CPP_FILES})
+
+  set(_COLA_FILTERS "")
+  list(APPEND _COLA_FILTERS ${GENERATOR_TYPES})
+  list(APPEND _COLA_FILTERS ${CONVERTER_TYPES})
+  list(APPEND _COLA_FILTERS ${WRITER_TYPES})
+  set(COLA_FILTERS "${_COLA_FILTERS}" PARENT_SCOPE)
 
   set(GENERATED_FORTRAN_SOURCE_FILES "${_GENERATED_FORTRAN_SOURCE_FILES}" PARENT_SCOPE)
   set(GENERATED_HEADER_SOURCE_FILES "${_GENERATED_HEADER_SOURCE_FILES}" PARENT_SCOPE)
@@ -147,33 +153,49 @@ endfunction()
 function(add_cola_fortran_library TARGET_NAME)
   cmake_parse_arguments(ARG "" "" "SOURCES" ${ARGN})
   if(NOT TARGET_NAME)
-    message(FATAL_ERROR "cola_fortran_add_wrapper_library requires a target name")
+    message(FATAL_ERROR "add_wrapper_library requires a target name")
   endif()
   if(NOT ARG_SOURCES)
-    message(FATAL_ERROR "cola_fortran_add_wrapper_library requires SOURCES")
+    message(FATAL_ERROR "add_wrapper_library requires SOURCES")
   endif()
   set(OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
   file(MAKE_DIRECTORY "${OUTPUT_DIR}")
 
+  set(MODULE_NAME ${TARGET_NAME})
   set(ALL_GENERATED_FORTRAN_FILES "")
   set(ALL_GENERATED_CPP_FILES "")
+  set(ALL_GENERATED_HEADER_FILES "")
+  set(ALL_COLA_FILTERS "")
   foreach(SOURCE IN LISTS ARG_SOURCES)
     register_fortran_source(FORTRAN_FILE "${SOURCE}" OUTPUT_DIR "${OUTPUT_DIR}")
     list(APPEND ALL_GENERATED_FORTRAN_FILES ${GENERATED_FORTRAN_SOURCE_FILES})
     list(APPEND ALL_GENERATED_CPP_FILES ${GENERATED_CPP_SOURCE_FILES})
+    list(APPEND ALL_GENERATED_HEADER_FILES ${GENERATED_HEADER_SOURCE_FILES})
+    list(APPEND ALL_COLA_FILTERS ${COLA_FILTERS})
   endforeach()
 
-  add_library(${TARGET_NAME} STATIC
+  string(REPLACE ";" "Factory, " COMMA_SEPARATED_CLASS_NAMES "${ALL_COLA_FILTERS}")
+  string(REPLACE ";" ".hh>\n#include <" INCLUDE_FORTRAN_WRAPPER_CLASSES "${ALL_COLA_FILTERS}")
+
+  configure_template(
+    TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/cpp/FortranModule.hh.in"
+    OUTPUT  "${OUTPUT_DIR}/${MODULE_NAME}.hh"
+    VARS   MODULE_NAME "${MODULE_NAME}"
+           COMMA_SEPARATED_CLASS_NAMES "${COMMA_SEPARATED_CLASS_NAMES}Factory"
+           INCLUDE_FORTRAN_WRAPPER_CLASSES "#include <${INCLUDE_FORTRAN_WRAPPER_CLASSES}.hh>\n"
+  )
+
+  add_library(${TARGET_NAME} SHARED
     ${ARG_SOURCES}
     ${ALL_GENERATED_FORTRAN_FILES}
-    ${ALL_GENERATED_FORTRAN_FILES}
+    ${ALL_GENERATED_CPP_FILES}
   )
-  target_link_libraries(${TARGET_NAME} PRIVATE cola_fortran COLA)
-  target_include_directories(${TARGET_NAME} PRIVATE
-    ${CMAKE_CURRENT_BINARY_DIR}/modules
-    ${OUTPUT_DIR}
+
+  set_target_properties(${TARGET_NAME} ${CMAKE_CURRENT_BINARY_DIR}/modules
+      Fortran_MODULE_DIRECTORY ${MODULES_DIR}
+      LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   )
-  target_compile_features(${TARGET_NAME} PRIVATE cxx_std_17)
-  install(TARGETS ${TARGET_NAME} ARCHIVE DESTINATION lib)
+
+  target_link_libraries(${TARGET_NAME} PUBLIC COLA_Fortran)
 
 endfunction()

@@ -19,21 +19,18 @@
  * SOFTWARE.
  */
 
-#ifndef COLA_FORTRANUTIL_HH
-#define COLA_FORTRANUTIL_HH
+#ifndef COLA_FORTRAN_UTIL_HH
+#define COLA_FORTRAN_UTIL_HH
 
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 namespace cola::fortran {
-
-    /** Parameters map format passed to Fortran (vector of pair<string,string>). */
     using FortranParametersMap = std::vector<std::pair<std::string, std::string>>;
 
-    /** Converts C++ params to the format expected by Fortran create procedures. */
-    inline FortranParametersMap ToFortranParametersMap(const std::unordered_map<std::string, std::string>& params);
+    FortranParametersMap ToFortranParametersMap(const std::unordered_map<std::string, std::string>& params);
 
 } // namespace cola::fortran
 
-#endif // COLA_FORTRANUTIL_HH
+#endif // COLA_FORTRAN_UTIL_HH

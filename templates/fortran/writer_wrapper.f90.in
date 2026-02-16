@@ -13,9 +13,12 @@ contains
     type(c_ptr) :: handle
     type(ParametersMap) :: pmap
     type(@TYPE_NAME@), pointer :: cls
-    if (.not. c_associated(params)) error stop 'cola_fortran_@TYPE_NAME@_create: params must be associated'
-    pmap%swigdata%cptr = params
-    pmap%swigdata%cmemflags = 0
+    if (c_associated(params)) then
+      pmap%swigdata%cptr = params
+      pmap%swigdata%cmemflags = 0
+    else
+      pmap = ParametersMap()
+    end if
     allocate(cls)
     call cls%init(pmap)
     handle = c_loc(cls)
