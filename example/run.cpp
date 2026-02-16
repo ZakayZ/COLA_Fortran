@@ -1,4 +1,4 @@
-#include "ExampleFortranModule.hh"
+#include "ExampleFortran/ExampleFortranModule.hh"
 
 int main() {
     auto mod = cola::fortran::ExampleFortranModule();

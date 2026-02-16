@@ -1,0 +1,5 @@
+#include "@MODULE_NAME@/@MODULE_NAME@Module.hh"
+
+extern "C" cola::VModule* LoadCOLAModule() {
+    return new cola::fortran::@MODULE_NAME@Module();
+}

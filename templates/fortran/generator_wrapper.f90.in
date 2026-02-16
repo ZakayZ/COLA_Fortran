@@ -4,7 +4,7 @@
 module @WRAPPER_MODULE@
   use, intrinsic :: iso_c_binding
   use cola
-  use @IMPL_MODULE@
+  use @USER_MODULE_NAME@
   implicit none
   private
 contains

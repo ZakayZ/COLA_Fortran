@@ -19,6 +19,8 @@
 cmake_minimum_required(VERSION 3.14)
 project(COLA_Fortran VERSION 0.1 LANGUAGES CXX Fortran)
 
+option(BUILD_WITH_SWIG "build cola.i with swig-fortran" OFF)
+
 include(GNUInstallDirs)
 
 find_package(SWIG REQUIRED)
@@ -27,11 +29,9 @@ find_package(COLA REQUIRED)
 set(CMAKE_INSTALL_PREFIX ${COLA_DIR})
 set(COLA_MODULE_NAME COLA_Fortran)
 
-include(UseSWIG)
-
-enable_language(Fortran)
-
-set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR})
+# ---------------------------------------------------------------------------
+# COLA_Fortran C++ helpers
+# ---------------------------------------------------------------------------
 
 add_library(
     ${COLA_MODULE_NAME}_CPP
@@ -44,19 +44,43 @@ target_include_directories(${COLA_MODULE_NAME}_CPP PUBLIC
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-set_property(SOURCE cola.i PROPERTY CPLUSPLUS ON)
-
-swig_add_library(${COLA_MODULE_NAME}
-    TYPE SHARED
-    LANGUAGE fortran
-    SOURCES cola.i
-)
-
 target_link_libraries(${COLA_MODULE_NAME}_CPP PUBLIC COLA)
+
+# ---------------------------------------------------------------------------
+# SWIG wrapper library
+# ---------------------------------------------------------------------------
+
+if (BUILD_WITH_SWIG) 
+    include(UseSWIG)
+    set_property(SOURCE cola.i PROPERTY CPLUSPLUS ON)
+
+    swig_add_library(${COLA_MODULE_NAME}
+        TYPE SHARED
+        LANGUAGE fortran
+        SOURCES cola.i
+        OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/swig_gen
+    )
+    set_target_properties(${COLA_MODULE_NAME} PROPERTIES
+        SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
+    )
+    add_custom_command(TARGET ${COLA_MODULE_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                ${CMAKE_CURRENT_BINARY_DIR}/swig_gen
+                ${PROJECT_SOURCE_DIR}/swig_gen
+        COMMENT "Copying swig_gen to source..."
+    )
+else ()
+    file(GLOB SRCS "${PROJECT_SOURCE_DIR}/swig_gen/*")
+    add_library(
+        ${COLA_MODULE_NAME}
+        SHARED
+        ${SRCS}
+    )
+endif()
+
 target_link_libraries(${COLA_MODULE_NAME} PUBLIC ${COLA_MODULE_NAME}_CPP)
 
 set_target_properties(${COLA_MODULE_NAME} PROPERTIES
-    SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
     Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )

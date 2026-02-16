@@ -1,4 +1,4 @@
-#include "@CLASS_NAME@.hh"
+#include "@MODULE_NAME@/@CLASS_NAME@.hh"
 
 namespace cola::fortran {
     class FortranConverter : public cola::VConverter {

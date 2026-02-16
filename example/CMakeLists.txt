@@ -17,17 +17,84 @@
 # SOFTWARE.
 
 cmake_minimum_required(VERSION 3.14)
-project(COLA_Fortran_Example VERSION 0.3.2 LANGUAGES CXX Fortran)
+project(ExampleFortran VERSION 0.3.2 LANGUAGES CXX Fortran)
+
+include(GNUInstallDirs)
 
 find_package(COLA_Fortran REQUIRED)
 
+set(CMAKE_INSTALL_PREFIX ${COLA_DIR})
+set(COLA_MODULE_NAME ExampleFortran)
+
+# ---------------------------------------------------------------------------
+# Fortran Lib
+# ---------------------------------------------------------------------------
+
 add_cola_fortran_library(
-  ExampleFortranModule
+  ${COLA_MODULE_NAME}
   SOURCES
     cola_fortran_converter_impl.f90
     cola_fortran_generator_impl.f90
     cola_fortran_writer_impl.f90
 )
+
+target_include_directories(${COLA_MODULE_NAME} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/generated>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+target_include_directories(${COLA_MODULE_NAME} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/modules>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${COLA_MODULE_NAME}/modules>
+)
+
+# ---------------------------------------------------------------------------
+# Installation
+# ---------------------------------------------------------------------------
+
+set(GENERATED_HEADERS_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated/${COLA_MODULE_NAME})
+
+install(TARGETS ${COLA_MODULE_NAME}
+    EXPORT ${COLA_MODULE_NAME}Export
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+    ${PROJECT_SOURCE_DIR}/data/${COLA_MODULE_NAME}Config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}Config.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${COLA_MODULE_NAME}
+)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}ConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+install(EXPORT ${COLA_MODULE_NAME}Export DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${COLA_MODULE_NAME})
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${COLA_MODULE_NAME}/modules
+    FILES_MATCHING PATTERN "*.mod"
+) 
+
+message(STATUS "cola dir: ${COLA_DIR}; include ${CMAKE_INSTALL_INCLUDEDIR}")
+install(DIRECTORY ${GENERATED_HEADERS_DIR}
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILES_MATCHING PATTERN "*.hh"
+)
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}Config.cmake"
+              "${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}ConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${COLA_MODULE_NAME}
+)
+
+# ---------------------------------------------------------------------------
+# Runner Lib
+# ---------------------------------------------------------------------------
 
 add_executable(
   Runner
@@ -37,7 +104,7 @@ add_executable(
 target_link_libraries(
   Runner
   PUBLIC
-  ExampleFortranModule
+  ${COLA_MODULE_NAME}
 )
 
 target_include_directories(
@@ -45,6 +112,3 @@ target_include_directories(
   PUBLIC
   ${CMAKE_CURRENT_BINARY_DIR}/generated
 )
-
-get_target_property(inc_dirs Runner INTERFACE_INCLUDE_DIRECTORIES)
-message("Provider inc dirs: ${inc_dirs}")
