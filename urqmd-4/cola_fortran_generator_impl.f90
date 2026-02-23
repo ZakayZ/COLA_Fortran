@@ -1,5 +1,6 @@
 module cola_fortran_generator_impl
   use cola
+  use, intrinsic :: iso_c_binding
   implicit none
   private
 
@@ -15,9 +16,15 @@ module cola_fortran_generator_impl
   character(len=512) :: generated_config_path = ''
 
   interface
-    subroutine urqmd_cola_set_input_file(path)
-      character(len=*), intent(in) :: path
-    end subroutine
+    function setenv(name, value, overwrite) bind(c)
+      import :: c_int, c_char
+      integer(c_int) :: setenv
+      character(kind=c_char), intent(in) :: name(*), value(*)
+      integer(c_int), value :: overwrite
+    end function
+  end interface
+
+  interface
     subroutine urqmd_cola_uinit(io)
       integer, intent(in) :: io
     end subroutine
@@ -38,6 +45,16 @@ module cola_fortran_generator_impl
   integer, external :: pdgid
 
 contains
+
+  subroutine urqmd_cola_set_input_file(path)
+    character(len=*), intent(in) :: path
+    character(len=7) :: name
+    character(len=513) :: path_c
+    integer(c_int) :: ierr
+    name = 'ftn09' // c_null_char
+    path_c = trim(path) // c_null_char
+    ierr = setenv(name, path_c, 1_c_int)
+  end subroutine urqmd_cola_set_input_file
 
   subroutine generator_init(self, pmap)
     class(URQMDGenerator), intent(inout) :: self

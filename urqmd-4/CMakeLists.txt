@@ -84,10 +84,12 @@ add_cola_fortran_library(
   SOURCES
     cola_fortran_generator_impl.f90
     ${URQMD_F_SOURCES}
-    ${CMAKE_CURRENT_SOURCE_DIR}/urqmd_cola_bridge.f
+    ${CMAKE_CURRENT_SOURCE_DIR}/urqmd_cola_ref.f
 )
 
-set_source_files_properties(${URQMD_F_SOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/urqmd_cola_bridge.f
+set_source_files_properties(${URQMD_F_SOURCES}
+  ${CMAKE_CURRENT_SOURCE_DIR}/urqmd_cola_ref.f
+  ${CMAKE_CURRENT_SOURCE_DIR}/cola_fortran_generator_impl.f90
   PROPERTIES INCLUDE_DIRECTORIES "${URQMD_SOURCE_DIR}")
 target_compile_options(${COLA_MODULE_NAME} PRIVATE -fPIC)
 
