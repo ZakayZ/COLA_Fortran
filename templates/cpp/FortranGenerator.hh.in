@@ -7,19 +7,6 @@
 #include <COLA_Fortran/utils.hh>
 
 namespace cola::fortran {
-    // NOLINTBEGIN(readability-identifier-naming)
-    extern "C" {
-        /** Create generator instance. Returns opaque handle. \p params is ParametersMap* (vector of pair<string,string>). */
-        void* cola_fortran_@CLASS_NAME@_create(const void* params);
-
-        /** Produce one event. Returns new EventData*; ownership is transferred to the caller. */
-        void* cola_fortran_@CLASS_NAME@_run(void* handle);
-
-        /** Destroy generator instance and release resources for \p handle. */
-        void cola_fortran_@CLASS_NAME@_destroy(void* handle);
-    }
-    // NOLINTEND(readability-identifier-naming)
-
     class @CLASS_NAME@Factory : public cola::VGeneratorFactory {
       public:
         @CLASS_NAME@Factory() = default;

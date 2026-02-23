@@ -23,7 +23,6 @@ option(BUILD_WITH_SWIG "build cola.i with swig-fortran" OFF)
 
 include(GNUInstallDirs)
 
-find_package(SWIG REQUIRED)
 find_package(COLA REQUIRED)
 
 set(CMAKE_INSTALL_PREFIX ${COLA_DIR})
@@ -51,6 +50,7 @@ target_link_libraries(${COLA_MODULE_NAME}_CPP PUBLIC COLA)
 # ---------------------------------------------------------------------------
 
 if (BUILD_WITH_SWIG) 
+    find_package(SWIG REQUIRED)
     include(UseSWIG)
     set_property(SOURCE cola.i PROPERTY CPLUSPLUS ON)
 

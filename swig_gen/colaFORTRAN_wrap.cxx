@@ -202,12 +202,14 @@ enum AssignmentType {
 
 #define SWIG_VERSION 0x040200
 #define SWIGFORTRAN
-#define SWIGPOLICY_std_pair_Sl__Sp_uint16_t_Sc_uint16_t_SP__Sg_ swig::ASSIGNMENT_DEFAULT
-#define SWIGPOLICY_std_vector_Sl__Sp_std_pair_Sl__Sp_std_string_Sc_std_string_SP__Sg__SP__Sg_ swig::ASSIGNMENT_DEFAULT
-#define SWIGPOLICY_std_vector_Sl__Sp_cola_Particle_SP__Sg_ swig::ASSIGNMENT_DEFAULT
+#define SWIGPOLICY_cola_LorentzVectorImpl_Sl__Sp_double_SP__Sg_ swig::ASSIGNMENT_DEFAULT
 #define SWIGPOLICY_cola_Particle swig::ASSIGNMENT_DEFAULT
 #define SWIGPOLICY_cola_EventIniState swig::ASSIGNMENT_DEFAULT
 #define SWIGPOLICY_cola_EventData swig::ASSIGNMENT_DEFAULT
+#define SWIGPOLICY_std_pair_Sl__Sp_uint16_t_Sc_uint16_t_SP__Sg_ swig::ASSIGNMENT_DEFAULT
+#define SWIGPOLICY_std_pair_Sl__Sp_std_string_Sc_std_string_SP__Sg_ swig::ASSIGNMENT_DEFAULT
+#define SWIGPOLICY_std_vector_Sl__Sp_std_pair_Sl__Sp_std_string_Sc_std_string_SP__Sg__SP__Sg_ swig::ASSIGNMENT_DEFAULT
+#define SWIGPOLICY_std_vector_Sl__Sp_cola_Particle_SP__Sg_ swig::ASSIGNMENT_DEFAULT
 
 #ifdef __cplusplus
 #include <utility>
@@ -277,6 +279,7 @@ template <typename T> T SwigValueInit() {
 #include <vector>
 #include <cstdint>
 #include <COLA/EventData.hh>
+#include <COLA/LorentzVector.hh>
 
 
 #include <utility>
@@ -304,6 +307,18 @@ SWIGINTERN SwigClassWrapper SwigClassWrapper_uninitialized() {
     return result;
 }
 
+SWIGINTERN double cola_LorentzVectorImpl_Sl_double_Sg__get_e(cola::LorentzVectorImpl< double > const *self){ return self->e; }
+SWIGINTERN void cola_LorentzVectorImpl_Sl_double_Sg__set_e(cola::LorentzVectorImpl< double > *self,double v){ self->e = v; }
+SWIGINTERN double cola_LorentzVectorImpl_Sl_double_Sg__get_t(cola::LorentzVectorImpl< double > const *self){ return self->t; }
+SWIGINTERN void cola_LorentzVectorImpl_Sl_double_Sg__set_t(cola::LorentzVectorImpl< double > *self,double v){ self->t = v; }
+SWIGINTERN cola::LorentzVectorImpl< double > *new_cola_LorentzVectorImpl_Sl_double_Sg_(double e,double x,double y,double z){
+    cola::LorentzVector *v = new cola::LorentzVector();
+    v->e = e;
+    v->x = x;
+    v->y = y;
+    v->z = z;
+    return v;
+  }
 
 namespace swig {
 
@@ -421,6 +436,34 @@ SWIGINTERN void SWIG_free_rvalue(SwigClassWrapper other) {
 }
 
 
+
+#include <stdlib.h>
+#ifdef _MSC_VER
+# ifndef strtoull
+#  define strtoull _strtoui64
+# endif
+# ifndef strtoll
+#  define strtoll _strtoi64
+# endif
+#endif
+
+
+struct SwigArrayWrapper {
+    void* data;
+    size_t size;
+};
+
+
+SWIGINTERN SwigArrayWrapper SwigArrayWrapper_uninitialized() {
+  SwigArrayWrapper result;
+  result.data = NULL;
+  result.size = 0;
+  return result;
+}
+
+
+#include <string.h>
+
 SWIGINTERN void std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__set(std::vector< std::pair< std::string,std::string > > *self,std::vector< std::pair< std::string,std::string > >::size_type index,std::pair< std::string,std::string > const &v){
         SWIG_check_range(index, self->size(),
                          "std::vector<""std::pair< std::string,std::string >" ">::set",
@@ -512,751 +555,294 @@ SWIGINTERN cola::Particle &std_vector_Sl_cola_Particle_Sg__get_ref(std::vector< 
       return (*self)[index];
     }
 extern "C" {
-SWIGEXPORT SwigClassWrapper _wrap_new_AZ__SWIG_0() {
-  SwigClassWrapper fresult ;
-  std::pair< uint16_t,uint16_t > *result = 0 ;
+SWIGEXPORT void _wrap_LorentzVector_x_set(SwigClassWrapper *farg1, double const *farg2) {
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
   
-  result = (std::pair< uint16_t,uint16_t > *)new std::pair< uint16_t,uint16_t >();
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::x", return );
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  if (arg1) (arg1)->x = arg2;
+}
+
+
+SWIGEXPORT double _wrap_LorentzVector_x_get(SwigClassWrapper *farg1) {
+  double fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double result;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::x", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (double) ((arg1)->x);
+  fresult = (double)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_LorentzVector_y_set(SwigClassWrapper *farg1, double const *farg2) {
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::y", return );
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  if (arg1) (arg1)->y = arg2;
+}
+
+
+SWIGEXPORT double _wrap_LorentzVector_y_get(SwigClassWrapper *farg1) {
+  double fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double result;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::y", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (double) ((arg1)->y);
+  fresult = (double)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_LorentzVector_z_set(SwigClassWrapper *farg1, double const *farg2) {
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::z", return );
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  if (arg1) (arg1)->z = arg2;
+}
+
+
+SWIGEXPORT double _wrap_LorentzVector_z_get(SwigClassWrapper *farg1) {
+  double fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double result;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::z", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (double) ((arg1)->z);
+  fresult = (double)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_op_sub__(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  cola::LorentzVectorImpl< double > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::operator -() const", return SwigClassWrapper_uninitialized());
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (cola::LorentzVectorImpl< double > *) &((cola::LorentzVectorImpl< double > const *)arg1)->operator -();
   fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_new_AZ__SWIG_1(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_Boost(SwigClassWrapper *farg1, double const *farg2, double const *farg3, double const *farg4) {
   SwigClassWrapper fresult ;
-  uint16_t arg1 ;
-  uint16_t arg2 ;
-  std::pair< uint16_t,uint16_t > *result = 0 ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
+  double arg3 ;
+  double arg4 ;
+  cola::LorentzVectorImpl< double > *result = 0 ;
   
-  SWIG_check_nonnull(farg1->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::pair(uint16_t,uint16_t)", return SwigClassWrapper_uninitialized());
-  arg1 = *((uint16_t *)(farg1->cptr));
-  SWIG_check_nonnull(farg2->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::pair(uint16_t,uint16_t)", return SwigClassWrapper_uninitialized());
-  arg2 = *((uint16_t *)(farg2->cptr));
-  result = (std::pair< uint16_t,uint16_t > *)new std::pair< uint16_t,uint16_t >(arg1,arg2);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::Boost(double,double,double)", return SwigClassWrapper_uninitialized());
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  arg3 = (double)(*farg3);
+  arg4 = (double)(*farg4);
+  result = (cola::LorentzVectorImpl< double > *) &(arg1)->Boost(arg2,arg3,arg4);
   fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_new_AZ__SWIG_2(SwigClassWrapper *farg1) {
+SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_BoostAxisRapidity__SWIG_0(SwigClassWrapper *farg1, double const *farg2, SwigClassWrapper *farg3) {
   SwigClassWrapper fresult ;
-  std::pair< uint16_t,uint16_t > *arg1 = 0 ;
-  std::pair< uint16_t,uint16_t > *result = 0 ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
+  uint32_t arg3 ;
+  cola::LorentzVectorImpl< double > *result = 0 ;
   
-  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > const &", "AZ", "std::pair< uint16_t,uint16_t >::pair(std::pair< uint16_t,uint16_t > const &)", return SwigClassWrapper_uninitialized());
-  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
-  result = (std::pair< uint16_t,uint16_t > *)new std::pair< uint16_t,uint16_t >((std::pair< uint16_t,uint16_t > const &)*arg1);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::BoostAxisRapidity(double,uint32_t)", return SwigClassWrapper_uninitialized());
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  SWIG_check_nonnull(farg3->cptr, "uint32_t", "SWIGTYPE_p_uint32_t", "cola::LorentzVectorImpl< double >::BoostAxisRapidity(double,uint32_t)", return SwigClassWrapper_uninitialized());
+  arg3 = *((uint32_t *)(farg3->cptr));
+  result = (cola::LorentzVectorImpl< double > *) &(arg1)->BoostAxisRapidity(arg2,arg3);
   fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
   return fresult;
 }
 
 
-SWIGEXPORT void _wrap_AZ_first_set(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
-  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
-  uint16_t arg2 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::first", return );
-  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
-  SWIG_check_nonnull(farg2->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::first", return );
-  arg2 = *((uint16_t *)(farg2->cptr));
-  if (arg1) (arg1)->first = arg2;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_AZ_first_get(SwigClassWrapper *farg1) {
+SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_BoostAxisRapidity__SWIG_1(SwigClassWrapper *farg1, double const *farg2) {
   SwigClassWrapper fresult ;
-  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
-  uint16_t result;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
+  cola::LorentzVectorImpl< double > *result = 0 ;
   
-  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::first", return SwigClassWrapper_uninitialized());
-  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
-  result =  ((arg1)->first);
-  fresult.cptr = new (uint16_t)(result);
-  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
-  return fresult;
-}
-
-
-SWIGEXPORT void _wrap_AZ_second_set(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
-  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
-  uint16_t arg2 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::second", return );
-  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
-  SWIG_check_nonnull(farg2->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::second", return );
-  arg2 = *((uint16_t *)(farg2->cptr));
-  if (arg1) (arg1)->second = arg2;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_AZ_second_get(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
-  uint16_t result;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::second", return SwigClassWrapper_uninitialized());
-  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
-  result =  ((arg1)->second);
-  fresult.cptr = new (uint16_t)(result);
-  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
-  return fresult;
-}
-
-
-SWIGEXPORT void _wrap_delete_AZ(SwigClassWrapper *farg1) {
-  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
-  
-  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
-  delete arg1;
-}
-
-
-SWIGEXPORT void _wrap_AZ_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
-  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
-  std::pair< uint16_t,uint16_t > *arg2 = 0 ;
-  
-  (void)sizeof(arg1);
-  (void)sizeof(arg2);
-  SWIG_assign<std::pair< uint16_t,uint16_t >, SWIGPOLICY_std_pair_Sl__Sp_uint16_t_Sc_uint16_t_SP__Sg_>(farg1, *farg2);
-  
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_0() {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *result = 0 ;
-  
-  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >();
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::BoostAxisRapidity(double)", return SwigClassWrapper_uninitialized());
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  result = (cola::LorentzVectorImpl< double > *) &(arg1)->BoostAxisRapidity(arg2);
   fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_1(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = 0 ;
-  std::vector< std::pair< std::string,std::string > > *result = 0 ;
+SWIGEXPORT double _wrap_LorentzVector_Mag2(SwigClassWrapper *farg1) {
+  double fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double result;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const &", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::vector(std::vector< std::pair< std::string,std::string > > const &)", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >((std::vector< std::pair< std::string,std::string > > const &)*arg1);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::Mag2() const", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (double)((cola::LorentzVectorImpl< double > const *)arg1)->Mag2();
+  fresult = (double)(result);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_2(size_t const *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg1 ;
-  std::vector< std::pair< std::string,std::string > > *result = 0 ;
+SWIGEXPORT double _wrap_LorentzVector_Mag(SwigClassWrapper *farg1) {
+  double fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double result;
   
-  arg1 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg1);
-  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >(arg1);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::Mag() const", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (double)((cola::LorentzVectorImpl< double > const *)arg1)->Mag();
+  fresult = (double)(result);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_3(size_t const *farg1, SwigClassWrapper *farg2) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg1 ;
-  std::pair< std::string,std::string > *arg2 = 0 ;
-  std::vector< std::pair< std::string,std::string > > *result = 0 ;
-  
-  arg1 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg1);
-  SWIG_check_nonnull(farg2->cptr, "std::pair< std::string,std::string > const &", "SWIGTYPE_p_std__pairT_std__string_std__string_t", "std::vector< std::pair< std::string,std::string > >::vector(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return SwigClassWrapper_uninitialized());
-  arg2 = (std::pair< std::string,std::string > *)farg2->cptr;
-  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >(arg1,(std::pair< std::string,std::string > const &)*arg2);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT size_t _wrap_ParametersMap_size(SwigClassWrapper *farg1) {
-  size_t fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type result;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::size() const", return 0);
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = ((std::vector< std::pair< std::string,std::string > > const *)arg1)->size();
-  fresult = (std::vector< std::pair< std::string,std::string > >::size_type)(result);
-  return fresult;
-}
-
-
-SWIGEXPORT size_t _wrap_ParametersMap_capacity(SwigClassWrapper *farg1) {
-  size_t fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type result;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::capacity() const", return 0);
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = ((std::vector< std::pair< std::string,std::string > > const *)arg1)->capacity();
-  fresult = (std::vector< std::pair< std::string,std::string > >::size_type)(result);
-  return fresult;
-}
-
-
-SWIGEXPORT int _wrap_ParametersMap_empty(SwigClassWrapper *farg1) {
+SWIGEXPORT int _wrap_LorentzVector_IsSpaceLike(SwigClassWrapper *farg1) {
   int fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
   bool result;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::empty() const", return 0);
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = (bool)((std::vector< std::pair< std::string,std::string > > const *)arg1)->empty();
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::IsSpaceLike() const", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (bool)((cola::LorentzVectorImpl< double > const *)arg1)->IsSpaceLike();
   fresult = (result ? 1 : 0);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_front(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::pair< std::string,std::string > *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::front() const", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = (std::pair< std::string,std::string > *) &((std::vector< std::pair< std::string,std::string > > const *)arg1)->front();
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_back(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::pair< std::string,std::string > *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::back() const", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = (std::pair< std::string,std::string > *) &((std::vector< std::pair< std::string,std::string > > const *)arg1)->back();
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_reserve(SwigClassWrapper *farg1, size_t const *farg2) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::reserve(std::vector< std::pair< std::string,std::string > >::size_type)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg2);
-  (arg1)->reserve(arg2);
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_resize__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::resize(std::vector< std::pair< std::string,std::string > >::size_type)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg2);
-  (arg1)->resize(arg2);
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_resize__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  std::pair< std::string,std::string > *arg3 = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::resize(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg2);
-  SWIG_check_nonnull(farg3->cptr, "std::pair< std::string,std::string > const &", "SWIGTYPE_p_std__pairT_std__string_std__string_t", "std::vector< std::pair< std::string,std::string > >::resize(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
-  arg3 = (std::pair< std::string,std::string > *)farg3->cptr;
-  (arg1)->resize(arg2,(std::pair< std::string,std::string > const &)*arg3);
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_push_back(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::pair< std::string,std::string > *arg2 = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::push_back(std::pair< std::string,std::string > const &)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  SWIG_check_nonnull(farg2->cptr, "std::pair< std::string,std::string > const &", "SWIGTYPE_p_std__pairT_std__string_std__string_t", "std::vector< std::pair< std::string,std::string > >::push_back(std::pair< std::string,std::string > const &)", return );
-  arg2 = (std::pair< std::string,std::string > *)farg2->cptr;
-  (arg1)->push_back((std::pair< std::string,std::string > const &)*arg2);
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_pop_back(SwigClassWrapper *farg1) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::pop_back()", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  (arg1)->pop_back();
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_clear(SwigClassWrapper *farg1) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::clear()", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  (arg1)->clear();
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_set(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  std::pair< std::string,std::string > *arg3 = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::set(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  SWIG_check_nonnull(farg3->cptr, "std::pair< std::string,std::string > const &", "SWIGTYPE_p_std__pairT_std__string_std__string_t", "std::vector< std::pair< std::string,std::string > >::set(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
-  arg3 = (std::pair< std::string,std::string > *)farg3->cptr;
-  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__set(arg1,SWIG_STD_MOVE(arg2),(std::pair< std::string,std::string > const &)*arg3);
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_get(SwigClassWrapper *farg1, size_t const *farg2) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  std::pair< std::string,std::string > *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::get(std::vector< std::pair< std::string,std::string > >::size_type)", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__get(arg1,SWIG_STD_MOVE(arg2));
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_insert(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  std::pair< std::string,std::string > *arg3 = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::insert(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  SWIG_check_nonnull(farg3->cptr, "std::pair< std::string,std::string > const &", "SWIGTYPE_p_std__pairT_std__string_std__string_t", "std::vector< std::pair< std::string,std::string > >::insert(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
-  arg3 = (std::pair< std::string,std::string > *)farg3->cptr;
-  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__insert(arg1,SWIG_STD_MOVE(arg2),(std::pair< std::string,std::string > const &)*arg3);
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_erase__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::erase(std::vector< std::pair< std::string,std::string > >::size_type)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__erase__SWIG_0(arg1,SWIG_STD_MOVE(arg2));
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_erase__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, size_t const *farg3) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg3 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::erase(std::vector< std::pair< std::string,std::string > >::size_type,std::vector< std::pair< std::string,std::string > >::size_type)", return );
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  arg3 = *farg3 - 1;
-  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__erase__SWIG_1(arg1,SWIG_STD_MOVE(arg2),SWIG_STD_MOVE(arg3));
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_front_ref(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::pair< std::string,std::string > *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::front_ref()", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__front_ref(arg1);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_back_ref(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::pair< std::string,std::string > *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::back_ref()", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__back_ref(arg1);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_get_ref(SwigClassWrapper *farg1, size_t const *farg2) {
-  SwigClassWrapper fresult ;
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
-  std::pair< std::string,std::string > *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::get_ref(std::vector< std::pair< std::string,std::string > >::size_type)", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__get_ref(arg1,SWIG_STD_MOVE(arg2));
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT void _wrap_delete_ParametersMap(SwigClassWrapper *farg1) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  
-  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
-  delete arg1;
-}
-
-
-SWIGEXPORT void _wrap_ParametersMap_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
-  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
-  std::vector< std::pair< std::string,std::string > > *arg2 = 0 ;
-  
-  (void)sizeof(arg1);
-  (void)sizeof(arg2);
-  SWIG_assign<std::vector< std::pair< std::string,std::string > >, SWIGPOLICY_std_vector_Sl__Sp_std_pair_Sl__Sp_std_string_Sc_std_string_SP__Sg__SP__Sg_>(farg1, *farg2);
-  
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_0() {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *result = 0 ;
-  
-  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >();
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_1(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *arg1 = 0 ;
-  std::vector< cola::Particle > *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const &", "EventParticles", "std::vector< cola::Particle >::vector(std::vector< cola::Particle > const &)", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >((std::vector< cola::Particle > const &)*arg1);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_2(size_t const *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle >::size_type arg1 ;
-  std::vector< cola::Particle > *result = 0 ;
-  
-  arg1 = (std::vector< cola::Particle >::size_type)(*farg1);
-  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >(arg1);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_3(size_t const *farg1, SwigClassWrapper *farg2) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle >::size_type arg1 ;
-  cola::Particle *arg2 = 0 ;
-  std::vector< cola::Particle > *result = 0 ;
-  
-  arg1 = (std::vector< cola::Particle >::size_type)(*farg1);
-  SWIG_check_nonnull(farg2->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::vector(std::vector< cola::Particle >::size_type,cola::Particle const &)", return SwigClassWrapper_uninitialized());
-  arg2 = (cola::Particle *)farg2->cptr;
-  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >(arg1,(cola::Particle const &)*arg2);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT size_t _wrap_EventParticles_size(SwigClassWrapper *farg1) {
-  size_t fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type result;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::size() const", return 0);
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = ((std::vector< cola::Particle > const *)arg1)->size();
-  fresult = (std::vector< cola::Particle >::size_type)(result);
-  return fresult;
-}
-
-
-SWIGEXPORT size_t _wrap_EventParticles_capacity(SwigClassWrapper *farg1) {
-  size_t fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type result;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::capacity() const", return 0);
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = ((std::vector< cola::Particle > const *)arg1)->capacity();
-  fresult = (std::vector< cola::Particle >::size_type)(result);
-  return fresult;
-}
-
-
-SWIGEXPORT int _wrap_EventParticles_empty(SwigClassWrapper *farg1) {
+SWIGEXPORT int _wrap_LorentzVector_IsLightLike(SwigClassWrapper *farg1) {
   int fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
   bool result;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::empty() const", return 0);
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = (bool)((std::vector< cola::Particle > const *)arg1)->empty();
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::IsLightLike() const", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (bool)((cola::LorentzVectorImpl< double > const *)arg1)->IsLightLike();
   fresult = (result ? 1 : 0);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_EventParticles_front(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  cola::Particle *result = 0 ;
+SWIGEXPORT int _wrap_LorentzVector_IsTimeLike(SwigClassWrapper *farg1) {
+  int fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  bool result;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::front() const", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = (cola::Particle *) &((std::vector< cola::Particle > const *)arg1)->front();
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::IsTimeLike() const", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (bool)((cola::LorentzVectorImpl< double > const *)arg1)->IsTimeLike();
+  fresult = (result ? 1 : 0);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_EventParticles_back(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  cola::Particle *result = 0 ;
+SWIGEXPORT double _wrap_LorentzVector_get_e(SwigClassWrapper *farg1) {
+  double fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double result;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::back() const", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = (cola::Particle *) &((std::vector< cola::Particle > const *)arg1)->back();
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::get_e() const", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (double)cola_LorentzVectorImpl_Sl_double_Sg__get_e((cola::LorentzVectorImpl< double > const *)arg1);
+  fresult = (double)(result);
   return fresult;
 }
 
 
-SWIGEXPORT void _wrap_EventParticles_reserve(SwigClassWrapper *farg1, size_t const *farg2) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
+SWIGEXPORT void _wrap_LorentzVector_set_e(SwigClassWrapper *farg1, double const *farg2) {
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::reserve(std::vector< cola::Particle >::size_type)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = (std::vector< cola::Particle >::size_type)(*farg2);
-  (arg1)->reserve(arg2);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::set_e(double)", return );
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  cola_LorentzVectorImpl_Sl_double_Sg__set_e(arg1,arg2);
 }
 
 
-SWIGEXPORT void _wrap_EventParticles_resize__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
+SWIGEXPORT double _wrap_LorentzVector_get_t(SwigClassWrapper *farg1) {
+  double fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double result;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::resize(std::vector< cola::Particle >::size_type)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = (std::vector< cola::Particle >::size_type)(*farg2);
-  (arg1)->resize(arg2);
-}
-
-
-SWIGEXPORT void _wrap_EventParticles_resize__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
-  cola::Particle *arg3 = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::resize(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = (std::vector< cola::Particle >::size_type)(*farg2);
-  SWIG_check_nonnull(farg3->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::resize(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
-  arg3 = (cola::Particle *)farg3->cptr;
-  (arg1)->resize(arg2,(cola::Particle const &)*arg3);
-}
-
-
-SWIGEXPORT void _wrap_EventParticles_push_back(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  cola::Particle *arg2 = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::push_back(cola::Particle const &)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  SWIG_check_nonnull(farg2->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::push_back(cola::Particle const &)", return );
-  arg2 = (cola::Particle *)farg2->cptr;
-  (arg1)->push_back((cola::Particle const &)*arg2);
-}
-
-
-SWIGEXPORT void _wrap_EventParticles_pop_back(SwigClassWrapper *farg1) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::pop_back()", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  (arg1)->pop_back();
-}
-
-
-SWIGEXPORT void _wrap_EventParticles_clear(SwigClassWrapper *farg1) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::clear()", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  (arg1)->clear();
-}
-
-
-SWIGEXPORT void _wrap_EventParticles_set(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
-  cola::Particle *arg3 = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::set(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  SWIG_check_nonnull(farg3->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::set(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
-  arg3 = (cola::Particle *)farg3->cptr;
-  std_vector_Sl_cola_Particle_Sg__set(arg1,SWIG_STD_MOVE(arg2),(cola::Particle const &)*arg3);
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_EventParticles_get(SwigClassWrapper *farg1, size_t const *farg2) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
-  cola::Particle *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::get(std::vector< cola::Particle >::size_type)", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__get(arg1,SWIG_STD_MOVE(arg2));
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::get_t() const", return 0);
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = (double)cola_LorentzVectorImpl_Sl_double_Sg__get_t((cola::LorentzVectorImpl< double > const *)arg1);
+  fresult = (double)(result);
   return fresult;
 }
 
 
-SWIGEXPORT void _wrap_EventParticles_insert(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
-  cola::Particle *arg3 = 0 ;
+SWIGEXPORT void _wrap_LorentzVector_set_t(SwigClassWrapper *farg1, double const *farg2) {
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  double arg2 ;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::insert(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  SWIG_check_nonnull(farg3->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::insert(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
-  arg3 = (cola::Particle *)farg3->cptr;
-  std_vector_Sl_cola_Particle_Sg__insert(arg1,SWIG_STD_MOVE(arg2),(cola::Particle const &)*arg3);
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::set_t(double)", return );
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  arg2 = (double)(*farg2);
+  cola_LorentzVectorImpl_Sl_double_Sg__set_t(arg1,arg2);
 }
 
 
-SWIGEXPORT void _wrap_EventParticles_erase__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::erase(std::vector< cola::Particle >::size_type)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  std_vector_Sl_cola_Particle_Sg__erase__SWIG_0(arg1,SWIG_STD_MOVE(arg2));
-}
-
-
-SWIGEXPORT void _wrap_EventParticles_erase__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, size_t const *farg3) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
-  std::vector< cola::Particle >::size_type arg3 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::erase(std::vector< cola::Particle >::size_type,std::vector< cola::Particle >::size_type)", return );
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  arg3 = *farg3 - 1;
-  std_vector_Sl_cola_Particle_Sg__erase__SWIG_1(arg1,SWIG_STD_MOVE(arg2),SWIG_STD_MOVE(arg3));
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_EventParticles_front_ref(SwigClassWrapper *farg1) {
+SWIGEXPORT SwigClassWrapper _wrap_new_LorentzVector(double const *farg1, double const *farg2, double const *farg3, double const *farg4) {
   SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  cola::Particle *result = 0 ;
+  double arg1 ;
+  double arg2 ;
+  double arg3 ;
+  double arg4 ;
+  cola::LorentzVectorImpl< double > *result = 0 ;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::front_ref()", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__front_ref(arg1);
+  arg1 = (double)(*farg1);
+  arg2 = (double)(*farg2);
+  arg3 = (double)(*farg3);
+  arg4 = (double)(*farg4);
+  result = (cola::LorentzVectorImpl< double > *)new_cola_LorentzVectorImpl_Sl_double_Sg_(arg1,arg2,arg3,arg4);
   fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
   return fresult;
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_EventParticles_back_ref(SwigClassWrapper *farg1) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  cola::Particle *result = 0 ;
+SWIGEXPORT void _wrap_delete_LorentzVector(SwigClassWrapper *farg1) {
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
   
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::back_ref()", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__back_ref(arg1);
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT SwigClassWrapper _wrap_EventParticles_get_ref(SwigClassWrapper *farg1, size_t const *farg2) {
-  SwigClassWrapper fresult ;
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle >::size_type arg2 ;
-  cola::Particle *result = 0 ;
-  
-  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::get_ref(std::vector< cola::Particle >::size_type)", return SwigClassWrapper_uninitialized());
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
-  arg2 = *farg2 - 1;
-  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__get_ref(arg1,SWIG_STD_MOVE(arg2));
-  fresult.cptr = (void*)result;
-  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
-  return fresult;
-}
-
-
-SWIGEXPORT void _wrap_delete_EventParticles(SwigClassWrapper *farg1) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  
-  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
   delete arg1;
 }
 
 
-SWIGEXPORT void _wrap_EventParticles_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
-  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
-  std::vector< cola::Particle > *arg2 = 0 ;
+SWIGEXPORT void _wrap_LorentzVector_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  cola::LorentzVectorImpl< double > *arg2 = 0 ;
   
   (void)sizeof(arg1);
   (void)sizeof(arg2);
-  SWIG_assign<std::vector< cola::Particle >, SWIGPOLICY_std_vector_Sl__Sp_cola_Particle_SP__Sg_>(farg1, *farg2);
+  SWIG_assign<cola::LorentzVectorImpl< double >, SWIGPOLICY_cola_LorentzVectorImpl_Sl__Sp_double_SP__Sg_>(farg1, *farg2);
   
 }
 
@@ -1303,52 +889,50 @@ SWIGEXPORT SwigClassWrapper _wrap_Particle_GetAZ(SwigClassWrapper *farg1) {
 
 SWIGEXPORT void _wrap_Particle_position_set(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
   cola::Particle *arg1 = (cola::Particle *) 0 ;
-  cola::LorentzVector arg2 ;
+  cola::LorentzVector *arg2 = (cola::LorentzVector *) 0 ;
   
   SWIG_check_nonnull(farg1->cptr, "cola::Particle *", "Particle", "cola::Particle::position", return );
   arg1 = (cola::Particle *)farg1->cptr;
-  SWIG_check_nonnull(farg2->cptr, "cola::LorentzVector", "SWIGTYPE_p_LorentzVectorImplT_double_t", "cola::Particle::position", return );
-  arg2 = *((cola::LorentzVector *)(farg2->cptr));
-  if (arg1) (arg1)->position = arg2;
+  arg2 = (cola::LorentzVector *)farg2->cptr;
+  if (arg1) (arg1)->position = *arg2;
 }
 
 
 SWIGEXPORT SwigClassWrapper _wrap_Particle_position_get(SwigClassWrapper *farg1) {
   SwigClassWrapper fresult ;
   cola::Particle *arg1 = (cola::Particle *) 0 ;
-  cola::LorentzVector result;
+  cola::LorentzVector *result = 0 ;
   
   SWIG_check_nonnull(farg1->cptr, "cola::Particle *", "Particle", "cola::Particle::position", return SwigClassWrapper_uninitialized());
   arg1 = (cola::Particle *)farg1->cptr;
-  result =  ((arg1)->position);
-  fresult.cptr = new (cola::LorentzVector)(result);
-  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
+  result = (cola::LorentzVector *)& ((arg1)->position);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
   return fresult;
 }
 
 
 SWIGEXPORT void _wrap_Particle_momentum_set(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
   cola::Particle *arg1 = (cola::Particle *) 0 ;
-  cola::LorentzVector arg2 ;
+  cola::LorentzVector *arg2 = (cola::LorentzVector *) 0 ;
   
   SWIG_check_nonnull(farg1->cptr, "cola::Particle *", "Particle", "cola::Particle::momentum", return );
   arg1 = (cola::Particle *)farg1->cptr;
-  SWIG_check_nonnull(farg2->cptr, "cola::LorentzVector", "SWIGTYPE_p_LorentzVectorImplT_double_t", "cola::Particle::momentum", return );
-  arg2 = *((cola::LorentzVector *)(farg2->cptr));
-  if (arg1) (arg1)->momentum = arg2;
+  arg2 = (cola::LorentzVector *)farg2->cptr;
+  if (arg1) (arg1)->momentum = *arg2;
 }
 
 
 SWIGEXPORT SwigClassWrapper _wrap_Particle_momentum_get(SwigClassWrapper *farg1) {
   SwigClassWrapper fresult ;
   cola::Particle *arg1 = (cola::Particle *) 0 ;
-  cola::LorentzVector result;
+  cola::LorentzVector *result = 0 ;
   
   SWIG_check_nonnull(farg1->cptr, "cola::Particle *", "Particle", "cola::Particle::momentum", return SwigClassWrapper_uninitialized());
   arg1 = (cola::Particle *)farg1->cptr;
-  result =  ((arg1)->momentum);
-  fresult.cptr = new (cola::LorentzVector)(result);
-  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
+  result = (cola::LorentzVector *)& ((arg1)->momentum);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
   return fresult;
 }
 
@@ -1994,6 +1578,878 @@ SWIGEXPORT void _wrap_EventData_op_assign__(SwigClassWrapper *farg1, SwigClassWr
   (void)sizeof(arg1);
   (void)sizeof(arg2);
   SWIG_assign<cola::EventData, SWIGPOLICY_cola_EventData>(farg1, *farg2);
+  
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_AZ__SWIG_0() {
+  SwigClassWrapper fresult ;
+  std::pair< uint16_t,uint16_t > *result = 0 ;
+  
+  result = (std::pair< uint16_t,uint16_t > *)new std::pair< uint16_t,uint16_t >();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_AZ__SWIG_1(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  SwigClassWrapper fresult ;
+  uint16_t arg1 ;
+  uint16_t arg2 ;
+  std::pair< uint16_t,uint16_t > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::pair(uint16_t,uint16_t)", return SwigClassWrapper_uninitialized());
+  arg1 = *((uint16_t *)(farg1->cptr));
+  SWIG_check_nonnull(farg2->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::pair(uint16_t,uint16_t)", return SwigClassWrapper_uninitialized());
+  arg2 = *((uint16_t *)(farg2->cptr));
+  result = (std::pair< uint16_t,uint16_t > *)new std::pair< uint16_t,uint16_t >(arg1,arg2);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_AZ__SWIG_2(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::pair< uint16_t,uint16_t > *arg1 = 0 ;
+  std::pair< uint16_t,uint16_t > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > const &", "AZ", "std::pair< uint16_t,uint16_t >::pair(std::pair< uint16_t,uint16_t > const &)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
+  result = (std::pair< uint16_t,uint16_t > *)new std::pair< uint16_t,uint16_t >((std::pair< uint16_t,uint16_t > const &)*arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_AZ_first_set(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
+  uint16_t arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::first", return );
+  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
+  SWIG_check_nonnull(farg2->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::first", return );
+  arg2 = *((uint16_t *)(farg2->cptr));
+  if (arg1) (arg1)->first = arg2;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_AZ_first_get(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
+  uint16_t result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::first", return SwigClassWrapper_uninitialized());
+  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
+  result =  ((arg1)->first);
+  fresult.cptr = new (uint16_t)(result);
+  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_AZ_second_set(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
+  uint16_t arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::second", return );
+  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
+  SWIG_check_nonnull(farg2->cptr, "uint16_t", "SWIGTYPE_p_uint16_t", "std::pair< uint16_t,uint16_t >::second", return );
+  arg2 = *((uint16_t *)(farg2->cptr));
+  if (arg1) (arg1)->second = arg2;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_AZ_second_get(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
+  uint16_t result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< uint16_t,uint16_t > *", "AZ", "std::pair< uint16_t,uint16_t >::second", return SwigClassWrapper_uninitialized());
+  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
+  result =  ((arg1)->second);
+  fresult.cptr = new (uint16_t)(result);
+  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_delete_AZ(SwigClassWrapper *farg1) {
+  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
+  
+  arg1 = (std::pair< uint16_t,uint16_t > *)farg1->cptr;
+  delete arg1;
+}
+
+
+SWIGEXPORT void _wrap_AZ_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::pair< uint16_t,uint16_t > *arg1 = (std::pair< uint16_t,uint16_t > *) 0 ;
+  std::pair< uint16_t,uint16_t > *arg2 = 0 ;
+  
+  (void)sizeof(arg1);
+  (void)sizeof(arg2);
+  SWIG_assign<std::pair< uint16_t,uint16_t >, SWIGPOLICY_std_pair_Sl__Sp_uint16_t_Sc_uint16_t_SP__Sg_>(farg1, *farg2);
+  
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMapItem__SWIG_0() {
+  SwigClassWrapper fresult ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  result = (std::pair< std::string,std::string > *)new std::pair< std::string,std::string >();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMapItem__SWIG_1(SwigArrayWrapper *farg1, SwigArrayWrapper *farg2) {
+  SwigClassWrapper fresult ;
+  std::string arg1 ;
+  std::string arg2 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  (&arg1)->assign(static_cast<char *>(farg1->data), farg1->size);
+  (&arg2)->assign(static_cast<char *>(farg2->data), farg2->size);
+  result = (std::pair< std::string,std::string > *)new std::pair< std::string,std::string >(arg1,arg2);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMapItem__SWIG_2(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::pair< std::string,std::string > *arg1 = 0 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< std::string,std::string > const &", "ParametersMapItem", "std::pair< std::string,std::string >::pair(std::pair< std::string,std::string > const &)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::pair< std::string,std::string > *)farg1->cptr;
+  result = (std::pair< std::string,std::string > *)new std::pair< std::string,std::string >((std::pair< std::string,std::string > const &)*arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_ParametersMapItem_first_set(SwigClassWrapper *farg1, SwigArrayWrapper *farg2) {
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string tempstr2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< std::string,std::string > *", "ParametersMapItem", "std::pair< std::string,std::string >::first", return );
+  arg1 = (std::pair< std::string,std::string > *)farg1->cptr;
+  tempstr2 = std::string(static_cast<char *>(farg2->data), farg2->size);
+  arg2 = &tempstr2;
+  if (arg1) (arg1)->first = *arg2;
+}
+
+
+SWIGEXPORT SwigArrayWrapper _wrap_ParametersMapItem_first_get(SwigClassWrapper *farg1) {
+  SwigArrayWrapper fresult ;
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< std::string,std::string > *", "ParametersMapItem", "std::pair< std::string,std::string >::first", return SwigArrayWrapper_uninitialized());
+  arg1 = (std::pair< std::string,std::string > *)farg1->cptr;
+  result = (std::string *) & ((arg1)->first);
+  fresult.size = result->size();
+  if (fresult.size > 0) {
+    fresult.data = malloc(fresult.size);
+    memcpy(fresult.data, result->c_str(), fresult.size);
+  } else {
+    fresult.data = NULL;
+  }
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_ParametersMapItem_second_set(SwigClassWrapper *farg1, SwigArrayWrapper *farg2) {
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string tempstr2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< std::string,std::string > *", "ParametersMapItem", "std::pair< std::string,std::string >::second", return );
+  arg1 = (std::pair< std::string,std::string > *)farg1->cptr;
+  tempstr2 = std::string(static_cast<char *>(farg2->data), farg2->size);
+  arg2 = &tempstr2;
+  if (arg1) (arg1)->second = *arg2;
+}
+
+
+SWIGEXPORT SwigArrayWrapper _wrap_ParametersMapItem_second_get(SwigClassWrapper *farg1) {
+  SwigArrayWrapper fresult ;
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::pair< std::string,std::string > *", "ParametersMapItem", "std::pair< std::string,std::string >::second", return SwigArrayWrapper_uninitialized());
+  arg1 = (std::pair< std::string,std::string > *)farg1->cptr;
+  result = (std::string *) & ((arg1)->second);
+  fresult.size = result->size();
+  if (fresult.size > 0) {
+    fresult.data = malloc(fresult.size);
+    memcpy(fresult.data, result->c_str(), fresult.size);
+  } else {
+    fresult.data = NULL;
+  }
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_delete_ParametersMapItem(SwigClassWrapper *farg1) {
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  
+  arg1 = (std::pair< std::string,std::string > *)farg1->cptr;
+  delete arg1;
+}
+
+
+SWIGEXPORT void _wrap_ParametersMapItem_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::pair< std::string,std::string > *arg2 = 0 ;
+  
+  (void)sizeof(arg1);
+  (void)sizeof(arg2);
+  SWIG_assign<std::pair< std::string,std::string >, SWIGPOLICY_std_pair_Sl__Sp_std_string_Sc_std_string_SP__Sg_>(farg1, *farg2);
+  
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_0() {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *result = 0 ;
+  
+  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_1(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = 0 ;
+  std::vector< std::pair< std::string,std::string > > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const &", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::vector(std::vector< std::pair< std::string,std::string > > const &)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >((std::vector< std::pair< std::string,std::string > > const &)*arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_2(size_t const *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg1 ;
+  std::vector< std::pair< std::string,std::string > > *result = 0 ;
+  
+  arg1 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg1);
+  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >(arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_ParametersMap__SWIG_3(size_t const *farg1, SwigClassWrapper *farg2) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg1 ;
+  std::pair< std::string,std::string > *arg2 = 0 ;
+  std::vector< std::pair< std::string,std::string > > *result = 0 ;
+  
+  arg1 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg1);
+  SWIG_check_nonnull(farg2->cptr, "std::pair< std::string,std::string > const &", "ParametersMapItem", "std::vector< std::pair< std::string,std::string > >::vector(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return SwigClassWrapper_uninitialized());
+  arg2 = (std::pair< std::string,std::string > *)farg2->cptr;
+  result = (std::vector< std::pair< std::string,std::string > > *)new std::vector< std::pair< std::string,std::string > >(arg1,(std::pair< std::string,std::string > const &)*arg2);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT size_t _wrap_ParametersMap_size(SwigClassWrapper *farg1) {
+  size_t fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::size() const", return 0);
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = ((std::vector< std::pair< std::string,std::string > > const *)arg1)->size();
+  fresult = (std::vector< std::pair< std::string,std::string > >::size_type)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT size_t _wrap_ParametersMap_capacity(SwigClassWrapper *farg1) {
+  size_t fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::capacity() const", return 0);
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = ((std::vector< std::pair< std::string,std::string > > const *)arg1)->capacity();
+  fresult = (std::vector< std::pair< std::string,std::string > >::size_type)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT int _wrap_ParametersMap_empty(SwigClassWrapper *farg1) {
+  int fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  bool result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::empty() const", return 0);
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = (bool)((std::vector< std::pair< std::string,std::string > > const *)arg1)->empty();
+  fresult = (result ? 1 : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_front(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::front() const", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = (std::pair< std::string,std::string > *) &((std::vector< std::pair< std::string,std::string > > const *)arg1)->front();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_back(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > const *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::back() const", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = (std::pair< std::string,std::string > *) &((std::vector< std::pair< std::string,std::string > > const *)arg1)->back();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_reserve(SwigClassWrapper *farg1, size_t const *farg2) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::reserve(std::vector< std::pair< std::string,std::string > >::size_type)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg2);
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_resize__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::resize(std::vector< std::pair< std::string,std::string > >::size_type)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg2);
+  (arg1)->resize(arg2);
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_resize__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  std::pair< std::string,std::string > *arg3 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::resize(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = (std::vector< std::pair< std::string,std::string > >::size_type)(*farg2);
+  SWIG_check_nonnull(farg3->cptr, "std::pair< std::string,std::string > const &", "ParametersMapItem", "std::vector< std::pair< std::string,std::string > >::resize(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
+  arg3 = (std::pair< std::string,std::string > *)farg3->cptr;
+  (arg1)->resize(arg2,(std::pair< std::string,std::string > const &)*arg3);
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_push_back(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::pair< std::string,std::string > *arg2 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::push_back(std::pair< std::string,std::string > const &)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  SWIG_check_nonnull(farg2->cptr, "std::pair< std::string,std::string > const &", "ParametersMapItem", "std::vector< std::pair< std::string,std::string > >::push_back(std::pair< std::string,std::string > const &)", return );
+  arg2 = (std::pair< std::string,std::string > *)farg2->cptr;
+  (arg1)->push_back((std::pair< std::string,std::string > const &)*arg2);
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_pop_back(SwigClassWrapper *farg1) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::pop_back()", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  (arg1)->pop_back();
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_clear(SwigClassWrapper *farg1) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::clear()", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_set(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  std::pair< std::string,std::string > *arg3 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::set(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  SWIG_check_nonnull(farg3->cptr, "std::pair< std::string,std::string > const &", "ParametersMapItem", "std::vector< std::pair< std::string,std::string > >::set(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
+  arg3 = (std::pair< std::string,std::string > *)farg3->cptr;
+  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__set(arg1,SWIG_STD_MOVE(arg2),(std::pair< std::string,std::string > const &)*arg3);
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_get(SwigClassWrapper *farg1, size_t const *farg2) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::get(std::vector< std::pair< std::string,std::string > >::size_type)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__get(arg1,SWIG_STD_MOVE(arg2));
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_insert(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  std::pair< std::string,std::string > *arg3 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::insert(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  SWIG_check_nonnull(farg3->cptr, "std::pair< std::string,std::string > const &", "ParametersMapItem", "std::vector< std::pair< std::string,std::string > >::insert(std::vector< std::pair< std::string,std::string > >::size_type,std::pair< std::string,std::string > const &)", return );
+  arg3 = (std::pair< std::string,std::string > *)farg3->cptr;
+  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__insert(arg1,SWIG_STD_MOVE(arg2),(std::pair< std::string,std::string > const &)*arg3);
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_erase__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::erase(std::vector< std::pair< std::string,std::string > >::size_type)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__erase__SWIG_0(arg1,SWIG_STD_MOVE(arg2));
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_erase__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, size_t const *farg3) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg3 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::erase(std::vector< std::pair< std::string,std::string > >::size_type,std::vector< std::pair< std::string,std::string > >::size_type)", return );
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  arg3 = *farg3 - 1;
+  std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__erase__SWIG_1(arg1,SWIG_STD_MOVE(arg2),SWIG_STD_MOVE(arg3));
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_front_ref(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::front_ref()", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__front_ref(arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_back_ref(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::back_ref()", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__back_ref(arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_ParametersMap_get_ref(SwigClassWrapper *farg1, size_t const *farg2) {
+  SwigClassWrapper fresult ;
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > >::size_type arg2 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< std::pair< std::string,std::string > > *", "ParametersMap", "std::vector< std::pair< std::string,std::string > >::get_ref(std::vector< std::pair< std::string,std::string > >::size_type)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  result = (std::pair< std::string,std::string > *) &std_vector_Sl_std_pair_Sl_std_string_Sc_std_string_Sg__Sg__get_ref(arg1,SWIG_STD_MOVE(arg2));
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_delete_ParametersMap(SwigClassWrapper *farg1) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  
+  arg1 = (std::vector< std::pair< std::string,std::string > > *)farg1->cptr;
+  delete arg1;
+}
+
+
+SWIGEXPORT void _wrap_ParametersMap_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::vector< std::pair< std::string,std::string > > *arg1 = (std::vector< std::pair< std::string,std::string > > *) 0 ;
+  std::vector< std::pair< std::string,std::string > > *arg2 = 0 ;
+  
+  (void)sizeof(arg1);
+  (void)sizeof(arg2);
+  SWIG_assign<std::vector< std::pair< std::string,std::string > >, SWIGPOLICY_std_vector_Sl__Sp_std_pair_Sl__Sp_std_string_Sc_std_string_SP__Sg__SP__Sg_>(farg1, *farg2);
+  
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_0() {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *result = 0 ;
+  
+  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_1(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *arg1 = 0 ;
+  std::vector< cola::Particle > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const &", "EventParticles", "std::vector< cola::Particle >::vector(std::vector< cola::Particle > const &)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >((std::vector< cola::Particle > const &)*arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_2(size_t const *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle >::size_type arg1 ;
+  std::vector< cola::Particle > *result = 0 ;
+  
+  arg1 = (std::vector< cola::Particle >::size_type)(*farg1);
+  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >(arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_new_EventParticles__SWIG_3(size_t const *farg1, SwigClassWrapper *farg2) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle >::size_type arg1 ;
+  cola::Particle *arg2 = 0 ;
+  std::vector< cola::Particle > *result = 0 ;
+  
+  arg1 = (std::vector< cola::Particle >::size_type)(*farg1);
+  SWIG_check_nonnull(farg2->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::vector(std::vector< cola::Particle >::size_type,cola::Particle const &)", return SwigClassWrapper_uninitialized());
+  arg2 = (cola::Particle *)farg2->cptr;
+  result = (std::vector< cola::Particle > *)new std::vector< cola::Particle >(arg1,(cola::Particle const &)*arg2);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (1 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT size_t _wrap_EventParticles_size(SwigClassWrapper *farg1) {
+  size_t fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::size() const", return 0);
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = ((std::vector< cola::Particle > const *)arg1)->size();
+  fresult = (std::vector< cola::Particle >::size_type)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT size_t _wrap_EventParticles_capacity(SwigClassWrapper *farg1) {
+  size_t fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::capacity() const", return 0);
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = ((std::vector< cola::Particle > const *)arg1)->capacity();
+  fresult = (std::vector< cola::Particle >::size_type)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT int _wrap_EventParticles_empty(SwigClassWrapper *farg1) {
+  int fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  bool result;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::empty() const", return 0);
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = (bool)((std::vector< cola::Particle > const *)arg1)->empty();
+  fresult = (result ? 1 : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_EventParticles_front(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  cola::Particle *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::front() const", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = (cola::Particle *) &((std::vector< cola::Particle > const *)arg1)->front();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_EventParticles_back(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  cola::Particle *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > const *", "EventParticles", "std::vector< cola::Particle >::back() const", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = (cola::Particle *) &((std::vector< cola::Particle > const *)arg1)->back();
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_reserve(SwigClassWrapper *farg1, size_t const *farg2) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::reserve(std::vector< cola::Particle >::size_type)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = (std::vector< cola::Particle >::size_type)(*farg2);
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_resize__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::resize(std::vector< cola::Particle >::size_type)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = (std::vector< cola::Particle >::size_type)(*farg2);
+  (arg1)->resize(arg2);
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_resize__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  cola::Particle *arg3 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::resize(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = (std::vector< cola::Particle >::size_type)(*farg2);
+  SWIG_check_nonnull(farg3->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::resize(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
+  arg3 = (cola::Particle *)farg3->cptr;
+  (arg1)->resize(arg2,(cola::Particle const &)*arg3);
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_push_back(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  cola::Particle *arg2 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::push_back(cola::Particle const &)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  SWIG_check_nonnull(farg2->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::push_back(cola::Particle const &)", return );
+  arg2 = (cola::Particle *)farg2->cptr;
+  (arg1)->push_back((cola::Particle const &)*arg2);
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_pop_back(SwigClassWrapper *farg1) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::pop_back()", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  (arg1)->pop_back();
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_clear(SwigClassWrapper *farg1) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::clear()", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_set(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  cola::Particle *arg3 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::set(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  SWIG_check_nonnull(farg3->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::set(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
+  arg3 = (cola::Particle *)farg3->cptr;
+  std_vector_Sl_cola_Particle_Sg__set(arg1,SWIG_STD_MOVE(arg2),(cola::Particle const &)*arg3);
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_EventParticles_get(SwigClassWrapper *farg1, size_t const *farg2) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  cola::Particle *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::get(std::vector< cola::Particle >::size_type)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__get(arg1,SWIG_STD_MOVE(arg2));
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_insert(SwigClassWrapper *farg1, size_t const *farg2, SwigClassWrapper *farg3) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  cola::Particle *arg3 = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::insert(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  SWIG_check_nonnull(farg3->cptr, "cola::Particle const &", "Particle", "std::vector< cola::Particle >::insert(std::vector< cola::Particle >::size_type,cola::Particle const &)", return );
+  arg3 = (cola::Particle *)farg3->cptr;
+  std_vector_Sl_cola_Particle_Sg__insert(arg1,SWIG_STD_MOVE(arg2),(cola::Particle const &)*arg3);
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_erase__SWIG_0(SwigClassWrapper *farg1, size_t const *farg2) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::erase(std::vector< cola::Particle >::size_type)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  std_vector_Sl_cola_Particle_Sg__erase__SWIG_0(arg1,SWIG_STD_MOVE(arg2));
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_erase__SWIG_1(SwigClassWrapper *farg1, size_t const *farg2, size_t const *farg3) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  std::vector< cola::Particle >::size_type arg3 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::erase(std::vector< cola::Particle >::size_type,std::vector< cola::Particle >::size_type)", return );
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  arg3 = *farg3 - 1;
+  std_vector_Sl_cola_Particle_Sg__erase__SWIG_1(arg1,SWIG_STD_MOVE(arg2),SWIG_STD_MOVE(arg3));
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_EventParticles_front_ref(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  cola::Particle *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::front_ref()", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__front_ref(arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_EventParticles_back_ref(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  cola::Particle *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::back_ref()", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__back_ref(arg1);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_EventParticles_get_ref(SwigClassWrapper *farg1, size_t const *farg2) {
+  SwigClassWrapper fresult ;
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle >::size_type arg2 ;
+  cola::Particle *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "std::vector< cola::Particle > *", "EventParticles", "std::vector< cola::Particle >::get_ref(std::vector< cola::Particle >::size_type)", return SwigClassWrapper_uninitialized());
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  arg2 = *farg2 - 1;
+  result = (cola::Particle *) &std_vector_Sl_cola_Particle_Sg__get_ref(arg1,SWIG_STD_MOVE(arg2));
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
+SWIGEXPORT void _wrap_delete_EventParticles(SwigClassWrapper *farg1) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  
+  arg1 = (std::vector< cola::Particle > *)farg1->cptr;
+  delete arg1;
+}
+
+
+SWIGEXPORT void _wrap_EventParticles_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  std::vector< cola::Particle > *arg1 = (std::vector< cola::Particle > *) 0 ;
+  std::vector< cola::Particle > *arg2 = 0 ;
+  
+  (void)sizeof(arg1);
+  (void)sizeof(arg2);
+  SWIG_assign<std::vector< cola::Particle >, SWIGPOLICY_std_vector_Sl__Sp_cola_Particle_SP__Sg_>(farg1, *farg2);
   
 }
 

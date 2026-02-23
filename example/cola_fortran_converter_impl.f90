@@ -27,7 +27,7 @@ contains
     type(EventData), intent(inout) :: ed
     type(EventIniState) :: ini
     ini = ed%get_iniState()
-    call ini%set_energy(2.0 * ini%get_energy())
+    call ini%set_energy(2.0d0 * ini%get_energy())
   end subroutine converter_run
 
   subroutine converter_final(self)

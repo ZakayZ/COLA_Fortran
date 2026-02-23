@@ -5,6 +5,7 @@
 #include <vector>
 #include <cstdint>
 #include <COLA/EventData.hh>
+#include <COLA/LorentzVector.hh>
 %}
 
 %ignore cola::Vector3;
@@ -15,11 +16,31 @@
 %include <std_vector.i>
 %include <stdint.i>
 
-%template(AZ) std::pair<uint16_t, uint16_t>;
-%template(ParametersMap) std::vector<std::pair<std::string, std::string>>;
-%template(EventParticles) std::vector<cola::Particle>;
+%include <COLA/LorentzVector.hh>
+%template(LorentzVector) cola::LorentzVectorImpl<double>;
+
+// nested union e/t not supported; add accessors and init constructor
+%extend cola::LorentzVectorImpl<double> {
+  double get_e() const { return $self->e; }
+  void set_e(double v) { $self->e = v; }
+  double get_t() const { return $self->t; }
+  void set_t(double v) { $self->t = v; }
+  LorentzVectorImpl(double e, double x, double y, double z) {
+    cola::LorentzVector *v = new cola::LorentzVector();
+    v->e = e;
+    v->x = x;
+    v->y = y;
+    v->z = z;
+    return v;
+  }
+}
 
 %include <COLA/EventData.hh>
+
+%template(AZ) std::pair<uint16_t, uint16_t>;
+%template(ParametersMapItem) std::pair<std::string, std::string>;
+%template(ParametersMap) std::vector<std::pair<std::string, std::string>>;
+%template(EventParticles) std::vector<cola::Particle>;
 
 %insert("fdecl") %{
   type, abstract, public :: AbstractFortranConverter

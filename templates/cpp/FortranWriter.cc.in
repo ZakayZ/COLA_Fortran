@@ -1,21 +1,21 @@
 #include "@MODULE_NAME@/@CLASS_NAME@.hh"
 
+// NOLINTBEGIN(readability-identifier-naming)
+extern "C" {
+    void* cola_fortran_@CLASS_NAME@_create(const void* params);
+
+    void cola_fortran_@CLASS_NAME@_run(void* handle, void* data);
+
+    void cola_fortran_@CLASS_NAME@_destroy(void* handle);
+}
+// NOLINTEND(readability-identifier-naming)
+
 namespace cola::fortran {
-
-    class FortranWriter : public cola::VWriter {
-    public:
-        FortranWriter(const std::unordered_map<std::string, std::string>& params)
-            : handle_(cola_fortran_@CLASS_NAME@_create(ToFortranParametersMap(params).data()), cola_fortran_@CLASS_NAME@_destroy) {}
-
-        ~FortranWriter() = default;
-
-        void operator()(std::unique_ptr<cola::EventData>&& data) override {
-            cola_fortran_@CLASS_NAME@_run(handle_.get(), data.get());
-        }
-
-    private:
-        std::unique_ptr<void, void (*)(void*)> handle_;
-    };
+    using FortranWriter = GenericFortranWriter<
+        cola_fortran_@CLASS_NAME@_create,
+        cola_fortran_@CLASS_NAME@_destroy,
+        cola_fortran_@CLASS_NAME@_run
+    >;
 
     std::unique_ptr<cola::VFilter> @CLASS_NAME@Factory::Create(const std::unordered_map<std::string, std::string>& metaData) {
         return std::make_unique<FortranWriter>(metaData);

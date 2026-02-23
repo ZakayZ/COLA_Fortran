@@ -197,7 +197,7 @@ function(add_cola_fortran_library MODULE_NAME)
   )
 
   configure_template(
-    TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/cpp/FortranModule.hh.in"
+    TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/cpp/FortranModule.cc.in"
     OUTPUT  "${OUTPUT_DIR}/${MODULE_NAME}Module.cc"
     VARS   MODULE_NAME "${MODULE_NAME}"
   )

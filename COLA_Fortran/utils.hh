@@ -22,14 +22,77 @@
 #ifndef COLA_FORTRAN_UTIL_HH
 #define COLA_FORTRAN_UTIL_HH
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
+
+#include <COLA.hh>
 
 namespace cola::fortran {
     using FortranParametersMap = std::vector<std::pair<std::string, std::string>>;
 
     FortranParametersMap ToFortranParametersMap(const std::unordered_map<std::string, std::string>& params);
+
+    template <auto CreateFunc, auto DestroyFunc>
+    class GenericFortranFilter {
+      public:
+        using HandlePtr = std::unique_ptr<void, void (*)(void*)>;
+
+        GenericFortranFilter(const std::unordered_map<std::string, std::string>& params)
+            : handle_(ConstructHandle(params)) {}
+
+      protected:
+        void* GetHandle() {
+            return handle_.get();
+        }
+
+        const void* GetHandle() const {
+            return handle_.get();
+        }
+
+      private:
+        static HandlePtr ConstructHandle(const std::unordered_map<std::string, std::string>& params) {
+            auto fortranParams = ToFortranParametersMap(params);
+            return HandlePtr(CreateFunc(&fortranParams), DestroyFunc);
+        }
+
+        HandlePtr handle_;
+    };
+
+    template <auto CreateFunc, auto DestroyFunc, auto RunFunc>
+    class GenericFortranGenerator: GenericFortranFilter<CreateFunc, DestroyFunc>, public cola::VGenerator {
+      public:
+        GenericFortranGenerator(const std::unordered_map<std::string, std::string>& params)
+            : GenericFortranFilter<CreateFunc, DestroyFunc>(params) {}
+
+        std::unique_ptr<cola::EventData> operator()() override {
+            return std::unique_ptr<cola::EventData>(static_cast<EventData*>(RunFunc(this->GetHandle())));
+        }
+    };
+
+    template <auto CreateFunc, auto DestroyFunc, auto RunFunc>
+    class GenericFortranWriter: GenericFortranFilter<CreateFunc, DestroyFunc>, public cola::VWriter {
+      public:
+        GenericFortranWriter(const std::unordered_map<std::string, std::string>& params)
+            : GenericFortranFilter<CreateFunc, DestroyFunc>(params) {}
+
+        void operator()(std::unique_ptr<cola::EventData>&& data) override {
+            RunFunc(this->GetHandle(), data.get());
+        }
+    };
+
+    template <auto CreateFunc, auto DestroyFunc, auto RunFunc>
+    class GenericFortranConverter: GenericFortranFilter<CreateFunc, DestroyFunc>, public cola::VConverter {
+      public:
+        GenericFortranConverter(const std::unordered_map<std::string, std::string>& params)
+            : GenericFortranFilter<CreateFunc, DestroyFunc>(params) {}
+
+        std::unique_ptr<cola::EventData> operator()(std::unique_ptr<cola::EventData>&& data) override {
+            RunFunc(this->GetHandle(), data.get());
+            return data;
+        }
+    };
 
 } // namespace cola::fortran
 

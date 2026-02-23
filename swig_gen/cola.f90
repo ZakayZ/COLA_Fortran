@@ -16,82 +16,38 @@ module cola
   type(C_PTR), public :: cptr = C_NULL_PTR
   integer(C_INT), public :: cmemflags = 0
  end type
- type, public :: SWIGTYPE_p_uint16_t
+ type, public :: SWIGTYPE_p_uint32_t
   type(SwigClassWrapper), public :: swigdata
  end type
- ! struct std::pair< uint16_t,uint16_t >
- type, public :: AZ
+ ! class cola::LorentzVectorImpl< double >
+ type, public :: LorentzVector
   type(SwigClassWrapper), public :: swigdata
  contains
-  procedure :: set_first => swigf_AZ_first_set
-  procedure :: get_first => swigf_AZ_first_get
-  procedure :: set_second => swigf_AZ_second_set
-  procedure :: get_second => swigf_AZ_second_get
-  procedure :: release => swigf_AZ_release
-  procedure, private :: swigf_AZ_op_assign__
-  generic :: assignment(=) => swigf_AZ_op_assign__
- end type AZ
- type, public :: SWIGTYPE_p_std__pairT_std__string_std__string_t
-  type(SwigClassWrapper), public :: swigdata
- end type
- ! class std::vector< std::pair< std::string,std::string > >
- type, public :: ParametersMap
-  type(SwigClassWrapper), public :: swigdata
- contains
-  procedure :: size => swigf_ParametersMap_size
-  procedure :: capacity => swigf_ParametersMap_capacity
-  procedure :: empty => swigf_ParametersMap_empty
-  procedure :: front => swigf_ParametersMap_front
-  procedure :: back => swigf_ParametersMap_back
-  procedure :: reserve => swigf_ParametersMap_reserve
-  procedure, private :: swigf_ParametersMap_resize__SWIG_0
-  procedure, private :: swigf_ParametersMap_resize__SWIG_1
-  procedure :: push_back => swigf_ParametersMap_push_back
-  procedure :: pop_back => swigf_ParametersMap_pop_back
-  procedure :: clear => swigf_ParametersMap_clear
-  procedure :: set => swigf_ParametersMap_set
-  procedure :: get => swigf_ParametersMap_get
-  procedure :: insert => swigf_ParametersMap_insert
-  procedure, private :: swigf_ParametersMap_erase__SWIG_0
-  procedure, private :: swigf_ParametersMap_erase__SWIG_1
-  procedure :: front_ref => swigf_ParametersMap_front_ref
-  procedure :: back_ref => swigf_ParametersMap_back_ref
-  procedure :: get_ref => swigf_ParametersMap_get_ref
-  procedure :: release => swigf_ParametersMap_release
-  procedure, private :: swigf_ParametersMap_op_assign__
-  generic :: resize => swigf_ParametersMap_resize__SWIG_0, swigf_ParametersMap_resize__SWIG_1
-  generic :: assignment(=) => swigf_ParametersMap_op_assign__
-  generic :: erase => swigf_ParametersMap_erase__SWIG_0, swigf_ParametersMap_erase__SWIG_1
- end type ParametersMap
- ! class std::vector< cola::Particle >
- type, public :: EventParticles
-  type(SwigClassWrapper), public :: swigdata
- contains
-  procedure :: size => swigf_EventParticles_size
-  procedure :: capacity => swigf_EventParticles_capacity
-  procedure :: empty => swigf_EventParticles_empty
-  procedure :: front => swigf_EventParticles_front
-  procedure :: back => swigf_EventParticles_back
-  procedure :: reserve => swigf_EventParticles_reserve
-  procedure, private :: swigf_EventParticles_resize__SWIG_0
-  procedure, private :: swigf_EventParticles_resize__SWIG_1
-  procedure :: push_back => swigf_EventParticles_push_back
-  procedure :: pop_back => swigf_EventParticles_pop_back
-  procedure :: clear => swigf_EventParticles_clear
-  procedure :: set => swigf_EventParticles_set
-  procedure :: get => swigf_EventParticles_get
-  procedure :: insert => swigf_EventParticles_insert
-  procedure, private :: swigf_EventParticles_erase__SWIG_0
-  procedure, private :: swigf_EventParticles_erase__SWIG_1
-  procedure :: front_ref => swigf_EventParticles_front_ref
-  procedure :: back_ref => swigf_EventParticles_back_ref
-  procedure :: get_ref => swigf_EventParticles_get_ref
-  procedure :: release => swigf_EventParticles_release
-  procedure, private :: swigf_EventParticles_op_assign__
-  generic :: resize => swigf_EventParticles_resize__SWIG_0, swigf_EventParticles_resize__SWIG_1
-  generic :: assignment(=) => swigf_EventParticles_op_assign__
-  generic :: erase => swigf_EventParticles_erase__SWIG_0, swigf_EventParticles_erase__SWIG_1
- end type EventParticles
+  procedure :: set_x => swigf_LorentzVector_x_set
+  procedure :: get_x => swigf_LorentzVector_x_get
+  procedure :: set_y => swigf_LorentzVector_y_set
+  procedure :: get_y => swigf_LorentzVector_y_get
+  procedure :: set_z => swigf_LorentzVector_z_set
+  procedure :: get_z => swigf_LorentzVector_z_get
+  procedure, private :: swigf_LorentzVector_op_sub__
+  procedure :: Boost => swigf_LorentzVector_Boost
+  procedure, private :: swigf_LorentzVector_BoostAxisRapidity__SWIG_0
+  procedure, private :: swigf_LorentzVector_BoostAxisRapidity__SWIG_1
+  procedure :: Mag2 => swigf_LorentzVector_Mag2
+  procedure :: Mag => swigf_LorentzVector_Mag
+  procedure :: IsSpaceLike => swigf_LorentzVector_IsSpaceLike
+  procedure :: IsLightLike => swigf_LorentzVector_IsLightLike
+  procedure :: IsTimeLike => swigf_LorentzVector_IsTimeLike
+  procedure :: get_e => swigf_LorentzVector_get_e
+  procedure :: set_e => swigf_LorentzVector_set_e
+  procedure :: get_t => swigf_LorentzVector_get_t
+  procedure :: set_t => swigf_LorentzVector_set_t
+  procedure :: release => swigf_LorentzVector_release
+  procedure, private :: swigf_LorentzVector_op_assign__
+  generic :: BoostAxisRapidity => swigf_LorentzVector_BoostAxisRapidity__SWIG_0, swigf_LorentzVector_BoostAxisRapidity__SWIG_1
+  generic :: operator(-) => swigf_LorentzVector_op_sub__
+  generic :: assignment(=) => swigf_LorentzVector_op_assign__
+ end type LorentzVector
  public :: PdgToAZ
  public :: AZToPdg
  ! enum class cola::ParticleClass
@@ -107,9 +63,6 @@ module cola
  integer, parameter, public :: ParticleClass = kind(ParticleClass_PRODUCED)
  public :: ParticleClass_PRODUCED, ParticleClass_ELASTIC_A, ParticleClass_ELASTIC_B, ParticleClass_NONELASTIC_A, &
     ParticleClass_NONELASTIC_B, ParticleClass_SPECTATOR_A, ParticleClass_SPECTATOR_B
- type, public :: SWIGTYPE_p_LorentzVectorImplT_double_t
-  type(SwigClassWrapper), public :: swigdata
- end type
  ! struct cola::Particle
  type, public :: Particle
   type(SwigClassWrapper), public :: swigdata
@@ -185,6 +138,95 @@ module cola
   procedure, private :: swigf_EventData_op_assign__
   generic :: assignment(=) => swigf_EventData_op_assign__
  end type EventData
+ type, public :: SWIGTYPE_p_uint16_t
+  type(SwigClassWrapper), public :: swigdata
+ end type
+ ! struct std::pair< uint16_t,uint16_t >
+ type, public :: AZ
+  type(SwigClassWrapper), public :: swigdata
+ contains
+  procedure :: set_first => swigf_AZ_first_set
+  procedure :: get_first => swigf_AZ_first_get
+  procedure :: set_second => swigf_AZ_second_set
+  procedure :: get_second => swigf_AZ_second_get
+  procedure :: release => swigf_AZ_release
+  procedure, private :: swigf_AZ_op_assign__
+  generic :: assignment(=) => swigf_AZ_op_assign__
+ end type AZ
+ type, bind(C) :: SwigArrayWrapper
+  type(C_PTR), public :: data = C_NULL_PTR
+  integer(C_SIZE_T), public :: size = 0
+ end type
+ ! struct std::pair< std::string,std::string >
+ type, public :: ParametersMapItem
+  type(SwigClassWrapper), public :: swigdata
+ contains
+  procedure :: set_first => swigf_ParametersMapItem_first_set
+  procedure :: get_first => swigf_ParametersMapItem_first_get
+  procedure :: set_second => swigf_ParametersMapItem_second_set
+  procedure :: get_second => swigf_ParametersMapItem_second_get
+  procedure :: release => swigf_ParametersMapItem_release
+  procedure, private :: swigf_ParametersMapItem_op_assign__
+  generic :: assignment(=) => swigf_ParametersMapItem_op_assign__
+ end type ParametersMapItem
+ ! class std::vector< std::pair< std::string,std::string > >
+ type, public :: ParametersMap
+  type(SwigClassWrapper), public :: swigdata
+ contains
+  procedure :: size => swigf_ParametersMap_size
+  procedure :: capacity => swigf_ParametersMap_capacity
+  procedure :: empty => swigf_ParametersMap_empty
+  procedure :: front => swigf_ParametersMap_front
+  procedure :: back => swigf_ParametersMap_back
+  procedure :: reserve => swigf_ParametersMap_reserve
+  procedure, private :: swigf_ParametersMap_resize__SWIG_0
+  procedure, private :: swigf_ParametersMap_resize__SWIG_1
+  procedure :: push_back => swigf_ParametersMap_push_back
+  procedure :: pop_back => swigf_ParametersMap_pop_back
+  procedure :: clear => swigf_ParametersMap_clear
+  procedure :: set => swigf_ParametersMap_set
+  procedure :: get => swigf_ParametersMap_get
+  procedure :: insert => swigf_ParametersMap_insert
+  procedure, private :: swigf_ParametersMap_erase__SWIG_0
+  procedure, private :: swigf_ParametersMap_erase__SWIG_1
+  procedure :: front_ref => swigf_ParametersMap_front_ref
+  procedure :: back_ref => swigf_ParametersMap_back_ref
+  procedure :: get_ref => swigf_ParametersMap_get_ref
+  procedure :: release => swigf_ParametersMap_release
+  procedure, private :: swigf_ParametersMap_op_assign__
+  generic :: resize => swigf_ParametersMap_resize__SWIG_0, swigf_ParametersMap_resize__SWIG_1
+  generic :: assignment(=) => swigf_ParametersMap_op_assign__
+  generic :: erase => swigf_ParametersMap_erase__SWIG_0, swigf_ParametersMap_erase__SWIG_1
+ end type ParametersMap
+ ! class std::vector< cola::Particle >
+ type, public :: EventParticles
+  type(SwigClassWrapper), public :: swigdata
+ contains
+  procedure :: size => swigf_EventParticles_size
+  procedure :: capacity => swigf_EventParticles_capacity
+  procedure :: empty => swigf_EventParticles_empty
+  procedure :: front => swigf_EventParticles_front
+  procedure :: back => swigf_EventParticles_back
+  procedure :: reserve => swigf_EventParticles_reserve
+  procedure, private :: swigf_EventParticles_resize__SWIG_0
+  procedure, private :: swigf_EventParticles_resize__SWIG_1
+  procedure :: push_back => swigf_EventParticles_push_back
+  procedure :: pop_back => swigf_EventParticles_pop_back
+  procedure :: clear => swigf_EventParticles_clear
+  procedure :: set => swigf_EventParticles_set
+  procedure :: get => swigf_EventParticles_get
+  procedure :: insert => swigf_EventParticles_insert
+  procedure, private :: swigf_EventParticles_erase__SWIG_0
+  procedure, private :: swigf_EventParticles_erase__SWIG_1
+  procedure :: front_ref => swigf_EventParticles_front_ref
+  procedure :: back_ref => swigf_EventParticles_back_ref
+  procedure :: get_ref => swigf_EventParticles_get_ref
+  procedure :: release => swigf_EventParticles_release
+  procedure, private :: swigf_EventParticles_op_assign__
+  generic :: resize => swigf_EventParticles_resize__SWIG_0, swigf_EventParticles_resize__SWIG_1
+  generic :: assignment(=) => swigf_EventParticles_op_assign__
+  generic :: erase => swigf_EventParticles_erase__SWIG_0, swigf_EventParticles_erase__SWIG_1
+ end type EventParticles
 
   type, abstract, public :: AbstractFortranConverter
   contains
@@ -239,15 +281,22 @@ module cola
     end subroutine
   end interface
 
+ interface LorentzVector
+  module procedure swigf_new_LorentzVector
+ end interface
+ interface ParametersMapItem
+  module procedure swigf_new_ParametersMapItem__SWIG_0, swigf_new_ParametersMapItem__SWIG_1, &
+    swigf_new_ParametersMapItem__SWIG_2
+ end interface
  interface ParametersMap
   module procedure swigf_new_ParametersMap__SWIG_0, swigf_new_ParametersMap__SWIG_1, swigf_new_ParametersMap__SWIG_2, &
     swigf_new_ParametersMap__SWIG_3
  end interface
- interface AZ
-  module procedure swigf_new_AZ__SWIG_0, swigf_new_AZ__SWIG_1, swigf_new_AZ__SWIG_2
- end interface
  interface Particle
   module procedure swigf_new_Particle
+ end interface
+ interface AZ
+  module procedure swigf_new_AZ__SWIG_0, swigf_new_AZ__SWIG_1, swigf_new_AZ__SWIG_2
  end interface
  interface EventParticles
   module procedure swigf_new_EventParticles__SWIG_0, swigf_new_EventParticles__SWIG_1, swigf_new_EventParticles__SWIG_2, &
@@ -262,92 +311,59 @@ module cola
 
 ! WRAPPER DECLARATIONS
 interface
-function swigc_new_AZ__SWIG_0() &
-bind(C, name="_wrap_new_AZ__SWIG_0") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_new_AZ__SWIG_1(farg1, farg2) &
-bind(C, name="_wrap_new_AZ__SWIG_1") &
-result(fresult)
+subroutine swigc_LorentzVector_x_set(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_x_set")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_new_AZ__SWIG_2(farg1) &
-bind(C, name="_wrap_new_AZ__SWIG_2") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-subroutine swigc_AZ_first_set(farg1, farg2) &
-bind(C, name="_wrap_AZ_first_set")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
+real(C_DOUBLE), intent(in) :: farg2
 end subroutine
 
-function swigc_AZ_first_get(farg1) &
-bind(C, name="_wrap_AZ_first_get") &
+function swigc_LorentzVector_x_get(farg1) &
+bind(C, name="_wrap_LorentzVector_x_get") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
+real(C_DOUBLE) :: fresult
 end function
 
-subroutine swigc_AZ_second_set(farg1, farg2) &
-bind(C, name="_wrap_AZ_second_set")
+subroutine swigc_LorentzVector_y_set(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_y_set")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
+real(C_DOUBLE), intent(in) :: farg2
 end subroutine
 
-function swigc_AZ_second_get(farg1) &
-bind(C, name="_wrap_AZ_second_get") &
+function swigc_LorentzVector_y_get(farg1) &
+bind(C, name="_wrap_LorentzVector_y_get") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
+real(C_DOUBLE) :: fresult
 end function
 
-subroutine swigc_delete_AZ(farg1) &
-bind(C, name="_wrap_delete_AZ")
+subroutine swigc_LorentzVector_z_set(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_z_set")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
-type(SwigClassWrapper), intent(inout) :: farg1
+type(SwigClassWrapper), intent(in) :: farg1
+real(C_DOUBLE), intent(in) :: farg2
 end subroutine
 
-subroutine swigc_AZ_op_assign__(farg1, farg2) &
-bind(C, name="_wrap_AZ_op_assign__")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(inout) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-end subroutine
-
-function swigc_new_ParametersMap__SWIG_0() &
-bind(C, name="_wrap_new_ParametersMap__SWIG_0") &
+function swigc_LorentzVector_z_get(farg1) &
+bind(C, name="_wrap_LorentzVector_z_get") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
-type(SwigClassWrapper) :: fresult
+type(SwigClassWrapper), intent(in) :: farg1
+real(C_DOUBLE) :: fresult
 end function
 
-function swigc_new_ParametersMap__SWIG_1(farg1) &
-bind(C, name="_wrap_new_ParametersMap__SWIG_1") &
+function swigc_LorentzVector_op_sub__(farg1) &
+bind(C, name="_wrap_LorentzVector_op_sub__") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
@@ -355,45 +371,59 @@ type(SwigClassWrapper), intent(in) :: farg1
 type(SwigClassWrapper) :: fresult
 end function
 
-function swigc_new_ParametersMap__SWIG_2(farg1) &
-bind(C, name="_wrap_new_ParametersMap__SWIG_2") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-integer(C_SIZE_T), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_new_ParametersMap__SWIG_3(farg1, farg2) &
-bind(C, name="_wrap_new_ParametersMap__SWIG_3") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-integer(C_SIZE_T), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_ParametersMap_size(farg1) &
-bind(C, name="_wrap_ParametersMap_size") &
+function swigc_LorentzVector_Boost(farg1, farg2, farg3, farg4) &
+bind(C, name="_wrap_LorentzVector_Boost") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T) :: fresult
+real(C_DOUBLE), intent(in) :: farg2
+real(C_DOUBLE), intent(in) :: farg3
+real(C_DOUBLE), intent(in) :: farg4
+type(SwigClassWrapper) :: fresult
 end function
 
-function swigc_ParametersMap_capacity(farg1) &
-bind(C, name="_wrap_ParametersMap_capacity") &
+function swigc_LorentzVector_BoostAxisRapidity__SWIG_0(farg1, farg2, farg3) &
+bind(C, name="_wrap_LorentzVector_BoostAxisRapidity__SWIG_0") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T) :: fresult
+real(C_DOUBLE), intent(in) :: farg2
+type(SwigClassWrapper), intent(in) :: farg3
+type(SwigClassWrapper) :: fresult
 end function
 
-function swigc_ParametersMap_empty(farg1) &
-bind(C, name="_wrap_ParametersMap_empty") &
+function swigc_LorentzVector_BoostAxisRapidity__SWIG_1(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_BoostAxisRapidity__SWIG_1") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+real(C_DOUBLE), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_LorentzVector_Mag2(farg1) &
+bind(C, name="_wrap_LorentzVector_Mag2") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+real(C_DOUBLE) :: fresult
+end function
+
+function swigc_LorentzVector_Mag(farg1) &
+bind(C, name="_wrap_LorentzVector_Mag") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+real(C_DOUBLE) :: fresult
+end function
+
+function swigc_LorentzVector_IsSpaceLike(farg1) &
+bind(C, name="_wrap_LorentzVector_IsSpaceLike") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
@@ -401,215 +431,8 @@ type(SwigClassWrapper), intent(in) :: farg1
 integer(C_INT) :: fresult
 end function
 
-function swigc_ParametersMap_front(farg1) &
-bind(C, name="_wrap_ParametersMap_front") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_ParametersMap_back(farg1) &
-bind(C, name="_wrap_ParametersMap_back") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-subroutine swigc_ParametersMap_reserve(farg1, farg2) &
-bind(C, name="_wrap_ParametersMap_reserve")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-end subroutine
-
-subroutine swigc_ParametersMap_resize__SWIG_0(farg1, farg2) &
-bind(C, name="_wrap_ParametersMap_resize__SWIG_0")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-end subroutine
-
-subroutine swigc_ParametersMap_resize__SWIG_1(farg1, farg2, farg3) &
-bind(C, name="_wrap_ParametersMap_resize__SWIG_1")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper), intent(in) :: farg3
-end subroutine
-
-subroutine swigc_ParametersMap_push_back(farg1, farg2) &
-bind(C, name="_wrap_ParametersMap_push_back")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-end subroutine
-
-subroutine swigc_ParametersMap_pop_back(farg1) &
-bind(C, name="_wrap_ParametersMap_pop_back")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-end subroutine
-
-subroutine swigc_ParametersMap_clear(farg1) &
-bind(C, name="_wrap_ParametersMap_clear")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-end subroutine
-
-subroutine swigc_ParametersMap_set(farg1, farg2, farg3) &
-bind(C, name="_wrap_ParametersMap_set")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper), intent(in) :: farg3
-end subroutine
-
-function swigc_ParametersMap_get(farg1, farg2) &
-bind(C, name="_wrap_ParametersMap_get") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
-end function
-
-subroutine swigc_ParametersMap_insert(farg1, farg2, farg3) &
-bind(C, name="_wrap_ParametersMap_insert")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper), intent(in) :: farg3
-end subroutine
-
-subroutine swigc_ParametersMap_erase__SWIG_0(farg1, farg2) &
-bind(C, name="_wrap_ParametersMap_erase__SWIG_0")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-end subroutine
-
-subroutine swigc_ParametersMap_erase__SWIG_1(farg1, farg2, farg3) &
-bind(C, name="_wrap_ParametersMap_erase__SWIG_1")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-integer(C_SIZE_T), intent(in) :: farg3
-end subroutine
-
-function swigc_ParametersMap_front_ref(farg1) &
-bind(C, name="_wrap_ParametersMap_front_ref") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_ParametersMap_back_ref(farg1) &
-bind(C, name="_wrap_ParametersMap_back_ref") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_ParametersMap_get_ref(farg1, farg2) &
-bind(C, name="_wrap_ParametersMap_get_ref") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
-end function
-
-subroutine swigc_delete_ParametersMap(farg1) &
-bind(C, name="_wrap_delete_ParametersMap")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(inout) :: farg1
-end subroutine
-
-subroutine swigc_ParametersMap_op_assign__(farg1, farg2) &
-bind(C, name="_wrap_ParametersMap_op_assign__")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(inout) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-end subroutine
-
-function swigc_new_EventParticles__SWIG_0() &
-bind(C, name="_wrap_new_EventParticles__SWIG_0") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_new_EventParticles__SWIG_1(farg1) &
-bind(C, name="_wrap_new_EventParticles__SWIG_1") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_new_EventParticles__SWIG_2(farg1) &
-bind(C, name="_wrap_new_EventParticles__SWIG_2") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-integer(C_SIZE_T), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_new_EventParticles__SWIG_3(farg1, farg2) &
-bind(C, name="_wrap_new_EventParticles__SWIG_3") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-integer(C_SIZE_T), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_EventParticles_size(farg1) &
-bind(C, name="_wrap_EventParticles_size") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T) :: fresult
-end function
-
-function swigc_EventParticles_capacity(farg1) &
-bind(C, name="_wrap_EventParticles_capacity") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T) :: fresult
-end function
-
-function swigc_EventParticles_empty(farg1) &
-bind(C, name="_wrap_EventParticles_empty") &
+function swigc_LorentzVector_IsLightLike(farg1) &
+bind(C, name="_wrap_LorentzVector_IsLightLike") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
@@ -617,153 +440,70 @@ type(SwigClassWrapper), intent(in) :: farg1
 integer(C_INT) :: fresult
 end function
 
-function swigc_EventParticles_front(farg1) &
-bind(C, name="_wrap_EventParticles_front") &
+function swigc_LorentzVector_IsTimeLike(farg1) &
+bind(C, name="_wrap_LorentzVector_IsTimeLike") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
+integer(C_INT) :: fresult
 end function
 
-function swigc_EventParticles_back(farg1) &
-bind(C, name="_wrap_EventParticles_back") &
+function swigc_LorentzVector_get_e(farg1) &
+bind(C, name="_wrap_LorentzVector_get_e") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
+real(C_DOUBLE) :: fresult
 end function
 
-subroutine swigc_EventParticles_reserve(farg1, farg2) &
-bind(C, name="_wrap_EventParticles_reserve")
+subroutine swigc_LorentzVector_set_e(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_set_e")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
+real(C_DOUBLE), intent(in) :: farg2
 end subroutine
 
-subroutine swigc_EventParticles_resize__SWIG_0(farg1, farg2) &
-bind(C, name="_wrap_EventParticles_resize__SWIG_0")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-end subroutine
-
-subroutine swigc_EventParticles_resize__SWIG_1(farg1, farg2, farg3) &
-bind(C, name="_wrap_EventParticles_resize__SWIG_1")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper), intent(in) :: farg3
-end subroutine
-
-subroutine swigc_EventParticles_push_back(farg1, farg2) &
-bind(C, name="_wrap_EventParticles_push_back")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-end subroutine
-
-subroutine swigc_EventParticles_pop_back(farg1) &
-bind(C, name="_wrap_EventParticles_pop_back")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-end subroutine
-
-subroutine swigc_EventParticles_clear(farg1) &
-bind(C, name="_wrap_EventParticles_clear")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-end subroutine
-
-subroutine swigc_EventParticles_set(farg1, farg2, farg3) &
-bind(C, name="_wrap_EventParticles_set")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper), intent(in) :: farg3
-end subroutine
-
-function swigc_EventParticles_get(farg1, farg2) &
-bind(C, name="_wrap_EventParticles_get") &
+function swigc_LorentzVector_get_t(farg1) &
+bind(C, name="_wrap_LorentzVector_get_t") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
+real(C_DOUBLE) :: fresult
 end function
 
-subroutine swigc_EventParticles_insert(farg1, farg2, farg3) &
-bind(C, name="_wrap_EventParticles_insert")
+subroutine swigc_LorentzVector_set_t(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_set_t")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper), intent(in) :: farg3
+real(C_DOUBLE), intent(in) :: farg2
 end subroutine
 
-subroutine swigc_EventParticles_erase__SWIG_0(farg1, farg2) &
-bind(C, name="_wrap_EventParticles_erase__SWIG_0")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-end subroutine
-
-subroutine swigc_EventParticles_erase__SWIG_1(farg1, farg2, farg3) &
-bind(C, name="_wrap_EventParticles_erase__SWIG_1")
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-integer(C_SIZE_T), intent(in) :: farg3
-end subroutine
-
-function swigc_EventParticles_front_ref(farg1) &
-bind(C, name="_wrap_EventParticles_front_ref") &
+function swigc_new_LorentzVector(farg1, farg2, farg3, farg4) &
+bind(C, name="_wrap_new_LorentzVector") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
+real(C_DOUBLE), intent(in) :: farg1
+real(C_DOUBLE), intent(in) :: farg2
+real(C_DOUBLE), intent(in) :: farg3
+real(C_DOUBLE), intent(in) :: farg4
 type(SwigClassWrapper) :: fresult
 end function
 
-function swigc_EventParticles_back_ref(farg1) &
-bind(C, name="_wrap_EventParticles_back_ref") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_EventParticles_get_ref(farg1, farg2) &
-bind(C, name="_wrap_EventParticles_get_ref") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-integer(C_SIZE_T), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
-end function
-
-subroutine swigc_delete_EventParticles(farg1) &
-bind(C, name="_wrap_delete_EventParticles")
+subroutine swigc_delete_LorentzVector(farg1) &
+bind(C, name="_wrap_delete_LorentzVector")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(inout) :: farg1
 end subroutine
 
-subroutine swigc_EventParticles_op_assign__(farg1, farg2) &
-bind(C, name="_wrap_EventParticles_op_assign__")
+subroutine swigc_LorentzVector_op_assign__(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_op_assign__")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(inout) :: farg1
@@ -1291,203 +1031,774 @@ type(SwigClassWrapper), intent(inout) :: farg1
 type(SwigClassWrapper), intent(in) :: farg2
 end subroutine
 
+function swigc_new_AZ__SWIG_0() &
+bind(C, name="_wrap_new_AZ__SWIG_0") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_AZ__SWIG_1(farg1, farg2) &
+bind(C, name="_wrap_new_AZ__SWIG_1") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_AZ__SWIG_2(farg1) &
+bind(C, name="_wrap_new_AZ__SWIG_2") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_AZ_first_set(farg1, farg2) &
+bind(C, name="_wrap_AZ_first_set")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
+function swigc_AZ_first_get(farg1) &
+bind(C, name="_wrap_AZ_first_get") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_AZ_second_set(farg1, farg2) &
+bind(C, name="_wrap_AZ_second_set")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
+function swigc_AZ_second_get(farg1) &
+bind(C, name="_wrap_AZ_second_get") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_delete_AZ(farg1) &
+bind(C, name="_wrap_delete_AZ")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+end subroutine
+
+subroutine swigc_AZ_op_assign__(farg1, farg2) &
+bind(C, name="_wrap_AZ_op_assign__")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
+function swigc_new_ParametersMapItem__SWIG_0() &
+bind(C, name="_wrap_new_ParametersMapItem__SWIG_0") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_ParametersMapItem__SWIG_1(farg1, farg2) &
+bind(C, name="_wrap_new_ParametersMapItem__SWIG_1") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigarraywrapper
+import :: swigclasswrapper
+type(SwigArrayWrapper) :: farg1
+type(SwigArrayWrapper) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_ParametersMapItem__SWIG_2(farg1) &
+bind(C, name="_wrap_new_ParametersMapItem__SWIG_2") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_ParametersMapItem_first_set(farg1, farg2) &
+bind(C, name="_wrap_ParametersMapItem_first_set")
+use, intrinsic :: ISO_C_BINDING
+import :: swigarraywrapper
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigArrayWrapper) :: farg2
+end subroutine
+
+ subroutine SWIG_free(cptr) &
+  bind(C, name="free")
+ use, intrinsic :: ISO_C_BINDING
+ type(C_PTR), value :: cptr
+end subroutine
+function swigc_ParametersMapItem_first_get(farg1) &
+bind(C, name="_wrap_ParametersMapItem_first_get") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigarraywrapper
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigArrayWrapper) :: fresult
+end function
+
+subroutine swigc_ParametersMapItem_second_set(farg1, farg2) &
+bind(C, name="_wrap_ParametersMapItem_second_set")
+use, intrinsic :: ISO_C_BINDING
+import :: swigarraywrapper
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigArrayWrapper) :: farg2
+end subroutine
+
+function swigc_ParametersMapItem_second_get(farg1) &
+bind(C, name="_wrap_ParametersMapItem_second_get") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigarraywrapper
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigArrayWrapper) :: fresult
+end function
+
+subroutine swigc_delete_ParametersMapItem(farg1) &
+bind(C, name="_wrap_delete_ParametersMapItem")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+end subroutine
+
+subroutine swigc_ParametersMapItem_op_assign__(farg1, farg2) &
+bind(C, name="_wrap_ParametersMapItem_op_assign__")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
+function swigc_new_ParametersMap__SWIG_0() &
+bind(C, name="_wrap_new_ParametersMap__SWIG_0") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_ParametersMap__SWIG_1(farg1) &
+bind(C, name="_wrap_new_ParametersMap__SWIG_1") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_ParametersMap__SWIG_2(farg1) &
+bind(C, name="_wrap_new_ParametersMap__SWIG_2") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+integer(C_SIZE_T), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_ParametersMap__SWIG_3(farg1, farg2) &
+bind(C, name="_wrap_new_ParametersMap__SWIG_3") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+integer(C_SIZE_T), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_ParametersMap_size(farg1) &
+bind(C, name="_wrap_ParametersMap_size") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T) :: fresult
+end function
+
+function swigc_ParametersMap_capacity(farg1) &
+bind(C, name="_wrap_ParametersMap_capacity") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T) :: fresult
+end function
+
+function swigc_ParametersMap_empty(farg1) &
+bind(C, name="_wrap_ParametersMap_empty") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_INT) :: fresult
+end function
+
+function swigc_ParametersMap_front(farg1) &
+bind(C, name="_wrap_ParametersMap_front") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_ParametersMap_back(farg1) &
+bind(C, name="_wrap_ParametersMap_back") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_ParametersMap_reserve(farg1, farg2) &
+bind(C, name="_wrap_ParametersMap_reserve")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_ParametersMap_resize__SWIG_0(farg1, farg2) &
+bind(C, name="_wrap_ParametersMap_resize__SWIG_0")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_ParametersMap_resize__SWIG_1(farg1, farg2, farg3) &
+bind(C, name="_wrap_ParametersMap_resize__SWIG_1")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper), intent(in) :: farg3
+end subroutine
+
+subroutine swigc_ParametersMap_push_back(farg1, farg2) &
+bind(C, name="_wrap_ParametersMap_push_back")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_ParametersMap_pop_back(farg1) &
+bind(C, name="_wrap_ParametersMap_pop_back")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+end subroutine
+
+subroutine swigc_ParametersMap_clear(farg1) &
+bind(C, name="_wrap_ParametersMap_clear")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+end subroutine
+
+subroutine swigc_ParametersMap_set(farg1, farg2, farg3) &
+bind(C, name="_wrap_ParametersMap_set")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper), intent(in) :: farg3
+end subroutine
+
+function swigc_ParametersMap_get(farg1, farg2) &
+bind(C, name="_wrap_ParametersMap_get") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_ParametersMap_insert(farg1, farg2, farg3) &
+bind(C, name="_wrap_ParametersMap_insert")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper), intent(in) :: farg3
+end subroutine
+
+subroutine swigc_ParametersMap_erase__SWIG_0(farg1, farg2) &
+bind(C, name="_wrap_ParametersMap_erase__SWIG_0")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_ParametersMap_erase__SWIG_1(farg1, farg2, farg3) &
+bind(C, name="_wrap_ParametersMap_erase__SWIG_1")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+integer(C_SIZE_T), intent(in) :: farg3
+end subroutine
+
+function swigc_ParametersMap_front_ref(farg1) &
+bind(C, name="_wrap_ParametersMap_front_ref") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_ParametersMap_back_ref(farg1) &
+bind(C, name="_wrap_ParametersMap_back_ref") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_ParametersMap_get_ref(farg1, farg2) &
+bind(C, name="_wrap_ParametersMap_get_ref") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_delete_ParametersMap(farg1) &
+bind(C, name="_wrap_delete_ParametersMap")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+end subroutine
+
+subroutine swigc_ParametersMap_op_assign__(farg1, farg2) &
+bind(C, name="_wrap_ParametersMap_op_assign__")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
+function swigc_new_EventParticles__SWIG_0() &
+bind(C, name="_wrap_new_EventParticles__SWIG_0") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_EventParticles__SWIG_1(farg1) &
+bind(C, name="_wrap_new_EventParticles__SWIG_1") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_EventParticles__SWIG_2(farg1) &
+bind(C, name="_wrap_new_EventParticles__SWIG_2") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+integer(C_SIZE_T), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_new_EventParticles__SWIG_3(farg1, farg2) &
+bind(C, name="_wrap_new_EventParticles__SWIG_3") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+integer(C_SIZE_T), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_EventParticles_size(farg1) &
+bind(C, name="_wrap_EventParticles_size") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T) :: fresult
+end function
+
+function swigc_EventParticles_capacity(farg1) &
+bind(C, name="_wrap_EventParticles_capacity") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T) :: fresult
+end function
+
+function swigc_EventParticles_empty(farg1) &
+bind(C, name="_wrap_EventParticles_empty") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_INT) :: fresult
+end function
+
+function swigc_EventParticles_front(farg1) &
+bind(C, name="_wrap_EventParticles_front") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_EventParticles_back(farg1) &
+bind(C, name="_wrap_EventParticles_back") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_EventParticles_reserve(farg1, farg2) &
+bind(C, name="_wrap_EventParticles_reserve")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_EventParticles_resize__SWIG_0(farg1, farg2) &
+bind(C, name="_wrap_EventParticles_resize__SWIG_0")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_EventParticles_resize__SWIG_1(farg1, farg2, farg3) &
+bind(C, name="_wrap_EventParticles_resize__SWIG_1")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper), intent(in) :: farg3
+end subroutine
+
+subroutine swigc_EventParticles_push_back(farg1, farg2) &
+bind(C, name="_wrap_EventParticles_push_back")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_EventParticles_pop_back(farg1) &
+bind(C, name="_wrap_EventParticles_pop_back")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+end subroutine
+
+subroutine swigc_EventParticles_clear(farg1) &
+bind(C, name="_wrap_EventParticles_clear")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+end subroutine
+
+subroutine swigc_EventParticles_set(farg1, farg2, farg3) &
+bind(C, name="_wrap_EventParticles_set")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper), intent(in) :: farg3
+end subroutine
+
+function swigc_EventParticles_get(farg1, farg2) &
+bind(C, name="_wrap_EventParticles_get") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_EventParticles_insert(farg1, farg2, farg3) &
+bind(C, name="_wrap_EventParticles_insert")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper), intent(in) :: farg3
+end subroutine
+
+subroutine swigc_EventParticles_erase__SWIG_0(farg1, farg2) &
+bind(C, name="_wrap_EventParticles_erase__SWIG_0")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+end subroutine
+
+subroutine swigc_EventParticles_erase__SWIG_1(farg1, farg2, farg3) &
+bind(C, name="_wrap_EventParticles_erase__SWIG_1")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+integer(C_SIZE_T), intent(in) :: farg3
+end subroutine
+
+function swigc_EventParticles_front_ref(farg1) &
+bind(C, name="_wrap_EventParticles_front_ref") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_EventParticles_back_ref(farg1) &
+bind(C, name="_wrap_EventParticles_back_ref") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
+end function
+
+function swigc_EventParticles_get_ref(farg1, farg2) &
+bind(C, name="_wrap_EventParticles_get_ref") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+integer(C_SIZE_T), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
+subroutine swigc_delete_EventParticles(farg1) &
+bind(C, name="_wrap_delete_EventParticles")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+end subroutine
+
+subroutine swigc_EventParticles_op_assign__(farg1, farg2) &
+bind(C, name="_wrap_EventParticles_op_assign__")
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(inout) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+end subroutine
+
 end interface
 
 
 contains
  ! MODULE SUBPROGRAMS
-function swigf_new_AZ__SWIG_0() &
-result(self)
+subroutine swigf_LorentzVector_x_set(self, x)
 use, intrinsic :: ISO_C_BINDING
-type(AZ) :: self
-type(SwigClassWrapper) :: fresult 
-
-fresult = swigc_new_AZ__SWIG_0()
-self%swigdata = fresult
-end function
-
-function swigf_new_AZ__SWIG_1(first, second) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(AZ) :: self
-type(SWIGTYPE_p_uint16_t), intent(in) :: first
-type(SWIGTYPE_p_uint16_t), intent(in) :: second
-type(SwigClassWrapper) :: fresult 
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: x
 type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = first%swigdata
-farg2 = second%swigdata
-fresult = swigc_new_AZ__SWIG_1(farg1, farg2)
-self%swigdata = fresult
-end function
-
-function swigf_new_AZ__SWIG_2(p) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(AZ) :: self
-class(AZ), intent(in) :: p
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = p%swigdata
-fresult = swigc_new_AZ__SWIG_2(farg1)
-self%swigdata = fresult
-end function
-
-subroutine swigf_AZ_first_set(self, first)
-use, intrinsic :: ISO_C_BINDING
-class(AZ), intent(in) :: self
-type(SWIGTYPE_p_uint16_t), intent(in) :: first
-type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
+real(C_DOUBLE) :: farg2 
 
 farg1 = self%swigdata
-farg2 = first%swigdata
-call swigc_AZ_first_set(farg1, farg2)
+farg2 = x
+call swigc_LorentzVector_x_set(farg1, farg2)
 end subroutine
 
-function swigf_AZ_first_get(self) &
+function swigf_LorentzVector_x_get(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_uint16_t) :: swig_result
-class(AZ), intent(in) :: self
+real(C_DOUBLE) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_LorentzVector_x_get(farg1)
+swig_result = fresult
+end function
+
+subroutine swigf_LorentzVector_y_set(self, y)
+use, intrinsic :: ISO_C_BINDING
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: y
+type(SwigClassWrapper) :: farg1 
+real(C_DOUBLE) :: farg2 
+
+farg1 = self%swigdata
+farg2 = y
+call swigc_LorentzVector_y_set(farg1, farg2)
+end subroutine
+
+function swigf_LorentzVector_y_get(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+real(C_DOUBLE) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_LorentzVector_y_get(farg1)
+swig_result = fresult
+end function
+
+subroutine swigf_LorentzVector_z_set(self, z)
+use, intrinsic :: ISO_C_BINDING
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: z
+type(SwigClassWrapper) :: farg1 
+real(C_DOUBLE) :: farg2 
+
+farg1 = self%swigdata
+farg2 = z
+call swigc_LorentzVector_z_set(farg1, farg2)
+end subroutine
+
+function swigf_LorentzVector_z_get(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+real(C_DOUBLE) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_LorentzVector_z_get(farg1)
+swig_result = fresult
+end function
+
+function swigf_LorentzVector_op_sub__(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(LorentzVector) :: swig_result
+class(LorentzVector), intent(in) :: self
 type(SwigClassWrapper) :: fresult 
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
-fresult = swigc_AZ_first_get(farg1)
+fresult = swigc_LorentzVector_op_sub__(farg1)
 swig_result%swigdata = fresult
 end function
 
-subroutine swigf_AZ_second_set(self, second)
-use, intrinsic :: ISO_C_BINDING
-class(AZ), intent(in) :: self
-type(SWIGTYPE_p_uint16_t), intent(in) :: second
-type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = self%swigdata
-farg2 = second%swigdata
-call swigc_AZ_second_set(farg1, farg2)
-end subroutine
-
-function swigf_AZ_second_get(self) &
+function swigf_LorentzVector_Boost(self, bx, by, bz) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_uint16_t) :: swig_result
-class(AZ), intent(in) :: self
+type(LorentzVector) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: bx
+real(C_DOUBLE), intent(in) :: by
+real(C_DOUBLE), intent(in) :: bz
 type(SwigClassWrapper) :: fresult 
 type(SwigClassWrapper) :: farg1 
+real(C_DOUBLE) :: farg2 
+real(C_DOUBLE) :: farg3 
+real(C_DOUBLE) :: farg4 
 
 farg1 = self%swigdata
-fresult = swigc_AZ_second_get(farg1)
+farg2 = bx
+farg3 = by
+farg4 = bz
+fresult = swigc_LorentzVector_Boost(farg1, farg2, farg3, farg4)
 swig_result%swigdata = fresult
 end function
 
-subroutine swigf_AZ_release(self)
-use, intrinsic :: ISO_C_BINDING
-class(AZ), intent(inout) :: self
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-if (btest(farg1%cmemflags, swig_cmem_own_bit)) then
-call swigc_delete_AZ(farg1)
-endif
-farg1%cptr = C_NULL_PTR
-farg1%cmemflags = 0
-self%swigdata = farg1
-end subroutine
-
-subroutine swigf_AZ_op_assign__(self, other)
-use, intrinsic :: ISO_C_BINDING
-class(AZ), intent(inout) :: self
-type(AZ), intent(in) :: other
-type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = self%swigdata
-farg2 = other%swigdata
-call swigc_AZ_op_assign__(farg1, farg2)
-self%swigdata = farg1
-end subroutine
-
-function swigf_new_ParametersMap__SWIG_0() &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(ParametersMap) :: self
-type(SwigClassWrapper) :: fresult 
-
-fresult = swigc_new_ParametersMap__SWIG_0()
-self%swigdata = fresult
-end function
-
-function swigf_new_ParametersMap__SWIG_1(other) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(ParametersMap) :: self
-class(ParametersMap), intent(in) :: other
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = other%swigdata
-fresult = swigc_new_ParametersMap__SWIG_1(farg1)
-self%swigdata = fresult
-end function
-
-function swigf_new_ParametersMap__SWIG_2(count) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(ParametersMap) :: self
-integer, intent(in) :: count
-type(SwigClassWrapper) :: fresult 
-integer(C_SIZE_T) :: farg1 
-
-farg1 = int(count, C_INT)
-fresult = swigc_new_ParametersMap__SWIG_2(farg1)
-self%swigdata = fresult
-end function
-
-function swigf_new_ParametersMap__SWIG_3(count, v) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(ParametersMap) :: self
-integer, intent(in) :: count
-class(SWIGTYPE_p_std__pairT_std__string_std__string_t), intent(in) :: v
-type(SwigClassWrapper) :: fresult 
-integer(C_SIZE_T) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = int(count, C_INT)
-farg2 = v%swigdata
-fresult = swigc_new_ParametersMap__SWIG_3(farg1, farg2)
-self%swigdata = fresult
-end function
-
-function swigf_ParametersMap_size(self) &
+function swigf_LorentzVector_BoostAxisRapidity__SWIG_0(self, rapidity, axis) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-integer :: swig_result
-class(ParametersMap), intent(in) :: self
-integer(C_SIZE_T) :: fresult 
+type(LorentzVector) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: rapidity
+type(SWIGTYPE_p_uint32_t), intent(in) :: axis
+type(SwigClassWrapper) :: fresult 
 type(SwigClassWrapper) :: farg1 
+real(C_DOUBLE) :: farg2 
+type(SwigClassWrapper) :: farg3 
 
 farg1 = self%swigdata
-fresult = swigc_ParametersMap_size(farg1)
-swig_result = int(fresult)
+farg2 = rapidity
+farg3 = axis%swigdata
+fresult = swigc_LorentzVector_BoostAxisRapidity__SWIG_0(farg1, farg2, farg3)
+swig_result%swigdata = fresult
 end function
 
-function swigf_ParametersMap_capacity(self) &
+function swigf_LorentzVector_BoostAxisRapidity__SWIG_1(self, rapidity) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-integer :: swig_result
-class(ParametersMap), intent(in) :: self
-integer(C_SIZE_T) :: fresult 
+type(LorentzVector) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: rapidity
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+real(C_DOUBLE) :: farg2 
+
+farg1 = self%swigdata
+farg2 = rapidity
+fresult = swigc_LorentzVector_BoostAxisRapidity__SWIG_1(farg1, farg2)
+swig_result%swigdata = fresult
+end function
+
+function swigf_LorentzVector_Mag2(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+real(C_DOUBLE) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE) :: fresult 
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
-fresult = swigc_ParametersMap_capacity(farg1)
-swig_result = int(fresult)
+fresult = swigc_LorentzVector_Mag2(farg1)
+swig_result = fresult
+end function
+
+function swigf_LorentzVector_Mag(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+real(C_DOUBLE) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_LorentzVector_Mag(farg1)
+swig_result = fresult
 end function
 
 
@@ -1498,581 +1809,141 @@ subroutine SWIGTM_fout_bool(imout, fout)
   fout = (imout /= 0)
 end subroutine
 
-function swigf_ParametersMap_empty(self) &
+function swigf_LorentzVector_IsSpaceLike(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
 logical :: swig_result
-class(ParametersMap), intent(in) :: self
+class(LorentzVector), intent(in) :: self
 integer(C_INT) :: fresult 
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
-fresult = swigc_ParametersMap_empty(farg1)
+fresult = swigc_LorentzVector_IsSpaceLike(farg1)
 call SWIGTM_fout_bool(fresult, swig_result)
 end function
 
-function swigf_ParametersMap_front(self) &
+function swigf_LorentzVector_IsLightLike(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_std__pairT_std__string_std__string_t) :: swig_result
-class(ParametersMap), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
+logical :: swig_result
+class(LorentzVector), intent(in) :: self
+integer(C_INT) :: fresult 
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
-fresult = swigc_ParametersMap_front(farg1)
-swig_result%swigdata = fresult
+fresult = swigc_LorentzVector_IsLightLike(farg1)
+call SWIGTM_fout_bool(fresult, swig_result)
 end function
 
-function swigf_ParametersMap_back(self) &
+function swigf_LorentzVector_IsTimeLike(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_std__pairT_std__string_std__string_t) :: swig_result
-class(ParametersMap), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
+logical :: swig_result
+class(LorentzVector), intent(in) :: self
+integer(C_INT) :: fresult 
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
-fresult = swigc_ParametersMap_back(farg1)
-swig_result%swigdata = fresult
+fresult = swigc_LorentzVector_IsTimeLike(farg1)
+call SWIGTM_fout_bool(fresult, swig_result)
 end function
 
-subroutine swigf_ParametersMap_reserve(self, count)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: count
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(count, C_INT)
-call swigc_ParametersMap_reserve(farg1, farg2)
-end subroutine
-
-subroutine swigf_ParametersMap_resize__SWIG_0(self, count)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: count
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(count, C_INT)
-call swigc_ParametersMap_resize__SWIG_0(farg1, farg2)
-end subroutine
-
-subroutine swigf_ParametersMap_resize__SWIG_1(self, count, v)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: count
-class(SWIGTYPE_p_std__pairT_std__string_std__string_t), intent(in) :: v
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-type(SwigClassWrapper) :: farg3 
-
-farg1 = self%swigdata
-farg2 = int(count, C_INT)
-farg3 = v%swigdata
-call swigc_ParametersMap_resize__SWIG_1(farg1, farg2, farg3)
-end subroutine
-
-subroutine swigf_ParametersMap_push_back(self, v)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-class(SWIGTYPE_p_std__pairT_std__string_std__string_t), intent(in) :: v
-type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = self%swigdata
-farg2 = v%swigdata
-call swigc_ParametersMap_push_back(farg1, farg2)
-end subroutine
-
-subroutine swigf_ParametersMap_pop_back(self)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-call swigc_ParametersMap_pop_back(farg1)
-end subroutine
-
-subroutine swigf_ParametersMap_clear(self)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-call swigc_ParametersMap_clear(farg1)
-end subroutine
-
-subroutine swigf_ParametersMap_set(self, index, v)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: index
-class(SWIGTYPE_p_std__pairT_std__string_std__string_t), intent(in) :: v
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-type(SwigClassWrapper) :: farg3 
-
-farg1 = self%swigdata
-farg2 = int(index, C_INT)
-farg3 = v%swigdata
-call swigc_ParametersMap_set(farg1, farg2, farg3)
-end subroutine
-
-function swigf_ParametersMap_get(self, index) &
+function swigf_LorentzVector_get_e(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_std__pairT_std__string_std__string_t) :: swig_result
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: index
-type(SwigClassWrapper) :: fresult 
+real(C_DOUBLE) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE) :: fresult 
 type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
 
 farg1 = self%swigdata
-farg2 = int(index, C_INT)
-fresult = swigc_ParametersMap_get(farg1, farg2)
-swig_result%swigdata = fresult
+fresult = swigc_LorentzVector_get_e(farg1)
+swig_result = fresult
 end function
 
-subroutine swigf_ParametersMap_insert(self, index, v)
+subroutine swigf_LorentzVector_set_e(self, v)
 use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: index
-class(SWIGTYPE_p_std__pairT_std__string_std__string_t), intent(in) :: v
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: v
 type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-type(SwigClassWrapper) :: farg3 
+real(C_DOUBLE) :: farg2 
 
 farg1 = self%swigdata
-farg2 = int(index, C_INT)
-farg3 = v%swigdata
-call swigc_ParametersMap_insert(farg1, farg2, farg3)
+farg2 = v
+call swigc_LorentzVector_set_e(farg1, farg2)
 end subroutine
 
-subroutine swigf_ParametersMap_erase__SWIG_0(self, index)
+function swigf_LorentzVector_get_t(self) &
+result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: index
+real(C_DOUBLE) :: swig_result
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE) :: fresult 
 type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
 
 farg1 = self%swigdata
-farg2 = int(index, C_INT)
-call swigc_ParametersMap_erase__SWIG_0(farg1, farg2)
+fresult = swigc_LorentzVector_get_t(farg1)
+swig_result = fresult
+end function
+
+subroutine swigf_LorentzVector_set_t(self, v)
+use, intrinsic :: ISO_C_BINDING
+class(LorentzVector), intent(in) :: self
+real(C_DOUBLE), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+real(C_DOUBLE) :: farg2 
+
+farg1 = self%swigdata
+farg2 = v
+call swigc_LorentzVector_set_t(farg1, farg2)
 end subroutine
 
-subroutine swigf_ParametersMap_erase__SWIG_1(self, start_index, stop_index)
+function swigf_new_LorentzVector(e, x, y, z) &
+result(self)
 use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: start_index
-integer, intent(in) :: stop_index
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-integer(C_SIZE_T) :: farg3 
-
-farg1 = self%swigdata
-farg2 = int(start_index, C_INT)
-farg3 = int(stop_index, C_INT)
-call swigc_ParametersMap_erase__SWIG_1(farg1, farg2, farg3)
-end subroutine
-
-function swigf_ParametersMap_front_ref(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_std__pairT_std__string_std__string_t) :: swig_result
-class(ParametersMap), intent(in) :: self
+type(LorentzVector) :: self
+real(C_DOUBLE), intent(in) :: e
+real(C_DOUBLE), intent(in) :: x
+real(C_DOUBLE), intent(in) :: y
+real(C_DOUBLE), intent(in) :: z
 type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
+real(C_DOUBLE) :: farg1 
+real(C_DOUBLE) :: farg2 
+real(C_DOUBLE) :: farg3 
+real(C_DOUBLE) :: farg4 
 
-farg1 = self%swigdata
-fresult = swigc_ParametersMap_front_ref(farg1)
-swig_result%swigdata = fresult
+farg1 = e
+farg2 = x
+farg3 = y
+farg4 = z
+fresult = swigc_new_LorentzVector(farg1, farg2, farg3, farg4)
+self%swigdata = fresult
 end function
 
-function swigf_ParametersMap_back_ref(self) &
-result(swig_result)
+subroutine swigf_LorentzVector_release(self)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_std__pairT_std__string_std__string_t) :: swig_result
-class(ParametersMap), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_ParametersMap_back_ref(farg1)
-swig_result%swigdata = fresult
-end function
-
-function swigf_ParametersMap_get_ref(self, index) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_std__pairT_std__string_std__string_t) :: swig_result
-class(ParametersMap), intent(in) :: self
-integer, intent(in) :: index
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(index, C_INT)
-fresult = swigc_ParametersMap_get_ref(farg1, farg2)
-swig_result%swigdata = fresult
-end function
-
-subroutine swigf_ParametersMap_release(self)
-use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(inout) :: self
+class(LorentzVector), intent(inout) :: self
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
 if (btest(farg1%cmemflags, swig_cmem_own_bit)) then
-call swigc_delete_ParametersMap(farg1)
+call swigc_delete_LorentzVector(farg1)
 endif
 farg1%cptr = C_NULL_PTR
 farg1%cmemflags = 0
 self%swigdata = farg1
 end subroutine
 
-subroutine swigf_ParametersMap_op_assign__(self, other)
+subroutine swigf_LorentzVector_op_assign__(self, other)
 use, intrinsic :: ISO_C_BINDING
-class(ParametersMap), intent(inout) :: self
-type(ParametersMap), intent(in) :: other
+class(LorentzVector), intent(inout) :: self
+type(LorentzVector), intent(in) :: other
 type(SwigClassWrapper) :: farg1 
 type(SwigClassWrapper) :: farg2 
 
 farg1 = self%swigdata
 farg2 = other%swigdata
-call swigc_ParametersMap_op_assign__(farg1, farg2)
-self%swigdata = farg1
-end subroutine
-
-function swigf_new_EventParticles__SWIG_0() &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(EventParticles) :: self
-type(SwigClassWrapper) :: fresult 
-
-fresult = swigc_new_EventParticles__SWIG_0()
-self%swigdata = fresult
-end function
-
-function swigf_new_EventParticles__SWIG_1(other) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(EventParticles) :: self
-class(EventParticles), intent(in) :: other
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = other%swigdata
-fresult = swigc_new_EventParticles__SWIG_1(farg1)
-self%swigdata = fresult
-end function
-
-function swigf_new_EventParticles__SWIG_2(count) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(EventParticles) :: self
-integer, intent(in) :: count
-type(SwigClassWrapper) :: fresult 
-integer(C_SIZE_T) :: farg1 
-
-farg1 = int(count, C_INT)
-fresult = swigc_new_EventParticles__SWIG_2(farg1)
-self%swigdata = fresult
-end function
-
-function swigf_new_EventParticles__SWIG_3(count, v) &
-result(self)
-use, intrinsic :: ISO_C_BINDING
-type(EventParticles) :: self
-integer, intent(in) :: count
-class(Particle), intent(in) :: v
-type(SwigClassWrapper) :: fresult 
-integer(C_SIZE_T) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = int(count, C_INT)
-farg2 = v%swigdata
-fresult = swigc_new_EventParticles__SWIG_3(farg1, farg2)
-self%swigdata = fresult
-end function
-
-function swigf_EventParticles_size(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-integer :: swig_result
-class(EventParticles), intent(in) :: self
-integer(C_SIZE_T) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_EventParticles_size(farg1)
-swig_result = int(fresult)
-end function
-
-function swigf_EventParticles_capacity(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-integer :: swig_result
-class(EventParticles), intent(in) :: self
-integer(C_SIZE_T) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_EventParticles_capacity(farg1)
-swig_result = int(fresult)
-end function
-
-function swigf_EventParticles_empty(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-logical :: swig_result
-class(EventParticles), intent(in) :: self
-integer(C_INT) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_EventParticles_empty(farg1)
-call SWIGTM_fout_bool(fresult, swig_result)
-end function
-
-function swigf_EventParticles_front(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(Particle) :: swig_result
-class(EventParticles), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_EventParticles_front(farg1)
-swig_result%swigdata = fresult
-end function
-
-function swigf_EventParticles_back(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(Particle) :: swig_result
-class(EventParticles), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_EventParticles_back(farg1)
-swig_result%swigdata = fresult
-end function
-
-subroutine swigf_EventParticles_reserve(self, count)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: count
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(count, C_INT)
-call swigc_EventParticles_reserve(farg1, farg2)
-end subroutine
-
-subroutine swigf_EventParticles_resize__SWIG_0(self, count)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: count
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(count, C_INT)
-call swigc_EventParticles_resize__SWIG_0(farg1, farg2)
-end subroutine
-
-subroutine swigf_EventParticles_resize__SWIG_1(self, count, v)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: count
-class(Particle), intent(in) :: v
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-type(SwigClassWrapper) :: farg3 
-
-farg1 = self%swigdata
-farg2 = int(count, C_INT)
-farg3 = v%swigdata
-call swigc_EventParticles_resize__SWIG_1(farg1, farg2, farg3)
-end subroutine
-
-subroutine swigf_EventParticles_push_back(self, v)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-class(Particle), intent(in) :: v
-type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = self%swigdata
-farg2 = v%swigdata
-call swigc_EventParticles_push_back(farg1, farg2)
-end subroutine
-
-subroutine swigf_EventParticles_pop_back(self)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-call swigc_EventParticles_pop_back(farg1)
-end subroutine
-
-subroutine swigf_EventParticles_clear(self)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-call swigc_EventParticles_clear(farg1)
-end subroutine
-
-subroutine swigf_EventParticles_set(self, index, v)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: index
-class(Particle), intent(in) :: v
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-type(SwigClassWrapper) :: farg3 
-
-farg1 = self%swigdata
-farg2 = int(index, C_INT)
-farg3 = v%swigdata
-call swigc_EventParticles_set(farg1, farg2, farg3)
-end subroutine
-
-function swigf_EventParticles_get(self, index) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(Particle) :: swig_result
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: index
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(index, C_INT)
-fresult = swigc_EventParticles_get(farg1, farg2)
-swig_result%swigdata = fresult
-end function
-
-subroutine swigf_EventParticles_insert(self, index, v)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: index
-class(Particle), intent(in) :: v
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-type(SwigClassWrapper) :: farg3 
-
-farg1 = self%swigdata
-farg2 = int(index, C_INT)
-farg3 = v%swigdata
-call swigc_EventParticles_insert(farg1, farg2, farg3)
-end subroutine
-
-subroutine swigf_EventParticles_erase__SWIG_0(self, index)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: index
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(index, C_INT)
-call swigc_EventParticles_erase__SWIG_0(farg1, farg2)
-end subroutine
-
-subroutine swigf_EventParticles_erase__SWIG_1(self, start_index, stop_index)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: start_index
-integer, intent(in) :: stop_index
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-integer(C_SIZE_T) :: farg3 
-
-farg1 = self%swigdata
-farg2 = int(start_index, C_INT)
-farg3 = int(stop_index, C_INT)
-call swigc_EventParticles_erase__SWIG_1(farg1, farg2, farg3)
-end subroutine
-
-function swigf_EventParticles_front_ref(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(Particle) :: swig_result
-class(EventParticles), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_EventParticles_front_ref(farg1)
-swig_result%swigdata = fresult
-end function
-
-function swigf_EventParticles_back_ref(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(Particle) :: swig_result
-class(EventParticles), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_EventParticles_back_ref(farg1)
-swig_result%swigdata = fresult
-end function
-
-function swigf_EventParticles_get_ref(self, index) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(Particle) :: swig_result
-class(EventParticles), intent(in) :: self
-integer, intent(in) :: index
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-integer(C_SIZE_T) :: farg2 
-
-farg1 = self%swigdata
-farg2 = int(index, C_INT)
-fresult = swigc_EventParticles_get_ref(farg1, farg2)
-swig_result%swigdata = fresult
-end function
-
-subroutine swigf_EventParticles_release(self)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(inout) :: self
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-if (btest(farg1%cmemflags, swig_cmem_own_bit)) then
-call swigc_delete_EventParticles(farg1)
-endif
-farg1%cptr = C_NULL_PTR
-farg1%cmemflags = 0
-self%swigdata = farg1
-end subroutine
-
-subroutine swigf_EventParticles_op_assign__(self, other)
-use, intrinsic :: ISO_C_BINDING
-class(EventParticles), intent(inout) :: self
-type(EventParticles), intent(in) :: other
-type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = self%swigdata
-farg2 = other%swigdata
-call swigc_EventParticles_op_assign__(farg1, farg2)
+call swigc_LorentzVector_op_assign__(farg1, farg2)
 self%swigdata = farg1
 end subroutine
 
@@ -2118,7 +1989,7 @@ end function
 subroutine swigf_Particle_position_set(self, position)
 use, intrinsic :: ISO_C_BINDING
 class(Particle), intent(in) :: self
-type(SWIGTYPE_p_LorentzVectorImplT_double_t), intent(in) :: position
+class(LorentzVector), intent(in) :: position
 type(SwigClassWrapper) :: farg1 
 type(SwigClassWrapper) :: farg2 
 
@@ -2130,7 +2001,7 @@ end subroutine
 function swigf_Particle_position_get(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_LorentzVectorImplT_double_t) :: swig_result
+type(LorentzVector) :: swig_result
 class(Particle), intent(in) :: self
 type(SwigClassWrapper) :: fresult 
 type(SwigClassWrapper) :: farg1 
@@ -2143,7 +2014,7 @@ end function
 subroutine swigf_Particle_momentum_set(self, momentum)
 use, intrinsic :: ISO_C_BINDING
 class(Particle), intent(in) :: self
-type(SWIGTYPE_p_LorentzVectorImplT_double_t), intent(in) :: momentum
+class(LorentzVector), intent(in) :: momentum
 type(SwigClassWrapper) :: farg1 
 type(SwigClassWrapper) :: farg2 
 
@@ -2155,7 +2026,7 @@ end subroutine
 function swigf_Particle_momentum_get(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_LorentzVectorImplT_double_t) :: swig_result
+type(LorentzVector) :: swig_result
 class(Particle), intent(in) :: self
 type(SwigClassWrapper) :: fresult 
 type(SwigClassWrapper) :: farg1 
@@ -2848,6 +2719,932 @@ type(SwigClassWrapper) :: farg2
 farg1 = self%swigdata
 farg2 = other%swigdata
 call swigc_EventData_op_assign__(farg1, farg2)
+self%swigdata = farg1
+end subroutine
+
+function swigf_new_AZ__SWIG_0() &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(AZ) :: self
+type(SwigClassWrapper) :: fresult 
+
+fresult = swigc_new_AZ__SWIG_0()
+self%swigdata = fresult
+end function
+
+function swigf_new_AZ__SWIG_1(first, second) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(AZ) :: self
+type(SWIGTYPE_p_uint16_t), intent(in) :: first
+type(SWIGTYPE_p_uint16_t), intent(in) :: second
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = first%swigdata
+farg2 = second%swigdata
+fresult = swigc_new_AZ__SWIG_1(farg1, farg2)
+self%swigdata = fresult
+end function
+
+function swigf_new_AZ__SWIG_2(p) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(AZ) :: self
+class(AZ), intent(in) :: p
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = p%swigdata
+fresult = swigc_new_AZ__SWIG_2(farg1)
+self%swigdata = fresult
+end function
+
+subroutine swigf_AZ_first_set(self, first)
+use, intrinsic :: ISO_C_BINDING
+class(AZ), intent(in) :: self
+type(SWIGTYPE_p_uint16_t), intent(in) :: first
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = first%swigdata
+call swigc_AZ_first_set(farg1, farg2)
+end subroutine
+
+function swigf_AZ_first_get(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(SWIGTYPE_p_uint16_t) :: swig_result
+class(AZ), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_AZ_first_get(farg1)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_AZ_second_set(self, second)
+use, intrinsic :: ISO_C_BINDING
+class(AZ), intent(in) :: self
+type(SWIGTYPE_p_uint16_t), intent(in) :: second
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = second%swigdata
+call swigc_AZ_second_set(farg1, farg2)
+end subroutine
+
+function swigf_AZ_second_get(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(SWIGTYPE_p_uint16_t) :: swig_result
+class(AZ), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_AZ_second_get(farg1)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_AZ_release(self)
+use, intrinsic :: ISO_C_BINDING
+class(AZ), intent(inout) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+if (btest(farg1%cmemflags, swig_cmem_own_bit)) then
+call swigc_delete_AZ(farg1)
+endif
+farg1%cptr = C_NULL_PTR
+farg1%cmemflags = 0
+self%swigdata = farg1
+end subroutine
+
+subroutine swigf_AZ_op_assign__(self, other)
+use, intrinsic :: ISO_C_BINDING
+class(AZ), intent(inout) :: self
+type(AZ), intent(in) :: other
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = other%swigdata
+call swigc_AZ_op_assign__(farg1, farg2)
+self%swigdata = farg1
+end subroutine
+
+function swigf_new_ParametersMapItem__SWIG_0() &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: self
+type(SwigClassWrapper) :: fresult 
+
+fresult = swigc_new_ParametersMapItem__SWIG_0()
+self%swigdata = fresult
+end function
+
+
+subroutine SWIGTM_fin_char_Sm_(finp, iminp, temp)
+  use, intrinsic :: ISO_C_BINDING
+  character(len=*), intent(in) :: finp
+  type(SwigArrayWrapper), intent(out) :: iminp
+  character(kind=C_CHAR), dimension(:), target, allocatable, intent(out) :: temp
+  integer :: i
+
+  allocate(character(kind=C_CHAR) :: temp(len(finp) + 1))
+  do i=1,len(finp)
+    temp(i) = char(ichar(finp(i:i)), kind=C_CHAR)
+  end do
+  i = len(finp) + 1
+  temp(i) = C_NULL_CHAR ! C finp compatibility
+  iminp%data = c_loc(temp)
+  iminp%size = len(finp, kind=C_SIZE_T)
+end subroutine
+
+function swigf_new_ParametersMapItem__SWIG_1(first, second) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: self
+character(len=*), intent(in) :: first
+character(len=*), intent(in) :: second
+type(SwigClassWrapper) :: fresult 
+character(kind=C_CHAR), dimension(:), allocatable, target :: farg1_temp 
+type(SwigArrayWrapper) :: farg1 
+character(kind=C_CHAR), dimension(:), allocatable, target :: farg2_temp 
+type(SwigArrayWrapper) :: farg2 
+
+call SWIGTM_fin_char_Sm_(first, farg1, farg1_temp)
+call SWIGTM_fin_char_Sm_(second, farg2, farg2_temp)
+fresult = swigc_new_ParametersMapItem__SWIG_1(farg1, farg2)
+self%swigdata = fresult
+end function
+
+function swigf_new_ParametersMapItem__SWIG_2(p) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: self
+class(ParametersMapItem), intent(in) :: p
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = p%swigdata
+fresult = swigc_new_ParametersMapItem__SWIG_2(farg1)
+self%swigdata = fresult
+end function
+
+subroutine swigf_ParametersMapItem_first_set(self, first)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMapItem), intent(in) :: self
+character(len=*), intent(in) :: first
+type(SwigClassWrapper) :: farg1 
+character(kind=C_CHAR), dimension(:), allocatable, target :: farg2_temp 
+type(SwigArrayWrapper) :: farg2 
+
+farg1 = self%swigdata
+call SWIGTM_fin_char_Sm_(first, farg2, farg2_temp)
+call swigc_ParametersMapItem_first_set(farg1, farg2)
+end subroutine
+
+
+subroutine SWIGTM_fout_char_Sm_(imout, fout)
+  use, intrinsic :: ISO_C_BINDING
+  type(SwigArrayWrapper), intent(in) :: imout
+  character(len=:), allocatable, intent(out) :: fout
+  character(kind=C_CHAR), dimension(:), pointer :: chars
+  integer(kind=C_SIZE_T) :: i
+  call c_f_pointer(imout%data, chars, [imout%size])
+  allocate(character(len=imout%size) :: fout)
+  do i=1, imout%size
+    fout(i:i) = char(ichar(chars(i)))
+  end do
+end subroutine
+
+function swigf_ParametersMapItem_first_get(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+character(len=:), allocatable :: swig_result
+class(ParametersMapItem), intent(in) :: self
+type(SwigArrayWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMapItem_first_get(farg1)
+call SWIGTM_fout_char_Sm_(fresult, swig_result)
+call SWIG_free(fresult%data)
+end function
+
+subroutine swigf_ParametersMapItem_second_set(self, second)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMapItem), intent(in) :: self
+character(len=*), intent(in) :: second
+type(SwigClassWrapper) :: farg1 
+character(kind=C_CHAR), dimension(:), allocatable, target :: farg2_temp 
+type(SwigArrayWrapper) :: farg2 
+
+farg1 = self%swigdata
+call SWIGTM_fin_char_Sm_(second, farg2, farg2_temp)
+call swigc_ParametersMapItem_second_set(farg1, farg2)
+end subroutine
+
+function swigf_ParametersMapItem_second_get(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+character(len=:), allocatable :: swig_result
+class(ParametersMapItem), intent(in) :: self
+type(SwigArrayWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMapItem_second_get(farg1)
+call SWIGTM_fout_char_Sm_(fresult, swig_result)
+call SWIG_free(fresult%data)
+end function
+
+subroutine swigf_ParametersMapItem_release(self)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMapItem), intent(inout) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+if (btest(farg1%cmemflags, swig_cmem_own_bit)) then
+call swigc_delete_ParametersMapItem(farg1)
+endif
+farg1%cptr = C_NULL_PTR
+farg1%cmemflags = 0
+self%swigdata = farg1
+end subroutine
+
+subroutine swigf_ParametersMapItem_op_assign__(self, other)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMapItem), intent(inout) :: self
+type(ParametersMapItem), intent(in) :: other
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = other%swigdata
+call swigc_ParametersMapItem_op_assign__(farg1, farg2)
+self%swigdata = farg1
+end subroutine
+
+function swigf_new_ParametersMap__SWIG_0() &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMap) :: self
+type(SwigClassWrapper) :: fresult 
+
+fresult = swigc_new_ParametersMap__SWIG_0()
+self%swigdata = fresult
+end function
+
+function swigf_new_ParametersMap__SWIG_1(other) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMap) :: self
+class(ParametersMap), intent(in) :: other
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = other%swigdata
+fresult = swigc_new_ParametersMap__SWIG_1(farg1)
+self%swigdata = fresult
+end function
+
+function swigf_new_ParametersMap__SWIG_2(count) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMap) :: self
+integer, intent(in) :: count
+type(SwigClassWrapper) :: fresult 
+integer(C_SIZE_T) :: farg1 
+
+farg1 = int(count, C_INT)
+fresult = swigc_new_ParametersMap__SWIG_2(farg1)
+self%swigdata = fresult
+end function
+
+function swigf_new_ParametersMap__SWIG_3(count, v) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMap) :: self
+integer, intent(in) :: count
+class(ParametersMapItem), intent(in) :: v
+type(SwigClassWrapper) :: fresult 
+integer(C_SIZE_T) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = int(count, C_INT)
+farg2 = v%swigdata
+fresult = swigc_new_ParametersMap__SWIG_3(farg1, farg2)
+self%swigdata = fresult
+end function
+
+function swigf_ParametersMap_size(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+integer :: swig_result
+class(ParametersMap), intent(in) :: self
+integer(C_SIZE_T) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMap_size(farg1)
+swig_result = int(fresult)
+end function
+
+function swigf_ParametersMap_capacity(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+integer :: swig_result
+class(ParametersMap), intent(in) :: self
+integer(C_SIZE_T) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMap_capacity(farg1)
+swig_result = int(fresult)
+end function
+
+function swigf_ParametersMap_empty(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+logical :: swig_result
+class(ParametersMap), intent(in) :: self
+integer(C_INT) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMap_empty(farg1)
+call SWIGTM_fout_bool(fresult, swig_result)
+end function
+
+function swigf_ParametersMap_front(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: swig_result
+class(ParametersMap), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMap_front(farg1)
+swig_result%swigdata = fresult
+end function
+
+function swigf_ParametersMap_back(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: swig_result
+class(ParametersMap), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMap_back(farg1)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_ParametersMap_reserve(self, count)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: count
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(count, C_INT)
+call swigc_ParametersMap_reserve(farg1, farg2)
+end subroutine
+
+subroutine swigf_ParametersMap_resize__SWIG_0(self, count)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: count
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(count, C_INT)
+call swigc_ParametersMap_resize__SWIG_0(farg1, farg2)
+end subroutine
+
+subroutine swigf_ParametersMap_resize__SWIG_1(self, count, v)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: count
+class(ParametersMapItem), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+type(SwigClassWrapper) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(count, C_INT)
+farg3 = v%swigdata
+call swigc_ParametersMap_resize__SWIG_1(farg1, farg2, farg3)
+end subroutine
+
+subroutine swigf_ParametersMap_push_back(self, v)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+class(ParametersMapItem), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = v%swigdata
+call swigc_ParametersMap_push_back(farg1, farg2)
+end subroutine
+
+subroutine swigf_ParametersMap_pop_back(self)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+call swigc_ParametersMap_pop_back(farg1)
+end subroutine
+
+subroutine swigf_ParametersMap_clear(self)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+call swigc_ParametersMap_clear(farg1)
+end subroutine
+
+subroutine swigf_ParametersMap_set(self, index, v)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: index
+class(ParametersMapItem), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+type(SwigClassWrapper) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+farg3 = v%swigdata
+call swigc_ParametersMap_set(farg1, farg2, farg3)
+end subroutine
+
+function swigf_ParametersMap_get(self, index) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: swig_result
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: index
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+fresult = swigc_ParametersMap_get(farg1, farg2)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_ParametersMap_insert(self, index, v)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: index
+class(ParametersMapItem), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+type(SwigClassWrapper) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+farg3 = v%swigdata
+call swigc_ParametersMap_insert(farg1, farg2, farg3)
+end subroutine
+
+subroutine swigf_ParametersMap_erase__SWIG_0(self, index)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: index
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+call swigc_ParametersMap_erase__SWIG_0(farg1, farg2)
+end subroutine
+
+subroutine swigf_ParametersMap_erase__SWIG_1(self, start_index, stop_index)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: start_index
+integer, intent(in) :: stop_index
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+integer(C_SIZE_T) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(start_index, C_INT)
+farg3 = int(stop_index, C_INT)
+call swigc_ParametersMap_erase__SWIG_1(farg1, farg2, farg3)
+end subroutine
+
+function swigf_ParametersMap_front_ref(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: swig_result
+class(ParametersMap), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMap_front_ref(farg1)
+swig_result%swigdata = fresult
+end function
+
+function swigf_ParametersMap_back_ref(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: swig_result
+class(ParametersMap), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_ParametersMap_back_ref(farg1)
+swig_result%swigdata = fresult
+end function
+
+function swigf_ParametersMap_get_ref(self, index) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(ParametersMapItem) :: swig_result
+class(ParametersMap), intent(in) :: self
+integer, intent(in) :: index
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+fresult = swigc_ParametersMap_get_ref(farg1, farg2)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_ParametersMap_release(self)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(inout) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+if (btest(farg1%cmemflags, swig_cmem_own_bit)) then
+call swigc_delete_ParametersMap(farg1)
+endif
+farg1%cptr = C_NULL_PTR
+farg1%cmemflags = 0
+self%swigdata = farg1
+end subroutine
+
+subroutine swigf_ParametersMap_op_assign__(self, other)
+use, intrinsic :: ISO_C_BINDING
+class(ParametersMap), intent(inout) :: self
+type(ParametersMap), intent(in) :: other
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = other%swigdata
+call swigc_ParametersMap_op_assign__(farg1, farg2)
+self%swigdata = farg1
+end subroutine
+
+function swigf_new_EventParticles__SWIG_0() &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(EventParticles) :: self
+type(SwigClassWrapper) :: fresult 
+
+fresult = swigc_new_EventParticles__SWIG_0()
+self%swigdata = fresult
+end function
+
+function swigf_new_EventParticles__SWIG_1(other) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(EventParticles) :: self
+class(EventParticles), intent(in) :: other
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = other%swigdata
+fresult = swigc_new_EventParticles__SWIG_1(farg1)
+self%swigdata = fresult
+end function
+
+function swigf_new_EventParticles__SWIG_2(count) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(EventParticles) :: self
+integer, intent(in) :: count
+type(SwigClassWrapper) :: fresult 
+integer(C_SIZE_T) :: farg1 
+
+farg1 = int(count, C_INT)
+fresult = swigc_new_EventParticles__SWIG_2(farg1)
+self%swigdata = fresult
+end function
+
+function swigf_new_EventParticles__SWIG_3(count, v) &
+result(self)
+use, intrinsic :: ISO_C_BINDING
+type(EventParticles) :: self
+integer, intent(in) :: count
+class(Particle), intent(in) :: v
+type(SwigClassWrapper) :: fresult 
+integer(C_SIZE_T) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = int(count, C_INT)
+farg2 = v%swigdata
+fresult = swigc_new_EventParticles__SWIG_3(farg1, farg2)
+self%swigdata = fresult
+end function
+
+function swigf_EventParticles_size(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+integer :: swig_result
+class(EventParticles), intent(in) :: self
+integer(C_SIZE_T) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_EventParticles_size(farg1)
+swig_result = int(fresult)
+end function
+
+function swigf_EventParticles_capacity(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+integer :: swig_result
+class(EventParticles), intent(in) :: self
+integer(C_SIZE_T) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_EventParticles_capacity(farg1)
+swig_result = int(fresult)
+end function
+
+function swigf_EventParticles_empty(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+logical :: swig_result
+class(EventParticles), intent(in) :: self
+integer(C_INT) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_EventParticles_empty(farg1)
+call SWIGTM_fout_bool(fresult, swig_result)
+end function
+
+function swigf_EventParticles_front(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(Particle) :: swig_result
+class(EventParticles), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_EventParticles_front(farg1)
+swig_result%swigdata = fresult
+end function
+
+function swigf_EventParticles_back(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(Particle) :: swig_result
+class(EventParticles), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_EventParticles_back(farg1)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_EventParticles_reserve(self, count)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: count
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(count, C_INT)
+call swigc_EventParticles_reserve(farg1, farg2)
+end subroutine
+
+subroutine swigf_EventParticles_resize__SWIG_0(self, count)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: count
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(count, C_INT)
+call swigc_EventParticles_resize__SWIG_0(farg1, farg2)
+end subroutine
+
+subroutine swigf_EventParticles_resize__SWIG_1(self, count, v)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: count
+class(Particle), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+type(SwigClassWrapper) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(count, C_INT)
+farg3 = v%swigdata
+call swigc_EventParticles_resize__SWIG_1(farg1, farg2, farg3)
+end subroutine
+
+subroutine swigf_EventParticles_push_back(self, v)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+class(Particle), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = v%swigdata
+call swigc_EventParticles_push_back(farg1, farg2)
+end subroutine
+
+subroutine swigf_EventParticles_pop_back(self)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+call swigc_EventParticles_pop_back(farg1)
+end subroutine
+
+subroutine swigf_EventParticles_clear(self)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+call swigc_EventParticles_clear(farg1)
+end subroutine
+
+subroutine swigf_EventParticles_set(self, index, v)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: index
+class(Particle), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+type(SwigClassWrapper) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+farg3 = v%swigdata
+call swigc_EventParticles_set(farg1, farg2, farg3)
+end subroutine
+
+function swigf_EventParticles_get(self, index) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(Particle) :: swig_result
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: index
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+fresult = swigc_EventParticles_get(farg1, farg2)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_EventParticles_insert(self, index, v)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: index
+class(Particle), intent(in) :: v
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+type(SwigClassWrapper) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+farg3 = v%swigdata
+call swigc_EventParticles_insert(farg1, farg2, farg3)
+end subroutine
+
+subroutine swigf_EventParticles_erase__SWIG_0(self, index)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: index
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+call swigc_EventParticles_erase__SWIG_0(farg1, farg2)
+end subroutine
+
+subroutine swigf_EventParticles_erase__SWIG_1(self, start_index, stop_index)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: start_index
+integer, intent(in) :: stop_index
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+integer(C_SIZE_T) :: farg3 
+
+farg1 = self%swigdata
+farg2 = int(start_index, C_INT)
+farg3 = int(stop_index, C_INT)
+call swigc_EventParticles_erase__SWIG_1(farg1, farg2, farg3)
+end subroutine
+
+function swigf_EventParticles_front_ref(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(Particle) :: swig_result
+class(EventParticles), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_EventParticles_front_ref(farg1)
+swig_result%swigdata = fresult
+end function
+
+function swigf_EventParticles_back_ref(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(Particle) :: swig_result
+class(EventParticles), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_EventParticles_back_ref(farg1)
+swig_result%swigdata = fresult
+end function
+
+function swigf_EventParticles_get_ref(self, index) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(Particle) :: swig_result
+class(EventParticles), intent(in) :: self
+integer, intent(in) :: index
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+integer(C_SIZE_T) :: farg2 
+
+farg1 = self%swigdata
+farg2 = int(index, C_INT)
+fresult = swigc_EventParticles_get_ref(farg1, farg2)
+swig_result%swigdata = fresult
+end function
+
+subroutine swigf_EventParticles_release(self)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(inout) :: self
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+if (btest(farg1%cmemflags, swig_cmem_own_bit)) then
+call swigc_delete_EventParticles(farg1)
+endif
+farg1%cptr = C_NULL_PTR
+farg1%cmemflags = 0
+self%swigdata = farg1
+end subroutine
+
+subroutine swigf_EventParticles_op_assign__(self, other)
+use, intrinsic :: ISO_C_BINDING
+class(EventParticles), intent(inout) :: self
+type(EventParticles), intent(in) :: other
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = other%swigdata
+call swigc_EventParticles_op_assign__(farg1, farg2)
 self%swigdata = farg1
 end subroutine
 

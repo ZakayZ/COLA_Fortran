@@ -26,10 +26,18 @@ contains
     class(FortranGenerator), intent(in) :: self
     type(EventData) :: ed
     type(EventIniState) :: ini
-    ! Create EventData from scratch and fill it
+    type(EventParticles) :: parts
+    type(Particle) :: p
     ed = EventData()
     ini = ed%get_iniState()
     call ini%set_energy(1.0d0)
+
+    p = Particle()
+    call p%set_pdgCode(2212)
+    call p%set_pClass(ParticleClass_PRODUCED)
+    parts = EventParticles()
+    call parts%push_back(p)
+    call ed%set_particles(parts)
   end function generator_run
 
   subroutine generator_final(self)
