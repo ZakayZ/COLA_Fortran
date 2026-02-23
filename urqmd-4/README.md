@@ -2,6 +2,25 @@
 
 COLA Fortran wrapper for UrQMD 4.0 (hadronic transport model).
 
+## Configuration
+
+Parameters are passed via the C++ `Create()` map. Two modes:
+
+1. **config_path**: Use an existing UrQMD input file directly.
+   ```cpp
+   filter->Create({{"config_path", "path/to/urqmd_input"}});
+   ```
+
+2. **Map-based**: Create a config file from key-value pairs.
+   Each map entry is written as `key value`. Use UrQMD input keys (pro, tar, imp, elb, tim, rsd, etc.).
+   By default the file is written to the temp dir (TMPDIR/TEMP/TMP or /tmp). Use `generated_config_path` to specify a path.
+   ```cpp
+   filter->Create({
+       {"pro", "197 79"}, {"tar", "197 79"}, {"nev", "1"},
+       {"imp", "5."}, {"elb", "100."}, {"tim", "200 200"}, {"rsd", "12345"}
+   });
+   ```
+
 ## Build
 
 ```bash
@@ -31,35 +50,13 @@ URQMD needs `tables.dat` for decay widths. Generating it at runtime can segfault
 
 Runner looks for `tables.dat` in the current directory.
 
-## Comparing to pure UrQMD
+## Comparing outputs
 
-To compare the COLA wrapper output with standalone UrQMD (same seed, same params):
+Runner dumps EventData to `cola_particles.txt`. Compare two runs:
 
-1. **Build pure UrQMD** (from urqmd-4.0). Use **CMake** (Linux & macOS) or Make:
-   ```bash
-   cd urqmd-4.0
-   mkdir -p build && cd build
-   cmake ..
-   cmake --build .
-   cmake --build . --target maketables   # generate tables.dat
-   ```
-   Or with Make: `make` then `./maketables`
+```bash
+./run_compare.sh
+```
 
-2. **Run the comparison** (runs both and compares):
-   ```bash
-   cd ../urqmd-4
-   chmod +x run_compare.sh run_urqmd_pure.sh compare_outputs.py
-   ./run_compare.sh
-   ```
-
-   This will:
-   - Run `RunCompare` → writes `build/cola_particles.txt` (t, x, y, z, E, px, py, pz, pdg)
-   - Run pure UrQMD → writes `build/urqmd_pure_output/file14`
-   - Run `compare_outputs.py` → compares particle count and (t,x,y,z,E,px,py,pz) per particle
-
-3. **Same seed**: Both use `seed=12345` (pmap and `rsd 12345` in `urqmd_compare_input`).
-
-4. **Manual steps** (if needed):
-   - `./build/RunCompare` – COLA output only
-   - `./run_urqmd_pure.sh` – pure UrQMD only
-   - `python3 compare_outputs.py` – compare existing outputs
+This runs Runner → `cola_particles.txt`, then compares with `reference/cola_particles.txt` if present.
+To create a reference: run once, copy `cola_particles.txt` to `reference/cola_particles.txt`.

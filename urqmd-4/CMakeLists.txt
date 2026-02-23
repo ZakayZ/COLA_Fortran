@@ -78,23 +78,18 @@ set(URQMD_F_SOURCES
   ${URQMD_SOURCE_DIR}/whichres.f
 )
 
-add_library(urqmd_static STATIC ${URQMD_F_SOURCES}
-  ${CMAKE_CURRENT_SOURCE_DIR}/urqmd_cola_bridge.f
-)
-set_target_properties(urqmd_static PROPERTIES
-  Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/urqmd_modules
-)
-target_include_directories(urqmd_static PRIVATE ${URQMD_SOURCE_DIR})
-
-# ---------------------------------------------------------------------------
-# Fortran Lib (COLA wrapper)
-# ---------------------------------------------------------------------------
 
 add_cola_fortran_library(
   ${COLA_MODULE_NAME}
   SOURCES
     cola_fortran_generator_impl.f90
+    ${URQMD_F_SOURCES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/urqmd_cola_bridge.f
 )
+
+set_source_files_properties(${URQMD_F_SOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/urqmd_cola_bridge.f
+  PROPERTIES INCLUDE_DIRECTORIES "${URQMD_SOURCE_DIR}")
+target_compile_options(${COLA_MODULE_NAME} PRIVATE -fPIC)
 
 target_include_directories(${COLA_MODULE_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/generated>
@@ -104,7 +99,6 @@ target_include_directories(${COLA_MODULE_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/modules>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${COLA_MODULE_NAME}/modules>
 )
-target_link_libraries(${COLA_MODULE_NAME} PRIVATE urqmd_static)
 
 # ---------------------------------------------------------------------------
 # Installation
@@ -168,22 +162,6 @@ target_link_libraries(
 )
 target_include_directories(
   Runner
-  PUBLIC
-  ${CMAKE_CURRENT_BINARY_DIR}/generated
-)
-
-# RunCompare: dump first event for comparison with pure UrQMD
-add_executable(
-  RunCompare
-  run_compare.cpp
-)
-target_link_libraries(
-  RunCompare
-  PUBLIC
-  ${COLA_MODULE_NAME}
-)
-target_include_directories(
-  RunCompare
   PUBLIC
   ${CMAKE_CURRENT_BINARY_DIR}/generated
 )

@@ -235,7 +235,7 @@ C     Set random seed for reproducibility (seed_in>0: fixed, <=0: auto from time
       end
 
 C     Run cascade propagation (colload, getnext, cascstep, scatter loop).
-C     Must be called after init_event to get final particles.
+C     Performs final decay of unstable particles (like pure UrQMD) before return.
       subroutine urqmd_cola_run_cascade
       implicit none
       include 'coms.f'
@@ -243,8 +243,9 @@ C     Must be called after init_event to get final particles.
       include 'colltab.f'
       include 'newpart.f'
       integer steps, k, i, ii, ocharge, ncharge
-      integer cti1sav, cti2sav, it1, it2
-      real*8 st
+      integer cti1sav, cti2sav, it1, it2, stidx, CTOsave
+      real*8 st, xdummy
+      logical isstable
 
       time = 0.d0
       acttime = 0.d0
@@ -303,6 +304,29 @@ C     Must be called after init_event to get final particles.
          call cascstep(acttime, time - acttime)
          acttime = time
  20   continue
+C     Final decay of unstable particles (matches pure UrQMD before file16out)
+      if (CTOption(18).eq.0) then
+         i = 0
+         nct = 0
+         actcol = 0
+         CTOsave = CTOption(10)
+         CTOption(10) = 1
+ 40      continue
+         i = i + 1
+         if (dectime(i).lt.1.d30) then
+ 41         continue
+            isstable = .false.
+            do 44 stidx = 1, nstable
+               if (ityp(i).eq.stabvec(stidx)) isstable = .true.
+ 44         continue
+            if (.not.isstable) then
+               call scatter(i, 0, 0.d0, fmass(i), xdummy)
+               if (dectime(i).lt.1.d30) goto 41
+            endif
+         endif
+         if (i.lt.npart) goto 40
+         CTOption(10) = CTOsave
+      endif
       return
       end
 

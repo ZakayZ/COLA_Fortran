@@ -1,7 +1,3 @@
-! ---------------------------------------------------------------------------
-! URQMDGenerator: extends AbstractFortranGenerator.
-! Configured by input file only. Create({{"input", "path/to/urqmd_input"}}).
-! ---------------------------------------------------------------------------
 module cola_fortran_generator_impl
   use cola
   implicit none
@@ -16,6 +12,7 @@ module cola_fortran_generator_impl
   end type URQMDGenerator
 
   character(len=512) :: input_file = ''
+  character(len=512) :: generated_config_path = ''
 
   interface
     subroutine urqmd_cola_set_input_file(path)
@@ -47,18 +44,70 @@ contains
     type(ParametersMap), intent(in) :: pmap
     type(ParametersMapItem) :: kv
     character(len=:), allocatable :: key, val
-    integer :: i, n
+    character(len=512) :: tmpdir
+    integer :: i, n, iostat, u, status, len
+
     input_file = ''
+    generated_config_path = ''
     n = pmap%size()
+
     do i = 1, n
       kv = pmap%get(i)
       key = kv%get_first()
       val = kv%get_second()
-      if (trim(key) == 'input') then
+      if (trim(key) == 'config_path') then
         input_file = trim(val)
         exit
       end if
     end do
+
+    if (len_trim(input_file) == 0) then
+      generated_config_path = ''
+      do i = 1, n
+        kv = pmap%get(i)
+        key = kv%get_first()
+        val = kv%get_second()
+        if (trim(key) == 'generated_config_path') then
+          generated_config_path = trim(val)
+          exit
+        end if
+      end do
+      if (len_trim(generated_config_path) == 0) then
+        tmpdir = ''
+        call get_environment_variable('TMPDIR', tmpdir, len, status)
+        if (status /= 0 .or. len == 0) then
+          call get_environment_variable('TEMP', tmpdir, len, status)
+        end if
+        if (status /= 0 .or. len == 0) then
+          call get_environment_variable('TMP', tmpdir, len, status)
+        end if
+        if (len_trim(tmpdir) == 0) then
+          tmpdir = '/tmp'
+        end if
+        tmpdir = trim(tmpdir)
+        if (len_trim(tmpdir) > 0 .and. tmpdir(len_trim(tmpdir):len_trim(tmpdir)) /= '/') then
+          generated_config_path = trim(tmpdir) // '/urqmd_cola_config.txt'
+        else
+          generated_config_path = trim(tmpdir) // 'urqmd_cola_config.txt'
+        end if
+      end if
+      open(newunit=u, file=generated_config_path, status='replace', action='write', iostat=iostat)
+      if (iostat == 0) then
+        do i = 1, n
+          kv = pmap%get(i)
+          key = kv%get_first()
+          val = kv%get_second()
+          if (trim(key) == 'config_path' .or. trim(key) == 'generated_config_path') cycle
+          write(u, '(a)') trim(key) // ' ' // trim(val)
+        end do
+        write(u, '(a)') 'xxx'
+        close(u)
+        input_file = trim(generated_config_path)
+      else
+        generated_config_path = ''
+      end if
+    end if
+
     if (.not. self%urqmd_initialized) then
       if (len_trim(input_file) > 0) then
         call urqmd_cola_set_input_file(trim(input_file))
