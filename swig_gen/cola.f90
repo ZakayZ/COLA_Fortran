@@ -247,37 +247,43 @@ module cola
   end type AbstractFortranWriter
 
   abstract interface
-    subroutine fortran_converter_init_interface(self, pmap)
+    subroutine fortran_converter_init_interface(self, pmap, err)
       import :: AbstractFortranConverter, ParametersMap
       class(AbstractFortranConverter), intent(inout) :: self
       type(ParametersMap), intent(in) :: pmap
+      character(len=:), allocatable, intent(out) :: err
     end subroutine
-    subroutine fortran_converter_run_interface(self, ed)
+    subroutine fortran_converter_run_interface(self, ed, err)
       import :: AbstractFortranConverter, EventData
       class(AbstractFortranConverter), intent(in) :: self
       type(EventData), intent(inout) :: ed
+      character(len=:), allocatable, intent(out) :: err
     end subroutine
 
-    subroutine fortran_generator_init_interface(self, pmap)
+    subroutine fortran_generator_init_interface(self, pmap, err)
       import :: AbstractFortranGenerator, ParametersMap
       class(AbstractFortranGenerator), intent(inout) :: self
       type(ParametersMap), intent(in) :: pmap
+      character(len=:), allocatable, intent(out) :: err
     end subroutine
-    function fortran_generator_run_interface(self) result(ed)
+    function fortran_generator_run_interface(self, err) result(ed)
       import :: AbstractFortranGenerator, EventData
       class(AbstractFortranGenerator), intent(in) :: self
+      character(len=:), allocatable, intent(out) :: err
       type(EventData) :: ed
     end function
 
-    subroutine fortran_writer_init_interface(self, pmap)
+    subroutine fortran_writer_init_interface(self, pmap, err)
       import :: AbstractFortranWriter, ParametersMap
       class(AbstractFortranWriter), intent(inout) :: self
       type(ParametersMap), intent(in) :: pmap
+      character(len=:), allocatable, intent(out) :: err
     end subroutine
-    subroutine fortran_writer_run_interface(self, ed)
+    subroutine fortran_writer_run_interface(self, ed, err)
       import :: AbstractFortranWriter, EventData
       class(AbstractFortranWriter), intent(in) :: self
       type(EventData), intent(in) :: ed
+      character(len=:), allocatable, intent(out) :: err
     end subroutine
   end interface
 

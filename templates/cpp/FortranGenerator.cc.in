@@ -1,10 +1,12 @@
 #include "@MODULE_NAME@/@CLASS_NAME@.hh"
 
+#include <COLA_Fortran/utils.hh>
+
 // NOLINTBEGIN(readability-identifier-naming)
 extern "C" {
-    void* cola_fortran_@CLASS_NAME@_create(const void* params);
+    void* cola_fortran_@CLASS_NAME@_create(const void* params, char** errorMessage);
 
-    void* cola_fortran_@CLASS_NAME@_run(void* handle);
+    void* cola_fortran_@CLASS_NAME@_run(void* handle, char** errorMessage);
 
     void cola_fortran_@CLASS_NAME@_destroy(void* handle);
 }

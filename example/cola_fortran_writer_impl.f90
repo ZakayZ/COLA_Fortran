@@ -14,17 +14,20 @@ module cola_fortran_writer_impl
     final :: writer_final
   end type FortranWriter
 contains
-  subroutine writer_init(self, pmap)
+  subroutine writer_init(self, pmap, err)
     class(FortranWriter), intent(inout) :: self
     type(ParametersMap), intent(in) :: pmap
+    character(len=:), allocatable, intent(out) :: err
     integer :: n
+    err = ''
     n = pmap%size()
     ! Use pmap%get(i) etc. for configuration
   end subroutine writer_init
 
-  subroutine writer_run(self, ed)
+  subroutine writer_run(self, ed, err)
     class(FortranWriter), intent(in) :: self
     type(EventData), intent(in) :: ed
+    character(len=:), allocatable, intent(out) :: err
     type(EventIniState) :: ini
     type(EventParticles) :: parts
     type(Particle) :: p
@@ -42,9 +45,11 @@ contains
       end do
     end if
     print '(a)', '---'
+    err = ''
   end subroutine writer_run
 
   subroutine writer_final(self)
     type(FortranWriter), intent(inout) :: self
   end subroutine writer_final
+
 end module cola_fortran_writer_impl
