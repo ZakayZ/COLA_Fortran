@@ -28,15 +28,17 @@ module cola_fortran_generator_impl
   end interface
 
   interface
-    subroutine urqmd_cola_uinit(io)
-      integer, intent(in) :: io
+    subroutine urqmd_cola_uinit()
     end subroutine
+
     subroutine urqmd_cola_disable_outputs()
     end subroutine
+
     subroutine urqmd_cola_generate_tables(tabpath, ok)
       character(len=*), intent(in) :: tabpath
       logical, intent(out) :: ok
     end subroutine
+
     subroutine urqmd_cola_run_one_event(ebeam_out, bimp_out, np, parts)
       import :: EventParticles
       real(8), intent(out) :: ebeam_out, bimp_out
@@ -96,11 +98,7 @@ contains
     character(len=*), intent(in) :: key
     character(len=:), allocatable :: k
     k = trim(lower_ascii(key))
-    is_control_key = (k == 'config_file' .or. k == 'config_path' .or. &
-      k == 'generated_config_file' .or. k == 'generated_config_path' .or. &
-      k == 'take_particles_from' .or. k == 'from_output_file' .or. &
-      k == 'tables_file' .or. k == 'urqmd_tables_file' .or. &
-      k == 'allow_table_generation')
+    is_control_key = (k == 'config_file' .or. k == 'generated_config_file' .or. k == 'tables_file')
   end function is_control_key
 
   subroutine get_tmpdir(tmpdir)
@@ -162,18 +160,12 @@ contains
       key = kv%get_first()
       val = kv%get_second()
       lkey = trim(lower_ascii(key))
-      if (lkey == 'config_file' .or. lkey == 'config_path') then
+      if (lkey == 'config_file') then
         self%input_file = trim(val)
-      else if (lkey == 'generated_config_file' .or. lkey == 'generated_config_path') then
+      else if (lkey == 'generated_config_file') then
         self%generated_config_file = trim(val)
-      else if (lkey == 'tables_file' .or. lkey == 'urqmd_tables_file') then
+      else if (lkey == 'tables_file') then
         self%tables_file = trim(val)
-      else if (lkey == 'allow_table_generation') then
-        if (trim(val) == '0' .or. trim(lower_ascii(val)) == 'false' .or. trim(lower_ascii(val)) == 'no') then
-          self%allow_table_generation = .false.
-        else if (trim(val) == '1' .or. trim(lower_ascii(val)) == 'true' .or. trim(lower_ascii(val)) == 'yes') then
-          self%allow_table_generation = .true.
-        end if
       end if
     end do
 
@@ -232,7 +224,7 @@ contains
     end if
     call urqmd_cola_set_env('ftn09', trim(self%input_file))
 
-    call urqmd_cola_uinit(0)
+    call urqmd_cola_uinit()
     call urqmd_cola_disable_outputs()
   end subroutine generator_init
 

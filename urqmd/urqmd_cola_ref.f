@@ -1,10 +1,18 @@
 C ---------------------------------------------------------------------------
 C Glue subroutines callable from cola_fortran_generator_impl.
 C ---------------------------------------------------------------------------
-      subroutine urqmd_cola_uinit(io)
+      subroutine urqmd_cola_uinit
       implicit none
-      integer io
-      call uinit(io)
+
+      include 'coms.f'
+      include 'comres.f'
+      include 'options.f'
+      include 'colltab.f'
+      include 'inputs.f'
+      include 'newpart.f'
+      include 'boxinc.f'
+
+      call uinit(0)
       return
       end
 
@@ -65,39 +73,22 @@ C ---------------------------------------------------------------------------
       include 'coms.f'
       include 'options.f'
 
-      if (CTOption(41).eq.0) then
-         do 10 i = 1, npart
-            pdg = pdgid(ityp(i), iso3(i))
-            p = Particle()
-            call p%set_pdgCode(pdg)
-            call p%set_pClass(ParticleClass_PRODUCED)
-            p0v = p0(i)
-            pxv = px(i) + ffermpx(i)
-            pyv = py(i) + ffermpy(i)
-            pzv = pz(i) + ffermpz(i)
-            mom = LorentzVector(p0v, pxv, pyv, pzv)
-            call p%set_momentum(mom)
-            pos = LorentzVector(r0(i), rx(i), ry(i), rz(i))
-            call p%set_position(pos)
-            call parts%push_back(p)
- 10      continue
-      else
-         do 31 i = 1, npart
-            pdg = pdgid(ityp(i), iso3(i))
-            p = Particle()
-            call p%set_pdgCode(pdg)
-            call p%set_pClass(ParticleClass_PRODUCED)
-            p0v = p0(i)
-            pxv = px(i) + ffermpx(i)
-            pyv = py(i) + ffermpy(i)
-            pzv = pz(i) + ffermpz(i)
-            mom = LorentzVector(p0v, pxv, pyv, pzv)
-            call p%set_momentum(mom)
-            pos = LorentzVector(r0(i), rx(i), ry(i), rz(i))
-            call p%set_position(pos)
-            call parts%push_back(p)
- 31      continue
-      endif
+      ! if (CTOption(41).eq.0) then
+      do 10 i = 1, npart
+         pdg = pdgid(ityp(i), iso3(i))
+         p = Particle()
+         call p%set_pdgCode(pdg)
+         call p%set_pClass(ParticleClass_PRODUCED)
+         p0v = p0(i)
+         pxv = px(i) + ffermpx(i)
+         pyv = py(i) + ffermpy(i)
+         pzv = pz(i) + ffermpz(i)
+         mom = LorentzVector(p0v, pxv, pyv, pzv)
+         call p%set_momentum(mom)
+         pos = LorentzVector(r0(i), rx(i), ry(i), rz(i))
+         call p%set_position(pos)
+         call parts%push_back(p)
+ 10   continue
       return
       end
 
@@ -166,19 +157,19 @@ C     hydro switch
       if (CTOption(40).ne.0) time = acttime
 
 C     output preparation
-C     call output(13)
-C     call output(14)
-C     call output(15)
-C     call output(16)
-C     if (event.eq.1) then
-C       call output(17)
-C       call osc_header
-C       call osc99_header
-C     endif
-C     call osc99_event(-1)
+      ! call output(13)
+      ! call output(14)
+      ! call output(15)
+      ! call output(16)
+      ! if (event.eq.1) then
+      !    call output(17)
+      !    call osc_header
+      !    call osc99_header
+      ! endif
+      ! call osc99_event(-1)
 
 C     for CTOption(4)=1 : output of initialization configuration
-C     if (CTOption(4).eq.1) call file14out(0)
+      ! if (CTOption(4).eq.1) call file14out(0)
       if (CTOption(4).eq.1) call urqmd_cola_file14out_to_parts(0, parts)
 
 C     participant/spectator model
@@ -214,7 +205,7 @@ C     loop over all timesteps
                if (cttime(k).gt.thydro_start .and. lhydro) then
                   if (CTOption(62).eq.1) then
                      call prepout
-C                    call file14out(0)
+                     ! call file14out(0)
                      call urqmd_cola_file14out_to_parts(0, parts)
                      call restore
                   endif
@@ -299,7 +290,7 @@ C     perform output if desired
          if (mod(steps,outsteps).eq.0 .and. steps.lt.nsteps) then
             if (CTOption(28).eq.2) call spectrans(otime)
             if (CTOption(62).eq.1) call prepout
-C           call file14out(steps)
+            ! call file14out(steps)
             call urqmd_cola_file14out_to_parts(steps, parts)
 C           if (CTOption(64).eq.1) call file13out(steps)
             if (CTOption(62).eq.1) then
@@ -337,16 +328,16 @@ C     final decay of unstable particles
       if (CTOption(64).eq.1) call coalescence
 
 C     Match pure UrQMD: file13out, file14out, file16out (same execution order)
-      call file13out(nsteps)
+      ! call file13out(nsteps)
       if (CTOption(50).eq.0) then
-C        call file14out(nsteps)
+      !  call file14out(nsteps)
          call urqmd_cola_file14out_to_parts(nsteps, parts)
       endif
-      call file16out
-C     if (CTOption(50).eq.0.and.CTOption(55).eq.0) call osc_event
-C     if (CTOption(50).eq.0.and.CTOption(55).eq.1) call osc_vis(nsteps)
-C     call osc99_event(1)
-C     call osc99_eoe
+      ! call file16out
+      ! if (CTOption(50).eq.0.and.CTOption(55).eq.0) call osc_event
+      ! if (CTOption(50).eq.0.and.CTOption(55).eq.1) call osc_vis(nsteps)
+      ! call osc99_event(1)
+      ! call osc99_eoe
 
       ebeam_out = ebeam
       bimp_out = bimp

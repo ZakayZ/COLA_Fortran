@@ -17,22 +17,18 @@
 # SOFTWARE.
 
 cmake_minimum_required(VERSION 3.14)
-project(Urqmd4 VERSION 0.1.0 LANGUAGES CXX Fortran)
+project(COLA_UrQMD VERSION 0.1.0 LANGUAGES CXX Fortran)
 
 include(GNUInstallDirs)
 
 find_package(COLA_Fortran REQUIRED)
 
 set(CMAKE_INSTALL_PREFIX ${COLA_DIR})
-set(COLA_MODULE_NAME Urqmd4)
+set(COLA_MODULE_NAME COLA_UrQMD)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-# ---------------------------------------------------------------------------
-# URQMD static library (exclude main program urqmd.f)
-# ---------------------------------------------------------------------------
 set(URQMD_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/urqmd-4.0)
 
-# Explicit source list from GNUmakefile SRC, minus urqmd.f, using gnuranf.f
 set(URQMD_F_SOURCES
   ${URQMD_SOURCE_DIR}/1fluid.f
   ${URQMD_SOURCE_DIR}/addpart.f
@@ -104,56 +100,6 @@ target_include_directories(${COLA_MODULE_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/modules>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${COLA_MODULE_NAME}/modules>
 )
-
-# ---------------------------------------------------------------------------
-# Installation
-# ---------------------------------------------------------------------------
-
-set(GENERATED_HEADERS_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated/${COLA_MODULE_NAME})
-
-install(TARGETS ${COLA_MODULE_NAME}
-    EXPORT ${COLA_MODULE_NAME}Export
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${COLA_MODULE_NAME}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${COLA_MODULE_NAME}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${COLA_MODULE_NAME}
-)
-
-include(CMakePackageConfigHelpers)
-
-configure_package_config_file(
-    ${PROJECT_SOURCE_DIR}/data/${COLA_MODULE_NAME}Config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}Config.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${COLA_MODULE_NAME}
-)
-
-write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}ConfigVersion.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY AnyNewerVersion
-)
-
-install(EXPORT ${COLA_MODULE_NAME}Export DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${COLA_MODULE_NAME})
-
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules/
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${COLA_MODULE_NAME}/modules
-    FILES_MATCHING PATTERN "*.mod"
-)
-
-message(STATUS "cola dir: ${COLA_DIR}; include ${CMAKE_INSTALL_INCLUDEDIR}")
-install(DIRECTORY ${GENERATED_HEADERS_DIR}
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-    FILES_MATCHING PATTERN "*.hh"
-)
-
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}Config.cmake"
-              "${CMAKE_CURRENT_BINARY_DIR}/${COLA_MODULE_NAME}ConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${COLA_MODULE_NAME}
-)
-
-# ---------------------------------------------------------------------------
-# Runner Lib
-# ---------------------------------------------------------------------------
-# Run from urqmd-4/: ./build/Runner  (urqmd_compare_input in urqmd-4/)
 
 add_executable(
   Runner
