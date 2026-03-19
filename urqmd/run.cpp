@@ -31,6 +31,6 @@ int main(int argc, char** argv) {
         const auto& mom = p.momentum;
         std::cout << pos.t << " " << pos.x << " " << pos.y << " " << pos.z << " "
             << mom.e << " " << mom.x << " " << mom.y << " " << mom.z << " "
-            << p.pdgCode << "\n";
+            << p.pdgCode << " " << static_cast<int>(p.pClass) << "\n";
     }
 }

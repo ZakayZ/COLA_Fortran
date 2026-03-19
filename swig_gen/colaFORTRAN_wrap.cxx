@@ -437,6 +437,11 @@ SWIGINTERN void SWIG_free_rvalue(SwigClassWrapper other) {
 
 
 
+  std::pair<uint16_t, uint16_t> MakeAZ(int a, int z) {
+    return std::make_pair(static_cast<uint16_t>(a), static_cast<uint16_t>(z));
+  }
+
+
 #include <stdlib.h>
 #ifdef _MSC_VER
 # ifndef strtoull
@@ -641,7 +646,7 @@ SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_op_sub__(SwigClassWrapper *farg1
 }
 
 
-SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_Boost(SwigClassWrapper *farg1, double const *farg2, double const *farg3, double const *farg4) {
+SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_Boost__SWIG_0(SwigClassWrapper *farg1, double const *farg2, double const *farg3, double const *farg4) {
   SwigClassWrapper fresult ;
   cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
   double arg2 ;
@@ -696,6 +701,23 @@ SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_BoostAxisRapidity__SWIG_1(SwigCl
 }
 
 
+SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_Boost__SWIG_1(SwigClassWrapper *farg1, SwigClassWrapper *farg2) {
+  SwigClassWrapper fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  cola::LorentzVectorImpl< double > *arg2 = 0 ;
+  cola::LorentzVectorImpl< double > *result = 0 ;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > *", "LorentzVector", "cola::LorentzVectorImpl< double >::Boost(cola::LorentzVectorImpl< double > const &)", return SwigClassWrapper_uninitialized());
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  SWIG_check_nonnull(farg2->cptr, "cola::LorentzVectorImpl< double > const &", "LorentzVector", "cola::LorentzVectorImpl< double >::Boost(cola::LorentzVectorImpl< double > const &)", return SwigClassWrapper_uninitialized());
+  arg2 = (cola::LorentzVectorImpl< double > *)farg2->cptr;
+  result = (cola::LorentzVectorImpl< double > *) &(arg1)->Boost((cola::LorentzVectorImpl< double > const &)*arg2);
+  fresult.cptr = (void*)result;
+  fresult.cmemflags = SWIG_MEM_RVALUE | (0 ? SWIG_MEM_OWN : 0);
+  return fresult;
+}
+
+
 SWIGEXPORT double _wrap_LorentzVector_Mag2(SwigClassWrapper *farg1) {
   double fresult ;
   cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
@@ -718,6 +740,20 @@ SWIGEXPORT double _wrap_LorentzVector_Mag(SwigClassWrapper *farg1) {
   arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
   result = (double)((cola::LorentzVectorImpl< double > const *)arg1)->Mag();
   fresult = (double)(result);
+  return fresult;
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_LorentzVector_SpatialPart(SwigClassWrapper *farg1) {
+  SwigClassWrapper fresult ;
+  cola::LorentzVectorImpl< double > *arg1 = (cola::LorentzVectorImpl< double > *) 0 ;
+  SwigValueWrapper< cola::Vector3< double > > result;
+  
+  SWIG_check_nonnull(farg1->cptr, "cola::LorentzVectorImpl< double > const *", "LorentzVector", "cola::LorentzVectorImpl< double >::SpatialPart() const", return SwigClassWrapper_uninitialized());
+  arg1 = (cola::LorentzVectorImpl< double > *)farg1->cptr;
+  result = ((cola::LorentzVectorImpl< double > const *)arg1)->SpatialPart();
+  fresult.cptr = new (cola::Vector3< double >)(result);
+  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
   return fresult;
 }
 
@@ -1692,6 +1728,21 @@ SWIGEXPORT void _wrap_AZ_op_assign__(SwigClassWrapper *farg1, SwigClassWrapper *
   (void)sizeof(arg2);
   SWIG_assign<std::pair< uint16_t,uint16_t >, SWIGPOLICY_std_pair_Sl__Sp_uint16_t_Sc_uint16_t_SP__Sg_>(farg1, *farg2);
   
+}
+
+
+SWIGEXPORT SwigClassWrapper _wrap_MakeAZ(int const *farg1, int const *farg2) {
+  SwigClassWrapper fresult ;
+  int arg1 ;
+  int arg2 ;
+  std::pair< uint16_t,uint16_t > result;
+  
+  arg1 = (int)(*farg1);
+  arg2 = (int)(*farg2);
+  result = MakeAZ(arg1,arg2);
+  fresult.cptr = new (std::pair< uint16_t,uint16_t >)(result);
+  fresult.cmemflags = SWIG_MEM_RVALUE | SWIG_MEM_OWN;
+  return fresult;
 }
 
 

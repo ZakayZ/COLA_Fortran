@@ -4,11 +4,7 @@ module cola_fortran_generator_impl
   implicit none
   private
 
-  logical, save :: run_lock_taken = .false.
-
   type, public, extends(AbstractFortranGenerator) :: URQMDGenerator
-    logical :: urqmd_initialized = .false.
-    logical :: allow_table_generation = .false.
     character(len=512) :: input_file = ''
     character(len=512) :: generated_config_file = ''
     character(len=512) :: tables_file = ''
@@ -39,50 +35,22 @@ module cola_fortran_generator_impl
       logical, intent(out) :: ok
     end subroutine
 
-    subroutine urqmd_cola_run_one_event(ebeam_out, bimp_out, np, parts)
+    subroutine urqmd_cola_run_one_event(ebeam_out, bimp_out, np, parts, ini_parts, &
+                                        pdga, pdgb, pza, pzb, eout, snnout, nco, npp, &
+                                        npn, nnn, npt, npa, nbt, phia, thaa, phib, thab)
       import :: EventParticles
       real(8), intent(out) :: ebeam_out, bimp_out
       integer, intent(out) :: np
       type(EventParticles), intent(inout) :: parts
+      type(EventParticles), intent(inout) :: ini_parts
+      integer, intent(out) :: pdga, pdgb
+      real(8), intent(out) :: pza, pzb, eout, snnout
+      integer, intent(out) :: nco, npp, npn, nnn, npt, npa, nbt
+      real(8), intent(out) :: phia, thaa, phib, thab
     end subroutine
   end interface
 
-  integer, external :: pdgid
-
 contains
-
-  subroutine acquire_run_lock()
-    logical :: acquired
-    do
-      acquired = .false.
-      critical
-        if (.not. run_lock_taken) then
-          run_lock_taken = .true.
-          acquired = .true.
-        end if
-      end critical
-      if (acquired) exit
-    end do
-  end subroutine acquire_run_lock
-
-  subroutine release_run_lock()
-    critical
-      run_lock_taken = .false.
-    end critical
-  end subroutine release_run_lock
-
-  pure function lower_ascii(s) result(out)
-    character(len=*), intent(in) :: s
-    character(len=len(s)) :: out
-    integer :: i, c
-    out = s
-    do i = 1, len(out)
-      c = iachar(out(i:i))
-      if (c >= iachar('A') .and. c <= iachar('Z')) then
-        out(i:i) = achar(c + 32)
-      end if
-    end do
-  end function lower_ascii
 
   subroutine urqmd_cola_set_env(name_no_nul, path)
     character(len=*), intent(in) :: name_no_nul, path
@@ -96,9 +64,7 @@ contains
 
   logical function is_control_key(key)
     character(len=*), intent(in) :: key
-    character(len=:), allocatable :: k
-    k = trim(lower_ascii(key))
-    is_control_key = (k == 'config_file' .or. k == 'generated_config_file' .or. k == 'tables_file')
+    is_control_key = (key == 'config_file' .or. key == 'generated_config_file' .or. key == 'tables_file')
   end function is_control_key
 
   subroutine get_tmpdir(tmpdir)
@@ -106,12 +72,6 @@ contains
     integer :: len, status
     tmpdir = ''
     call get_environment_variable('TMPDIR', tmpdir, len, status)
-    if (status /= 0 .or. len == 0) then
-      call get_environment_variable('TEMP', tmpdir, len, status)
-    end if
-    if (status /= 0 .or. len == 0) then
-      call get_environment_variable('TMP', tmpdir, len, status)
-    end if
     if (len_trim(tmpdir) == 0) tmpdir = '/tmp'
   end subroutine get_tmpdir
 
@@ -142,7 +102,7 @@ contains
     type(ParametersMap), intent(in) :: pmap
     character(len=:), allocatable, intent(out) :: err
     type(ParametersMapItem) :: kv
-    character(len=:), allocatable :: key, val, lkey
+    character(len=:), allocatable :: key, val
     character(len=512) :: tmpdir
     character(len=512) :: tables_path
     integer :: i, n, iostat, u
@@ -151,7 +111,6 @@ contains
     self%input_file = ''
     self%generated_config_file = ''
     self%tables_file = ''
-    self%allow_table_generation = .true.
     err = ''
     n = pmap%size()
 
@@ -159,12 +118,12 @@ contains
       kv = pmap%get(i)
       key = kv%get_first()
       val = kv%get_second()
-      lkey = trim(lower_ascii(key))
-      if (lkey == 'config_file') then
+
+      if (key == 'config_file') then
         self%input_file = trim(val)
-      else if (lkey == 'generated_config_file') then
+      else if (key == 'generated_config_file') then
         self%generated_config_file = trim(val)
-      else if (lkey == 'tables_file') then
+      else if (key == 'tables_file') then
         self%tables_file = trim(val)
       end if
     end do
@@ -173,13 +132,10 @@ contains
       if (len_trim(self%generated_config_file) == 0) then
         call get_tmpdir(tmpdir)
         tmpdir = trim(tmpdir)
-        if (tmpdir(len_trim(tmpdir):len_trim(tmpdir)) /= '/') then
-          self%generated_config_file = trim(tmpdir) // '/urqmd_cola_config.txt'
-        else
-          self%generated_config_file = trim(tmpdir) // 'urqmd_cola_config.txt'
-        end if
+        self%generated_config_file = trim(tmpdir) // '/urqmd_cola_config.txt'
       end if
 
+      ! Generate UrQMD config file
       open(newunit=u, file=trim(self%generated_config_file), status='replace', action='write', iostat=iostat)
       if (iostat /= 0) then
         err = 'URQMD init failed: failed to create generated config file.'
@@ -233,24 +189,46 @@ contains
     character(len=:), allocatable, intent(out) :: err
     type(EventData) :: ed
     type(EventIniState) :: ini
-    type(EventParticles) :: parts
-    integer :: np
-    real(8) :: ebeam_val, bimp_val
+    type(EventParticles) :: parts, ini_parts
+    integer :: np, pdga, pdgb
+    integer :: nco, npp, npn, nnn
+    integer :: npt, npa, nbt
+    real(8) :: ebeam_val, bimp_val, pza, pzb, eout, snnout
+    real(8) :: phia, thaa, phib, thab
 
     ed = EventData()
     err = ''
-    call acquire_run_lock()
     parts = EventParticles()
+    ini_parts = EventParticles()
 
-    call urqmd_cola_run_one_event(ebeam_val, bimp_val, np, parts)
+    call urqmd_cola_run_one_event(ebeam_val, bimp_val, np, parts, ini_parts, &
+                                  pdga, pdgb, pza, pzb, eout, snnout, nco, npp, &
+                                  npn, nnn, npt, npa, nbt, phia, thaa, phib, thab)
 
     ini = ed%get_iniState()
-    call ini%set_energy(ebeam_val)
+    call ini%set_pdgCodeA(pdga)
+    call ini%set_pdgCodeB(pdgb)
+    call ini%set_pZA(pza)
+    call ini%set_pZB(pzb)
+    call ini%set_energy(eout)
+    call ini%set_sectNN(real(snnout, kind(0.0)))
     call ini%set_b(real(bimp_val, kind(0.0)))
+    call ini%set_nColl(nco)
+    call ini%set_nCollPP(npp)
+    call ini%set_nCollPN(npn)
+    call ini%set_nCollNN(nnn)
+    call ini%set_nPart(npt)
+    call ini%set_nPartA(npa)
+    call ini%set_nPartB(nbt)
+    call ini%set_phiRotA(real(phia, kind(0.0)))
+    call ini%set_thetaRotA(real(thaa, kind(0.0)))
+    call ini%set_phiRotB(real(phib, kind(0.0)))
+    call ini%set_thetaRotB(real(thab, kind(0.0)))
+    call ini%set_iniStateParticles(ini_parts)
     if (np < 0) np = 0
+    call ed%set_iniState(ini)
     call ed%set_particles(parts)
 
-    call release_run_lock()
   end function generator_run
 
   subroutine generator_final(self)

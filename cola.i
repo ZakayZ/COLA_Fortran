@@ -38,6 +38,13 @@
 %include <COLA/EventData.hh>
 
 %template(AZ) std::pair<uint16_t, uint16_t>;
+
+%inline %{
+  std::pair<uint16_t, uint16_t> MakeAZ(int a, int z) {
+    return std::make_pair(static_cast<uint16_t>(a), static_cast<uint16_t>(z));
+  }
+%}
+
 %template(ParametersMapItem) std::pair<std::string, std::string>;
 %template(ParametersMap) std::vector<std::pair<std::string, std::string>>;
 %template(EventParticles) std::vector<cola::Particle>;

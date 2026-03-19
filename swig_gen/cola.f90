@@ -19,6 +19,9 @@ module cola
  type, public :: SWIGTYPE_p_uint32_t
   type(SwigClassWrapper), public :: swigdata
  end type
+ type, public :: SWIGTYPE_p_cola__Vector3T_double_t
+  type(SwigClassWrapper), public :: swigdata
+ end type
  ! class cola::LorentzVectorImpl< double >
  type, public :: LorentzVector
   type(SwigClassWrapper), public :: swigdata
@@ -30,11 +33,13 @@ module cola
   procedure :: set_z => swigf_LorentzVector_z_set
   procedure :: get_z => swigf_LorentzVector_z_get
   procedure, private :: swigf_LorentzVector_op_sub__
-  procedure :: Boost => swigf_LorentzVector_Boost
+  procedure, private :: swigf_LorentzVector_Boost__SWIG_0
   procedure, private :: swigf_LorentzVector_BoostAxisRapidity__SWIG_0
   procedure, private :: swigf_LorentzVector_BoostAxisRapidity__SWIG_1
+  procedure, private :: swigf_LorentzVector_Boost__SWIG_1
   procedure :: Mag2 => swigf_LorentzVector_Mag2
   procedure :: Mag => swigf_LorentzVector_Mag
+  procedure :: SpatialPart => swigf_LorentzVector_SpatialPart
   procedure :: IsSpaceLike => swigf_LorentzVector_IsSpaceLike
   procedure :: IsLightLike => swigf_LorentzVector_IsLightLike
   procedure :: IsTimeLike => swigf_LorentzVector_IsTimeLike
@@ -44,6 +49,7 @@ module cola
   procedure :: set_t => swigf_LorentzVector_set_t
   procedure :: release => swigf_LorentzVector_release
   procedure, private :: swigf_LorentzVector_op_assign__
+  generic :: Boost => swigf_LorentzVector_Boost__SWIG_0, swigf_LorentzVector_Boost__SWIG_1
   generic :: BoostAxisRapidity => swigf_LorentzVector_BoostAxisRapidity__SWIG_0, swigf_LorentzVector_BoostAxisRapidity__SWIG_1
   generic :: operator(-) => swigf_LorentzVector_op_sub__
   generic :: assignment(=) => swigf_LorentzVector_op_assign__
@@ -153,6 +159,7 @@ module cola
   procedure, private :: swigf_AZ_op_assign__
   generic :: assignment(=) => swigf_AZ_op_assign__
  end type AZ
+ public :: MakeAZ
  type, bind(C) :: SwigArrayWrapper
   type(C_PTR), public :: data = C_NULL_PTR
   integer(C_SIZE_T), public :: size = 0
@@ -377,8 +384,8 @@ type(SwigClassWrapper), intent(in) :: farg1
 type(SwigClassWrapper) :: fresult
 end function
 
-function swigc_LorentzVector_Boost(farg1, farg2, farg3, farg4) &
-bind(C, name="_wrap_LorentzVector_Boost") &
+function swigc_LorentzVector_Boost__SWIG_0(farg1, farg2, farg3, farg4) &
+bind(C, name="_wrap_LorentzVector_Boost__SWIG_0") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
@@ -410,6 +417,16 @@ real(C_DOUBLE), intent(in) :: farg2
 type(SwigClassWrapper) :: fresult
 end function
 
+function swigc_LorentzVector_Boost__SWIG_1(farg1, farg2) &
+bind(C, name="_wrap_LorentzVector_Boost__SWIG_1") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
 function swigc_LorentzVector_Mag2(farg1) &
 bind(C, name="_wrap_LorentzVector_Mag2") &
 result(fresult)
@@ -426,6 +443,15 @@ use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
 real(C_DOUBLE) :: fresult
+end function
+
+function swigc_LorentzVector_SpatialPart(farg1) &
+bind(C, name="_wrap_LorentzVector_SpatialPart") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+type(SwigClassWrapper), intent(in) :: farg1
+type(SwigClassWrapper) :: fresult
 end function
 
 function swigc_LorentzVector_IsSpaceLike(farg1) &
@@ -1113,6 +1139,16 @@ type(SwigClassWrapper), intent(inout) :: farg1
 type(SwigClassWrapper), intent(in) :: farg2
 end subroutine
 
+function swigc_MakeAZ(farg1, farg2) &
+bind(C, name="_wrap_MakeAZ") &
+result(fresult)
+use, intrinsic :: ISO_C_BINDING
+import :: swigclasswrapper
+integer(C_INT), intent(in) :: farg1
+integer(C_INT), intent(in) :: farg2
+type(SwigClassWrapper) :: fresult
+end function
+
 function swigc_new_ParametersMapItem__SWIG_0() &
 bind(C, name="_wrap_new_ParametersMapItem__SWIG_0") &
 result(fresult)
@@ -1724,7 +1760,7 @@ fresult = swigc_LorentzVector_op_sub__(farg1)
 swig_result%swigdata = fresult
 end function
 
-function swigf_LorentzVector_Boost(self, bx, by, bz) &
+function swigf_LorentzVector_Boost__SWIG_0(self, bx, by, bz) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
 type(LorentzVector) :: swig_result
@@ -1742,7 +1778,7 @@ farg1 = self%swigdata
 farg2 = bx
 farg3 = by
 farg4 = bz
-fresult = swigc_LorentzVector_Boost(farg1, farg2, farg3, farg4)
+fresult = swigc_LorentzVector_Boost__SWIG_0(farg1, farg2, farg3, farg4)
 swig_result%swigdata = fresult
 end function
 
@@ -1781,6 +1817,22 @@ fresult = swigc_LorentzVector_BoostAxisRapidity__SWIG_1(farg1, farg2)
 swig_result%swigdata = fresult
 end function
 
+function swigf_LorentzVector_Boost__SWIG_1(self, target) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(LorentzVector) :: swig_result
+class(LorentzVector), intent(in) :: self
+class(LorentzVector), intent(in) :: target
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+type(SwigClassWrapper) :: farg2 
+
+farg1 = self%swigdata
+farg2 = target%swigdata
+fresult = swigc_LorentzVector_Boost__SWIG_1(farg1, farg2)
+swig_result%swigdata = fresult
+end function
+
 function swigf_LorentzVector_Mag2(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
@@ -1805,6 +1857,19 @@ type(SwigClassWrapper) :: farg1
 farg1 = self%swigdata
 fresult = swigc_LorentzVector_Mag(farg1)
 swig_result = fresult
+end function
+
+function swigf_LorentzVector_SpatialPart(self) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(SWIGTYPE_p_cola__Vector3T_double_t) :: swig_result
+class(LorentzVector), intent(in) :: self
+type(SwigClassWrapper) :: fresult 
+type(SwigClassWrapper) :: farg1 
+
+farg1 = self%swigdata
+fresult = swigc_LorentzVector_SpatialPart(farg1)
+swig_result%swigdata = fresult
 end function
 
 
@@ -2843,6 +2908,22 @@ farg2 = other%swigdata
 call swigc_AZ_op_assign__(farg1, farg2)
 self%swigdata = farg1
 end subroutine
+
+function MakeAZ(a, z) &
+result(swig_result)
+use, intrinsic :: ISO_C_BINDING
+type(AZ) :: swig_result
+integer(C_INT), intent(in) :: a
+integer(C_INT), intent(in) :: z
+type(SwigClassWrapper) :: fresult 
+integer(C_INT) :: farg1 
+integer(C_INT) :: farg2 
+
+farg1 = a
+farg2 = z
+fresult = swigc_MakeAZ(farg1, farg2)
+swig_result%swigdata = fresult
+end function
 
 function swigf_new_ParametersMapItem__SWIG_0() &
 result(self)

@@ -85,7 +85,7 @@ add_cola_fortran_library(
 target_compile_options(${COLA_MODULE_NAME} PRIVATE -fPIC)
 
 target_compile_options(${COLA_MODULE_NAME} PRIVATE
-  $<$<AND:$<COMPILE_LANGUAGE:Fortran>,$<Fortran_COMPILER_ID:GNU>>:-fcoarray=single;-finit-local-zero>
+  $<$<AND:$<COMPILE_LANGUAGE:Fortran>,$<Fortran_COMPILER_ID:GNU>>:-finit-local-zero;-ffixed-line-length-120>
 )
 
 target_include_directories(${COLA_MODULE_NAME} PRIVATE
