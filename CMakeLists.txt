@@ -17,7 +17,7 @@
 # SOFTWARE.
 
 cmake_minimum_required(VERSION 3.14)
-project(COLA_Fortran VERSION 0.1 LANGUAGES CXX Fortran)
+project(COLA_Fortran VERSION 1.0.0 LANGUAGES CXX Fortran)
 
 option(BUILD_WITH_SWIG "build cola.i with swig-fortran" OFF)
 
