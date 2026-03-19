@@ -1,6 +1,0 @@
-@PACKAGE_INIT@
-
-include(CMakeFindDependencyMacro)
-find_dependency(COLA_Fortran REQUIRED)
-
-include("@CMAKE_INSTALL_PREFIX@/lib/cmake/ExampleFortran/ExampleFortranExport.cmake")
