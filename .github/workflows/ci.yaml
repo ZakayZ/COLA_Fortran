@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ main, master ]
+  pull_request_target:
+    types: [ opened, synchronize, reopened ]
+    branches: [ main, master ]
+
+jobs:
+  ci:
+    name: CI (${{ matrix.os }} - ${{ matrix.compiler }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            compiler: g++
+          - os: macos-latest
+            compiler: clang
+
+    steps:
+      - name: Checkout COLA_Fortran
+        uses: actions/checkout@v4
+        with:
+          path: COLA_Fortran
+
+      - name: Checkout COLA
+        uses: actions/checkout@v4
+        with:
+          repository: ZakayZ/COLA
+          ref: dev
+          path: cola
+
+      - name: Install dependencies (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        timeout-minutes: 10
+        run: |
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 21
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake g++ gfortran \
+            libgtest-dev clang-format-21 clang-tidy
+          pip install cmake-format
+
+      - name: Install dependencies (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew install cmake gcc googletest
+
+      - name: Setup Fortran
+        if: matrix.os == 'macos-latest'
+        uses: fortran-lang/setup-fortran@v1
+
+      - name: Build and install COLA
+        timeout-minutes: 10
+        id: cola-install
+        run: |
+          cmake -S cola -B cola/build \
+            -DCMAKE_INSTALL_PREFIX=cola/install \
+            -DBUILD_TESTING=OFF \
+            -DCMAKE_BUILD_TYPE=Release
+          cmake --build cola/build --parallel
+          cmake --install cola/build
+          test -f cola/install/config.sh
+
+      - name: Build and test (release)
+        id: build-test
+        working-directory: ${{ github.workspace }}/COLA_Fortran
+        run: |
+          source "${GITHUB_WORKSPACE}/cola/install/config.sh"
+          cmake --workflow release-test
+
+      - name: Clang-tidy and unit tests (debug + tidy)
+        id: clang-tidy
+        working-directory: ${{ github.workspace }}/COLA_Fortran
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          source "${GITHUB_WORKSPACE}/cola/install/config.sh"
+          cmake --workflow test
+
+      - name: Check formatting
+        id: check-format
+        working-directory: ${{ github.workspace }}/COLA_Fortran
+        if: always() && matrix.os == 'ubuntu-latest' && steps.cola-install.outcome == 'success'
+        run: |
+          source "${GITHUB_WORKSPACE}/cola/install/config.sh"
+          cmake --workflow check-format
