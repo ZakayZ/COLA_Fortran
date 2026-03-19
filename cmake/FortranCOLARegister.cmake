@@ -90,7 +90,11 @@ function(register_fortran_source)
   string(REGEX MATCH "module[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)" _ "${FCONTENT}")
   set(USER_MODULE_NAME "${CMAKE_MATCH_1}")
   if(NOT USER_MODULE_NAME)
-    message(FATAL_ERROR "register_fortran_source: could not parse module name from ${ARG_FORTRAN_FILE}")
+    set(GENERATED_FORTRAN_SOURCE_FILES "" PARENT_SCOPE)
+    set(GENERATED_HEADER_SOURCE_FILES "" PARENT_SCOPE)
+    set(GENERATED_CPP_SOURCE_FILES "" PARENT_SCOPE)
+    set(COLA_FILTERS "" PARENT_SCOPE)
+    return()
   endif()
 
   set(CONVERTER_TYPES "")
@@ -197,7 +201,7 @@ function(add_cola_fortran_library MODULE_NAME)
   )
 
   configure_template(
-    TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/cpp/FortranModule.hh.in"
+    TEMPLATE "${COLA_Fortran_TEMPLATES_DIR}/cpp/FortranModule.cc.in"
     OUTPUT  "${OUTPUT_DIR}/${MODULE_NAME}Module.cc"
     VARS   MODULE_NAME "${MODULE_NAME}"
   )

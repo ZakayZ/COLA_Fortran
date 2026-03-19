@@ -1,22 +1,23 @@
 #include "@MODULE_NAME@/@CLASS_NAME@.hh"
 
+#include <COLA_Fortran/utils.hh>
+
+// NOLINTBEGIN(readability-identifier-naming)
+extern "C" {
+    void* cola_fortran_@CLASS_NAME@_create(const void* params, char** errorMessage);
+
+    void* cola_fortran_@CLASS_NAME@_run(void* handle, char** errorMessage);
+
+    void cola_fortran_@CLASS_NAME@_destroy(void* handle);
+}
+// NOLINTEND(readability-identifier-naming)
+
 namespace cola::fortran {
-
-    class FortranGenerator : public cola::VGenerator {
-    public:
-        FortranGenerator(const std::unordered_map<std::string, std::string>& params)
-            : handle_(cola_fortran_@CLASS_NAME@_create(ToFortranParametersMap(params).data()), cola_fortran_@CLASS_NAME@_destroy) {}
-
-        ~FortranGenerator() = default;
-
-        std::unique_ptr<EventData> operator()() override {
-            void* raw = cola_fortran_@CLASS_NAME@_run(handle_.get());
-            return std::unique_ptr<EventData>(static_cast<EventData*>(raw));
-        }
-
-    private:
-        std::unique_ptr<void, void (*)(void*)> handle_;
-    };
+    using FortranGenerator = GenericFortranGenerator<
+        cola_fortran_@CLASS_NAME@_create,
+        cola_fortran_@CLASS_NAME@_destroy,
+        cola_fortran_@CLASS_NAME@_run
+    >;
 
     std::unique_ptr<cola::VFilter> @CLASS_NAME@Factory::Create(const std::unordered_map<std::string, std::string>& metaData) {
         return std::make_unique<FortranGenerator>(metaData);

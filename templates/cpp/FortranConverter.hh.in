@@ -4,22 +4,8 @@
 #include <memory>
 
 #include <COLA.hh>
-#include <COLA_Fortran/utils.hh>
 
 namespace cola::fortran {
-    // NOLINTBEGIN(readability-identifier-naming)
-    extern "C" {
-        /** Create converter instance. Returns opaque handle. \p params is nullptr or ParametersMap* (vector of pair<string,string>). */
-        void* cola_fortran_@CLASS_NAME@_create(const void* params);
-
-        /** Run one conversion step: modify \p data (EventData*) in place. */
-        void cola_fortran_@CLASS_NAME@_run(void* handle, void* data);
-
-        /** Destroy converter instance and release resources for \p handle. */
-        void cola_fortran_@CLASS_NAME@_destroy(void* handle);
-    }
-    // NOLINTEND(readability-identifier-naming)
-
     class @CLASS_NAME@Factory : public cola::VConverterFactory {
       public:
         @CLASS_NAME@Factory() = default;

@@ -6,13 +6,39 @@ module @WRAPPER_MODULE@
   use cola
   use @USER_MODULE_NAME@
   implicit none
-  private
+  interface
+    function c_malloc(size) bind(C, name="malloc") result(ptr)
+      import :: c_ptr, c_size_t
+      integer(c_size_t), value :: size
+      type(c_ptr) :: ptr
+    end function c_malloc
+  end interface
 contains
-  function cola_fortran_@TYPE_NAME@_create(params) bind(C, name="cola_fortran_@TYPE_NAME@_create") result(handle)
+  subroutine set_error_message(err, msg)
+    type(c_ptr), intent(out) :: err
+    character(len=*), intent(in) :: msg
+    character(kind=c_char), pointer :: buf(:)
+    integer :: i, n
+    err = c_null_ptr
+    n = len_trim(msg)
+    err = c_malloc(int(n + 1, c_size_t))
+    if (.not. c_associated(err)) return
+    call c_f_pointer(err, buf, [n + 1])
+    do i = 1, n
+      buf(i) = msg(i:i)
+    end do
+    buf(n + 1) = c_null_char
+  end subroutine set_error_message
+
+  function cola_fortran_@TYPE_NAME@_create(params, err) bind(C, name="cola_fortran_@TYPE_NAME@_create") result(handle)
     type(c_ptr), intent(in), value :: params
+    type(c_ptr), intent(out) :: err
     type(c_ptr) :: handle
     type(ParametersMap) :: pmap
     type(@TYPE_NAME@), pointer :: cls
+    character(len=:), allocatable :: msg
+    handle = c_null_ptr
+    err = c_null_ptr
     if (c_associated(params)) then
       pmap%swigdata%cptr = params
       pmap%swigdata%cmemflags = 0
@@ -20,17 +46,34 @@ contains
       pmap = ParametersMap()
     end if
     allocate(cls)
-    call cls%init(pmap)
+    call cls%init(pmap, msg)
+    if (len_trim(msg) > 0) then
+      call set_error_message(err, msg)
+      deallocate(cls)
+      return
+    end if
     handle = c_loc(cls)
   end function cola_fortran_@TYPE_NAME@_create
 
-  function cola_fortran_@TYPE_NAME@_run(handle) bind(C, name="cola_fortran_@TYPE_NAME@_run") result(data)
+  function cola_fortran_@TYPE_NAME@_run(handle, err) bind(C, name="cola_fortran_@TYPE_NAME@_run") result(data)
     type(c_ptr), intent(in), value :: handle
+    type(c_ptr), intent(out) :: err
     type(c_ptr) :: data
     type(EventData) :: ed
     type(@TYPE_NAME@), pointer :: cls
+    character(len=:), allocatable :: msg
+    data = c_null_ptr
+    err = c_null_ptr
+    if (.not. c_associated(handle)) then
+      call set_error_message(err, 'Fortran run failed: null handle')
+      return
+    end if
     call c_f_pointer(handle, cls)
-    ed = cls%run()
+    ed = cls%run(msg)
+    if (len_trim(msg) > 0) then
+      call set_error_message(err, msg)
+      return
+    end if
     data = ed%swigdata%cptr
     ! Transfer ownership to C: Fortran must not delete when ed goes out of scope
     ed%swigdata%cmemflags = 0
