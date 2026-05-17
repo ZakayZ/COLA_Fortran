@@ -4,23 +4,21 @@
 
 // NOLINTBEGIN(readability-identifier-naming)
 extern "C" {
-    void* cola_fortran_@CLASS_NAME@_create(const void* params, char** errorMessage);
+void* cola_fortran_@CLASS_NAME@_create(const void* params, char** error_message);
 
-    void* cola_fortran_@CLASS_NAME@_run(void* handle, char** errorMessage);
+void* cola_fortran_@CLASS_NAME@_run(void* handle, char** error_message);
 
-    void cola_fortran_@CLASS_NAME@_destroy(void* handle);
+void cola_fortran_@CLASS_NAME@_destroy(void* handle);
 }
 // NOLINTEND(readability-identifier-naming)
 
 namespace cola::fortran {
-    using FortranGenerator = GenericFortranGenerator<
-        cola_fortran_@CLASS_NAME@_create,
-        cola_fortran_@CLASS_NAME@_destroy,
-        cola_fortran_@CLASS_NAME@_run
-    >;
+using FortranGenerator =
+    GenericFortranGenerator<cola_fortran_@CLASS_NAME@_create, cola_fortran_@CLASS_NAME@_destroy, cola_fortran_@CLASS_NAME@_run>;
 
-    std::unique_ptr<cola::VFilter> @CLASS_NAME@Factory::Create(const std::unordered_map<std::string, std::string>& metaData) {
-        return std::make_unique<FortranGenerator>(metaData);
-    }
+std::unique_ptr<cola::VFilter> @CLASS_NAME@Factory::Create(
+    const std::unordered_map<std::string, std::string>& meta_data) {
+  return std::make_unique<FortranGenerator>(meta_data);
+}
 
-} // namespace cola::fortran
+}  // namespace cola::fortran

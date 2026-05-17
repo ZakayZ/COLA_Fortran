@@ -1,23 +1,22 @@
 #ifndef COLA_FORTRAN_@CLASS_NAME@_GENERATOR_HH
 #define COLA_FORTRAN_@CLASS_NAME@_GENERATOR_HH
 
-#include <memory>
-
 #include <COLA.hh>
 
+#include <memory>
+
 namespace cola::fortran {
-    class @CLASS_NAME@Factory : public cola::VGeneratorFactory {
-      public:
-        @CLASS_NAME@Factory() = default;
+  class @CLASS_NAME@Factory : public cola::VGeneratorFactory {
+   public:
+    @CLASS_NAME@Factory() = default;
 
-        std::unique_ptr<cola::VFilter> Create(const std::unordered_map<std::string, std::string>& metaData) override;
+    std::unique_ptr<cola::VFilter> Create(const std::unordered_map<std::string, std::string>& meta_data) override;
 
-        const std::string& GetFilterName() const override {
-            static const std::string NAME = "@CLASS_NAME@";
-            return NAME;
-        }
-    };
+    const std::string& GetFilterName() const override { return kName; }
 
-} // namespace cola::fortran
+    static inline const std::string kName = "@CLASS_NAME@";
+  };
 
-#endif // COLA_FORTRAN_@CLASS_NAME@_GENERATOR_HH
+}  // namespace cola::fortran
+
+#endif  // COLA_FORTRAN_@CLASS_NAME@_GENERATOR_HH
