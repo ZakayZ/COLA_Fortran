@@ -19,9 +19,6 @@ module cola
  type, public :: SWIGTYPE_p_uint32_t
   type(SwigClassWrapper), public :: swigdata
  end type
- type, public :: SWIGTYPE_p_cola__Vector3T_double_t
-  type(SwigClassWrapper), public :: swigdata
- end type
  ! class cola::LorentzVectorImpl< double >
  type, public :: LorentzVector
   type(SwigClassWrapper), public :: swigdata
@@ -32,14 +29,11 @@ module cola
   procedure :: get_y => swigf_LorentzVector_y_get
   procedure :: set_z => swigf_LorentzVector_z_set
   procedure :: get_z => swigf_LorentzVector_z_get
-  procedure, private :: swigf_LorentzVector_op_sub__
-  procedure, private :: swigf_LorentzVector_Boost__SWIG_0
+  procedure :: Boost => swigf_LorentzVector_Boost
   procedure, private :: swigf_LorentzVector_BoostAxisRapidity__SWIG_0
   procedure, private :: swigf_LorentzVector_BoostAxisRapidity__SWIG_1
-  procedure, private :: swigf_LorentzVector_Boost__SWIG_1
   procedure :: Mag2 => swigf_LorentzVector_Mag2
   procedure :: Mag => swigf_LorentzVector_Mag
-  procedure :: SpatialPart => swigf_LorentzVector_SpatialPart
   procedure :: IsSpaceLike => swigf_LorentzVector_IsSpaceLike
   procedure :: IsLightLike => swigf_LorentzVector_IsLightLike
   procedure :: IsTimeLike => swigf_LorentzVector_IsTimeLike
@@ -49,26 +43,24 @@ module cola
   procedure :: set_t => swigf_LorentzVector_set_t
   procedure :: release => swigf_LorentzVector_release
   procedure, private :: swigf_LorentzVector_op_assign__
-  generic :: Boost => swigf_LorentzVector_Boost__SWIG_0, swigf_LorentzVector_Boost__SWIG_1
   generic :: BoostAxisRapidity => swigf_LorentzVector_BoostAxisRapidity__SWIG_0, swigf_LorentzVector_BoostAxisRapidity__SWIG_1
-  generic :: operator(-) => swigf_LorentzVector_op_sub__
   generic :: assignment(=) => swigf_LorentzVector_op_assign__
  end type LorentzVector
  public :: PdgToAZ
  public :: AZToPdg
  ! enum class cola::ParticleClass
  enum, bind(c)
-  enumerator :: ParticleClass_PRODUCED
-  enumerator :: ParticleClass_ELASTIC_A
-  enumerator :: ParticleClass_ELASTIC_B
-  enumerator :: ParticleClass_NONELASTIC_A
-  enumerator :: ParticleClass_NONELASTIC_B
-  enumerator :: ParticleClass_SPECTATOR_A
-  enumerator :: ParticleClass_SPECTATOR_B
+  enumerator :: ParticleClass_kProduced
+  enumerator :: ParticleClass_kElasticA
+  enumerator :: ParticleClass_kElasticB
+  enumerator :: ParticleClass_kNonelasticA
+  enumerator :: ParticleClass_kNonelasticB
+  enumerator :: ParticleClass_kSpectatorA
+  enumerator :: ParticleClass_kSpectatorB
  end enum
- integer, parameter, public :: ParticleClass = kind(ParticleClass_PRODUCED)
- public :: ParticleClass_PRODUCED, ParticleClass_ELASTIC_A, ParticleClass_ELASTIC_B, ParticleClass_NONELASTIC_A, &
-    ParticleClass_NONELASTIC_B, ParticleClass_SPECTATOR_A, ParticleClass_SPECTATOR_B
+ integer, parameter, public :: ParticleClass = kind(ParticleClass_kProduced)
+ public :: ParticleClass_kProduced, ParticleClass_kElasticA, ParticleClass_kElasticB, ParticleClass_kNonelasticA, &
+    ParticleClass_kNonelasticB, ParticleClass_kSpectatorA, ParticleClass_kSpectatorB
  ! struct cola::Particle
  type, public :: Particle
   type(SwigClassWrapper), public :: swigdata
@@ -375,17 +367,8 @@ type(SwigClassWrapper), intent(in) :: farg1
 real(C_DOUBLE) :: fresult
 end function
 
-function swigc_LorentzVector_op_sub__(farg1) &
-bind(C, name="_wrap_LorentzVector_op_sub__") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
-end function
-
-function swigc_LorentzVector_Boost__SWIG_0(farg1, farg2, farg3, farg4) &
-bind(C, name="_wrap_LorentzVector_Boost__SWIG_0") &
+function swigc_LorentzVector_Boost(farg1, farg2, farg3, farg4) &
+bind(C, name="_wrap_LorentzVector_Boost") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
@@ -417,16 +400,6 @@ real(C_DOUBLE), intent(in) :: farg2
 type(SwigClassWrapper) :: fresult
 end function
 
-function swigc_LorentzVector_Boost__SWIG_1(farg1, farg2) &
-bind(C, name="_wrap_LorentzVector_Boost__SWIG_1") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper), intent(in) :: farg2
-type(SwigClassWrapper) :: fresult
-end function
-
 function swigc_LorentzVector_Mag2(farg1) &
 bind(C, name="_wrap_LorentzVector_Mag2") &
 result(fresult)
@@ -443,15 +416,6 @@ use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
 real(C_DOUBLE) :: fresult
-end function
-
-function swigc_LorentzVector_SpatialPart(farg1) &
-bind(C, name="_wrap_LorentzVector_SpatialPart") &
-result(fresult)
-use, intrinsic :: ISO_C_BINDING
-import :: swigclasswrapper
-type(SwigClassWrapper), intent(in) :: farg1
-type(SwigClassWrapper) :: fresult
 end function
 
 function swigc_LorentzVector_IsSpaceLike(farg1) &
@@ -1747,20 +1711,7 @@ fresult = swigc_LorentzVector_z_get(farg1)
 swig_result = fresult
 end function
 
-function swigf_LorentzVector_op_sub__(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(LorentzVector) :: swig_result
-class(LorentzVector), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_LorentzVector_op_sub__(farg1)
-swig_result%swigdata = fresult
-end function
-
-function swigf_LorentzVector_Boost__SWIG_0(self, bx, by, bz) &
+function swigf_LorentzVector_Boost(self, bx, by, bz) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
 type(LorentzVector) :: swig_result
@@ -1778,7 +1729,7 @@ farg1 = self%swigdata
 farg2 = bx
 farg3 = by
 farg4 = bz
-fresult = swigc_LorentzVector_Boost__SWIG_0(farg1, farg2, farg3, farg4)
+fresult = swigc_LorentzVector_Boost(farg1, farg2, farg3, farg4)
 swig_result%swigdata = fresult
 end function
 
@@ -1817,22 +1768,6 @@ fresult = swigc_LorentzVector_BoostAxisRapidity__SWIG_1(farg1, farg2)
 swig_result%swigdata = fresult
 end function
 
-function swigf_LorentzVector_Boost__SWIG_1(self, target) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(LorentzVector) :: swig_result
-class(LorentzVector), intent(in) :: self
-class(LorentzVector), intent(in) :: target
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-type(SwigClassWrapper) :: farg2 
-
-farg1 = self%swigdata
-farg2 = target%swigdata
-fresult = swigc_LorentzVector_Boost__SWIG_1(farg1, farg2)
-swig_result%swigdata = fresult
-end function
-
 function swigf_LorentzVector_Mag2(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
@@ -1857,19 +1792,6 @@ type(SwigClassWrapper) :: farg1
 farg1 = self%swigdata
 fresult = swigc_LorentzVector_Mag(farg1)
 swig_result = fresult
-end function
-
-function swigf_LorentzVector_SpatialPart(self) &
-result(swig_result)
-use, intrinsic :: ISO_C_BINDING
-type(SWIGTYPE_p_cola__Vector3T_double_t) :: swig_result
-class(LorentzVector), intent(in) :: self
-type(SwigClassWrapper) :: fresult 
-type(SwigClassWrapper) :: farg1 
-
-farg1 = self%swigdata
-fresult = swigc_LorentzVector_SpatialPart(farg1)
-swig_result%swigdata = fresult
 end function
 
 

@@ -18,11 +18,8 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 # ---------------------------------------------------------------------------
 
 add_cola_fortran_library(
-    ${COLA_MODULE_NAME}
-    SOURCES
-        cola_fortran_converter_impl.f90
-        cola_fortran_generator_impl.f90
-        cola_fortran_writer_impl.f90
+    ${COLA_MODULE_NAME} SOURCES cola_fortran_converter_impl.f90 cola_fortran_generator_impl.f90
+    cola_fortran_writer_impl.f90
 )
 
 target_include_directories(

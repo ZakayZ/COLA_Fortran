@@ -19,6 +19,10 @@ set(COLA_MODULE_NAME COLA_Fortran)
 
 add_library(${COLA_MODULE_NAME}_CPP SHARED COLA_Fortran/utils.cc)
 
+set_target_properties(
+    ${COLA_MODULE_NAME}_CPP PROPERTIES CXX_CLANG_TIDY "${COLA_CMAKE_CXX_CLANG_TIDY}"
+)
+
 target_include_directories(
     ${COLA_MODULE_NAME}_CPP PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
                                    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
@@ -132,3 +136,6 @@ enable_testing()
 if (BUILD_TESTING)
     add_subdirectory(tests)
 endif ()
+
+# format and tidy targets (exclude COLA from checks)
+setup_cola_quality_tools(EXCLUDE_PATTERNS ".*/COLA/.*" ".*/swig_gen/.*")

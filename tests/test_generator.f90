@@ -37,7 +37,7 @@ contains
 
     p = Particle()
     call p%set_pdgCode(2212)
-    call p%set_pClass(ParticleClass_PRODUCED)
+    call p%set_pClass(ParticleClass_kProduced)
     parts = EventParticles()
     call parts%push_back(p)
     call ed%set_particles(parts)

@@ -13,13 +13,9 @@ target_include_directories(TestFortranFilters PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
 add_executable(COLA_FortranTest cola_fortran_test.cc)
 target_compile_features(COLA_FortranTest PUBLIC cxx_std_17)
 
-target_link_libraries(
-    COLA_FortranTest
-    PRIVATE
-        TestFortranFilters
-        GTest::Main
-        GTest::GTest
-)
+set_target_properties(COLA_FortranTest PROPERTIES CXX_CLANG_TIDY "${COLA_CMAKE_CXX_CLANG_TIDY}")
+
+target_link_libraries(COLA_FortranTest PRIVATE TestFortranFilters GTest::Main GTest::GTest)
 
 target_include_directories(COLA_FortranTest PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/generated)
 

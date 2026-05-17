@@ -10,6 +10,7 @@
 
 %ignore cola::Vector3;
 %ignore cola::RotateUz;
+%ignore cola::operator<<;
 
 %include <std_pair.i>
 %include <std_string.i>
