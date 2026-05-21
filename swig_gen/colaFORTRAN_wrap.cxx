@@ -1054,49 +1054,49 @@ SWIGEXPORT int _wrap_EventIniState_pdg_code_b_get(SwigClassWrapper *farg1) {
 }
 
 
-SWIGEXPORT void _wrap_EventIniState_p_za_set(SwigClassWrapper *farg1, double const *farg2) {
+SWIGEXPORT void _wrap_EventIniState_pz_a_set(SwigClassWrapper *farg1, double const *farg2) {
   cola::EventIniState *arg1 = (cola::EventIniState *) 0 ;
   double arg2 ;
   
-  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::p_za", return );
+  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::pz_a", return );
   arg1 = (cola::EventIniState *)farg1->cptr;
   arg2 = (double)(*farg2);
-  if (arg1) (arg1)->p_za = arg2;
+  if (arg1) (arg1)->pz_a = arg2;
 }
 
 
-SWIGEXPORT double _wrap_EventIniState_p_za_get(SwigClassWrapper *farg1) {
+SWIGEXPORT double _wrap_EventIniState_pz_a_get(SwigClassWrapper *farg1) {
   double fresult ;
   cola::EventIniState *arg1 = (cola::EventIniState *) 0 ;
   double result;
   
-  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::p_za", return 0);
+  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::pz_a", return 0);
   arg1 = (cola::EventIniState *)farg1->cptr;
-  result = (double) ((arg1)->p_za);
+  result = (double) ((arg1)->pz_a);
   fresult = (double)(result);
   return fresult;
 }
 
 
-SWIGEXPORT void _wrap_EventIniState_p_zb_set(SwigClassWrapper *farg1, double const *farg2) {
+SWIGEXPORT void _wrap_EventIniState_pz_b_set(SwigClassWrapper *farg1, double const *farg2) {
   cola::EventIniState *arg1 = (cola::EventIniState *) 0 ;
   double arg2 ;
   
-  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::p_zb", return );
+  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::pz_b", return );
   arg1 = (cola::EventIniState *)farg1->cptr;
   arg2 = (double)(*farg2);
-  if (arg1) (arg1)->p_zb = arg2;
+  if (arg1) (arg1)->pz_b = arg2;
 }
 
 
-SWIGEXPORT double _wrap_EventIniState_p_zb_get(SwigClassWrapper *farg1) {
+SWIGEXPORT double _wrap_EventIniState_pz_b_get(SwigClassWrapper *farg1) {
   double fresult ;
   cola::EventIniState *arg1 = (cola::EventIniState *) 0 ;
   double result;
   
-  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::p_zb", return 0);
+  SWIG_check_nonnull(farg1->cptr, "cola::EventIniState *", "EventIniState", "cola::EventIniState::pz_b", return 0);
   arg1 = (cola::EventIniState *)farg1->cptr;
-  result = (double) ((arg1)->p_zb);
+  result = (double) ((arg1)->pz_b);
   fresult = (double)(result);
   return fresult;
 }

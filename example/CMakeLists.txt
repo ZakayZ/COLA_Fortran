@@ -11,7 +11,6 @@ find_package(COLA_Fortran REQUIRED)
 
 set(CMAKE_INSTALL_PREFIX ${COLA_DIR})
 set(COLA_MODULE_NAME ExampleFortran)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # ---------------------------------------------------------------------------
 # Fortran Lib

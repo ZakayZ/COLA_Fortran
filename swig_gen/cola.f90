@@ -86,10 +86,10 @@ module cola
   procedure :: get_pdg_code_a => swigf_EventIniState_pdg_code_a_get
   procedure :: set_pdg_code_b => swigf_EventIniState_pdg_code_b_set
   procedure :: get_pdg_code_b => swigf_EventIniState_pdg_code_b_get
-  procedure :: set_p_za => swigf_EventIniState_p_za_set
-  procedure :: get_p_za => swigf_EventIniState_p_za_get
-  procedure :: set_p_zb => swigf_EventIniState_p_zb_set
-  procedure :: get_p_zb => swigf_EventIniState_p_zb_get
+  procedure :: set_pz_a => swigf_EventIniState_pz_a_set
+  procedure :: get_pz_a => swigf_EventIniState_pz_a_get
+  procedure :: set_pz_b => swigf_EventIniState_pz_b_set
+  procedure :: get_pz_b => swigf_EventIniState_pz_b_get
   procedure :: set_energy => swigf_EventIniState_energy_set
   procedure :: get_energy => swigf_EventIniState_energy_get
   procedure :: set_sect_nn => swigf_EventIniState_sect_nn_set
@@ -658,16 +658,16 @@ type(SwigClassWrapper), intent(in) :: farg1
 integer(C_INT) :: fresult
 end function
 
-subroutine swigc_EventIniState_p_za_set(farg1, farg2) &
-bind(C, name="_wrap_EventIniState_p_za_set")
+subroutine swigc_EventIniState_pz_a_set(farg1, farg2) &
+bind(C, name="_wrap_EventIniState_pz_a_set")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
 real(C_DOUBLE), intent(in) :: farg2
 end subroutine
 
-function swigc_EventIniState_p_za_get(farg1) &
-bind(C, name="_wrap_EventIniState_p_za_get") &
+function swigc_EventIniState_pz_a_get(farg1) &
+bind(C, name="_wrap_EventIniState_pz_a_get") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
@@ -675,16 +675,16 @@ type(SwigClassWrapper), intent(in) :: farg1
 real(C_DOUBLE) :: fresult
 end function
 
-subroutine swigc_EventIniState_p_zb_set(farg1, farg2) &
-bind(C, name="_wrap_EventIniState_p_zb_set")
+subroutine swigc_EventIniState_pz_b_set(farg1, farg2) &
+bind(C, name="_wrap_EventIniState_pz_b_set")
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
 type(SwigClassWrapper), intent(in) :: farg1
 real(C_DOUBLE), intent(in) :: farg2
 end subroutine
 
-function swigc_EventIniState_p_zb_get(farg1) &
-bind(C, name="_wrap_EventIniState_p_zb_get") &
+function swigc_EventIniState_pz_b_get(farg1) &
+bind(C, name="_wrap_EventIniState_pz_b_get") &
 result(fresult)
 use, intrinsic :: ISO_C_BINDING
 import :: swigclasswrapper
@@ -2166,19 +2166,19 @@ fresult = swigc_EventIniState_pdg_code_b_get(farg1)
 swig_result = fresult
 end function
 
-subroutine swigf_EventIniState_p_za_set(self, p_za)
+subroutine swigf_EventIniState_pz_a_set(self, pz_a)
 use, intrinsic :: ISO_C_BINDING
 class(EventIniState), intent(in) :: self
-real(C_DOUBLE), intent(in) :: p_za
+real(C_DOUBLE), intent(in) :: pz_a
 type(SwigClassWrapper) :: farg1 
 real(C_DOUBLE) :: farg2 
 
 farg1 = self%swigdata
-farg2 = p_za
-call swigc_EventIniState_p_za_set(farg1, farg2)
+farg2 = pz_a
+call swigc_EventIniState_pz_a_set(farg1, farg2)
 end subroutine
 
-function swigf_EventIniState_p_za_get(self) &
+function swigf_EventIniState_pz_a_get(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
 real(C_DOUBLE) :: swig_result
@@ -2187,23 +2187,23 @@ real(C_DOUBLE) :: fresult
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
-fresult = swigc_EventIniState_p_za_get(farg1)
+fresult = swigc_EventIniState_pz_a_get(farg1)
 swig_result = fresult
 end function
 
-subroutine swigf_EventIniState_p_zb_set(self, p_zb)
+subroutine swigf_EventIniState_pz_b_set(self, pz_b)
 use, intrinsic :: ISO_C_BINDING
 class(EventIniState), intent(in) :: self
-real(C_DOUBLE), intent(in) :: p_zb
+real(C_DOUBLE), intent(in) :: pz_b
 type(SwigClassWrapper) :: farg1 
 real(C_DOUBLE) :: farg2 
 
 farg1 = self%swigdata
-farg2 = p_zb
-call swigc_EventIniState_p_zb_set(farg1, farg2)
+farg2 = pz_b
+call swigc_EventIniState_pz_b_set(farg1, farg2)
 end subroutine
 
-function swigf_EventIniState_p_zb_get(self) &
+function swigf_EventIniState_pz_b_get(self) &
 result(swig_result)
 use, intrinsic :: ISO_C_BINDING
 real(C_DOUBLE) :: swig_result
@@ -2212,7 +2212,7 @@ real(C_DOUBLE) :: fresult
 type(SwigClassWrapper) :: farg1 
 
 farg1 = self%swigdata
-fresult = swigc_EventIniState_p_zb_get(farg1)
+fresult = swigc_EventIniState_pz_b_get(farg1)
 swig_result = fresult
 end function
 

@@ -20,7 +20,12 @@ set(COLA_MODULE_NAME COLA_Fortran)
 add_library(${COLA_MODULE_NAME}_CPP SHARED COLA_Fortran/utils.cc)
 
 set_target_properties(
-    ${COLA_MODULE_NAME}_CPP PROPERTIES CXX_CLANG_TIDY "${COLA_CMAKE_CXX_CLANG_TIDY}"
+    ${COLA_MODULE_NAME}_CPP
+    PROPERTIES VERSION "${PROJECT_VERSION}"
+               SOVERSION "${PROJECT_VERSION_MAJOR}"
+               CXX_CLANG_TIDY "${COLA_CMAKE_CXX_CLANG_TIDY}"
+               BUILD_WITH_INSTALL_RPATH TRUE
+               INSTALL_RPATH_USE_LINK_PATH TRUE
 )
 
 target_include_directories(
@@ -61,8 +66,13 @@ endif ()
 target_link_libraries(${COLA_MODULE_NAME} PUBLIC ${COLA_MODULE_NAME}_CPP)
 
 set_target_properties(
-    ${COLA_MODULE_NAME} PROPERTIES Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules
-                                   LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    ${COLA_MODULE_NAME}
+    PROPERTIES VERSION "${PROJECT_VERSION}"
+               SOVERSION "${PROJECT_VERSION_MAJOR}"
+               Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules
+               LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+               BUILD_WITH_INSTALL_RPATH TRUE
+               INSTALL_RPATH_USE_LINK_PATH TRUE
 )
 
 target_include_directories(
