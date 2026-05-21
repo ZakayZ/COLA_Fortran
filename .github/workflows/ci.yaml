@@ -36,15 +36,16 @@ jobs:
       - name: Checkout COLA
         uses: actions/checkout@v6
         with:
-          repository: Spectator-matter-group-INR-RAS/COLA
-          ref: main
+          repository: ZakayZ/COLA
+          ref: tidy
           path: cola
 
       - name: Install dependencies (Ubuntu)
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake libgtest-dev g++ gfortran clang-format-19
+          sudo apt-get install -y build-essential cmake g++ gfortran \
+            libgtest-dev clang-format-19
           pip install cmake-format
 
       - name: Install dependencies (macOS)

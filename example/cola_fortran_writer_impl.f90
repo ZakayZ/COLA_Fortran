@@ -33,7 +33,7 @@ contains
     type(Particle) :: p
     integer :: i, n
 
-    ini = ed%get_iniState()
+    ini = ed%get_ini_state()
     parts = ed%get_particles()
     n = parts%size()
     print '(a,f0.4)', 'Event energy: ', ini%get_energy()
@@ -41,7 +41,7 @@ contains
     if (n > 0) then
       do i = 1, n
         p = parts%get(i)
-        print '(a,i0,a,i0)', '  Particle ', i, ': pdg_code = ', p%get_pdgCode()
+        print '(a,i0,a,i0)', '  Particle ', i, ': pdg_code = ', p%get_pdg_code()
       end do
     end if
     print '(a)', '---'

@@ -32,12 +32,12 @@ contains
     type(EventParticles) :: parts
     type(Particle) :: p
     ed = EventData()
-    ini = ed%get_iniState()
+    ini = ed%get_ini_state()
     call ini%set_energy(1.0d0)
 
     p = Particle()
-    call p%set_pdgCode(2212)
-    call p%set_pClass(ParticleClass_kProduced)
+    call p%set_pdg_code(2212)
+    call p%set_p_class(ParticleClass_kProduced)
     parts = EventParticles()
     call parts%push_back(p)
     call ed%set_particles(parts)

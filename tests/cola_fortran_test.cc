@@ -19,13 +19,13 @@ TEST(ColaFortranExamplePipeline, GeneratorThenConverterMatchesExample) {
 
   auto data = (*gen)();
   ASSERT_NE(data, nullptr);
-  EXPECT_NEAR(data->iniState.energy, 1.0, 1e-12);
+  EXPECT_NEAR(data->ini_state.energy, 1.0, 1e-12);
   ASSERT_EQ(data->particles.size(), 1u);
-  EXPECT_EQ(data->particles[0].pdgCode, 2212);
+  EXPECT_EQ(data->particles[0].pdg_code, 2212);
 
   data = (*conv)(std::move(data));
   ASSERT_NE(data, nullptr);
-  EXPECT_NEAR(data->iniState.energy, 2.0, 1e-12);
+  EXPECT_NEAR(data->ini_state.energy, 2.0, 1e-12);
   ASSERT_EQ(data->particles.size(), 1u);
-  EXPECT_EQ(data->particles[0].pdgCode, 2212);
+  EXPECT_EQ(data->particles[0].pdg_code, 2212);
 }

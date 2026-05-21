@@ -29,7 +29,7 @@ contains
     type(EventData), intent(inout) :: ed
     character(len=:), allocatable, intent(out) :: err
     type(EventIniState) :: ini
-    ini = ed%get_iniState()
+    ini = ed%get_ini_state()
     call ini%set_energy(2.0d0 * ini%get_energy())
     err = ''
   end subroutine converter_run
