@@ -34,10 +34,10 @@ function (_register_fortran_source_filters)
     set(CPP_FILES "")
     set(FORTRAN_FILES "")
 
-    set(WRAPPER_MODULE)
     set(CPP_WRAPPER_NAME "Fortran${ARG_FILTER_TYPE}")
 
     foreach (TYPE_NAME IN LISTS ARG_TYPE_NAMES)
+        set(WRAPPER_MODULE "${FILTER_TYPE_LOWER}_${TYPE_NAME}_wrapper")
         set(GENERATED_HEADER_PATH "${ARG_OUTPUT_DIR}/${MODULE_NAME}/${TYPE_NAME}.hh")
         set(GENERATED_CPP_PATH "${ARG_OUTPUT_DIR}/${TYPE_NAME}.cc")
         set(GENERATED_FORTRAN_PATH "${ARG_OUTPUT_DIR}/${TYPE_NAME}_wrapper.f90")
@@ -68,7 +68,7 @@ function (_register_fortran_source_filters)
             ${GENERATED_FORTRAN_PATH}
             VARS
             WRAPPER_MODULE
-            "${FILTER_TYPE_LOWER}_wrapper"
+            "${WRAPPER_MODULE}"
             USER_MODULE_NAME
             "${ARG_USER_MODULE_NAME}"
             TYPE_NAME
@@ -140,40 +140,34 @@ function (register_fortran_source)
     endif ()
 
     set(CONVERTER_TYPES "")
-    string(
-        REGEX
-            MATCHALL
-            "extends[ \t]*\\([ \t]*AbstractFortranConverter[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)"
-            _
-            "${FCONTENT}"
+    set(CONVERTER_PATTERN
+        "extends[ \t]*\\([ \t]*AbstractFortranConverter[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)"
     )
-    if (CMAKE_MATCH_1)
-        set(CONVERTER_TYPES ${CMAKE_MATCH_1})
-    endif ()
+    string(REGEX MATCHALL "${CONVERTER_PATTERN}" CONVERTER_MATCHES "${FCONTENT}")
+    foreach (MATCH IN LISTS CONVERTER_MATCHES)
+        string(REGEX MATCH "${CONVERTER_PATTERN}" _ "${MATCH}")
+        list(APPEND CONVERTER_TYPES "${CMAKE_MATCH_1}")
+    endforeach ()
 
     set(GENERATOR_TYPES "")
-    string(
-        REGEX
-            MATCHALL
-            "extends[ \t]*\\([ \t]*AbstractFortranGenerator[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)"
-            _
-            "${FCONTENT}"
+    set(GENERATOR_PATTERN
+        "extends[ \t]*\\([ \t]*AbstractFortranGenerator[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)"
     )
-    if (CMAKE_MATCH_1)
-        set(GENERATOR_TYPES ${CMAKE_MATCH_1})
-    endif ()
+    string(REGEX MATCHALL "${GENERATOR_PATTERN}" GENERATOR_MATCHES "${FCONTENT}")
+    foreach (MATCH IN LISTS GENERATOR_MATCHES)
+        string(REGEX MATCH "${GENERATOR_PATTERN}" _ "${MATCH}")
+        list(APPEND GENERATOR_TYPES "${CMAKE_MATCH_1}")
+    endforeach ()
 
     set(WRITER_TYPES "")
-    string(
-        REGEX
-            MATCHALL
-            "extends[ \t]*\\([ \t]*AbstractFortranWriter[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)"
-            _
-            "${FCONTENT}"
+    set(WRITER_PATTERN
+        "extends[ \t]*\\([ \t]*AbstractFortranWriter[ \t]*\\)[ \t]*::[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)"
     )
-    if (CMAKE_MATCH_1)
-        set(WRITER_TYPES ${CMAKE_MATCH_1})
-    endif ()
+    string(REGEX MATCHALL "${WRITER_PATTERN}" WRITER_MATCHES "${FCONTENT}")
+    foreach (MATCH IN LISTS WRITER_MATCHES)
+        string(REGEX MATCH "${WRITER_PATTERN}" _ "${MATCH}")
+        list(APPEND WRITER_TYPES "${CMAKE_MATCH_1}")
+    endforeach ()
 
     set(_GENERATED_FORTRAN_SOURCE_FILES "")
     set(_GENERATED_HEADER_SOURCE_FILES "")
