@@ -5,7 +5,15 @@ include(FortranCOLARegister)
 find_package(GTest REQUIRED)
 include(GoogleTest)
 
-add_cola_fortran_library(TestFortranFilters SOURCES test_converter.f90 test_generator.f90)
+add_cola_fortran_library(
+    TestFortranFilters
+    SOURCES
+    test_converter.f90
+    test_error_generator.f90
+    test_generator.f90
+    test_multiple_generators.f90
+    test_writer.f90
+)
 
 target_include_directories(TestFortranFilters PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/generated)
 target_include_directories(TestFortranFilters PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/modules)

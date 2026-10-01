@@ -3,6 +3,7 @@
 
 #include <COLA.hh>
 
+#include <chrono>
 #include <cstdlib>
 #include <memory>
 #include <stdexcept>
@@ -95,7 +96,9 @@ namespace cola::fortran {
   };
 
   template <auto CreateFunc, auto DestroyFunc, auto RunFunc>
-  class GenericFortranConverter : GenericFortranFilter<CreateFunc, DestroyFunc, RunFunc>, public cola::VConverter {
+  class GenericFortranConverter : GenericFortranFilter<CreateFunc, DestroyFunc, RunFunc>,
+                                  public cola::VConverter,
+                                  public cola::VTimedConverter {
    public:
     explicit GenericFortranConverter(const std::unordered_map<std::string, std::string>& params)
         : GenericFortranFilter<CreateFunc, DestroyFunc, RunFunc>(params) {}
@@ -104,10 +107,18 @@ namespace cola::fortran {
       static const char* const k_default_error_message = "Fortran run failed";
 
       char* err_raw = nullptr;
+      const auto start = std::chrono::steady_clock::now();
       RunFunc(this->GetHandle(), data.get(), &err_raw);
+      last_callback_nanoseconds_ =
+          std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - start).count();
       this->ThrowOnError(err_raw, k_default_error_message);
       return std::move(data);
     }
+
+    std::uint64_t LastCallbackNanoseconds() const override { return last_callback_nanoseconds_; }
+
+   private:
+    std::uint64_t last_callback_nanoseconds_{};
   };
 
 }  // namespace cola::fortran
